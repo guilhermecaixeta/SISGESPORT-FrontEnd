@@ -1,2 +1,6 @@
 # SISGESPORT-FrontEnd
-Front-end do sistema de gestão de eventos esportivos do Instituto Federal de Goiás - Trabalho de Conclusão de Curso. 
+Front-end do sistema de gestão de eventos esportivos do Instituto Federal de Goiás - Trabalho de Conclusão de Curso.
+
+Aplicação Desenvolvida utilizando a tecnologia Angular 6 e Sass.
+
+Template utilizado para o desenvolvimento: https://startangular.com/product/sb-admin-bootstrap-4-angular-6/
