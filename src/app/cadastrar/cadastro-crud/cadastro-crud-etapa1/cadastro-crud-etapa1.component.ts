@@ -11,12 +11,13 @@ import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
   providers: [I18n, { provide: NgbDatepickerI18n, useClass: CustomLocalePtBR }]
 })
 export class CadastroCrudEtapa1Component extends BaseEtapaComponent {
+  @Input() possuiMatricula: boolean;
+  @Input() senhasIguais: boolean;
+
   turmaLista: any;
   cursoLista: any;
   cargoLista: any;
   instituicaoLista: any;
-  @Input() possuiMatricula: boolean;
-  @Input() senhasIguais: boolean;
 
   iniciar() {
     this.service.Get('instituicao/BuscarTodos').subscribe(object => this.instituicaoLista = object.data);
