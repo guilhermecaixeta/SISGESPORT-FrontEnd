@@ -2,7 +2,15 @@ import { CadastroCrudComponent } from './../cadastrar/cadastro-crud/cadastro-cru
 import { Servidor } from '../model/servidor.model';
 import { Validators } from '@angular/forms';
 import { requiredMinLength, SomenteNumeros } from '../utils/validators.util.component';
+import { Component } from '../../../node_modules/@angular/core';
+import { routerTransition } from '../router.animations';
 
+@Component({
+  selector: 'app-servidor-crud',
+  templateUrl: '../cadastrar/cadastro-crud/cadastro-crud.component.html',
+  styleUrls: ['../cadastrar/cadastro-crud/cadastro-crud.component.scss'],
+  animations: [routerTransition()]
+})
 export class ServidorComponent extends CadastroCrudComponent {
   validacaoCustomizada: any = true;
   rota = 'servidor';
@@ -33,7 +41,9 @@ export class ServidorComponent extends CadastroCrudComponent {
   finalizar() {
     if (this.formulario.valid) {
       let servidor = new Servidor(this.formulario.value.cadastro);
-      servidor.adicionarEndereco(this.formulario.controls.endereco.value, this.LimparCaracterEspecial(this.formulario.controls.endereco.value.cep));
+      servidor.adicionarEndereco(Object.assign({}, 
+        this.formulario.controls.endereco.value, 
+        { cep: this.LimparCaracterEspecial(this.formulario.controls.endereco.value.cep) }));
       this.Persistir(servidor);
     } else {
       this.TocarTodos(this.formulario);

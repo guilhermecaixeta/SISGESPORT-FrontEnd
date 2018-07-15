@@ -1,8 +1,16 @@
 import { CadastroCrudComponent } from '../cadastrar/cadastro-crud/cadastro-crud.component';
+import { Aluno } from '../model/aluno.model';
 import { Validators } from '@angular/forms';
 import { SomenteNumeros, requiredMinLength } from '../utils/validators.util.component';
-import { Aluno } from '../model/aluno.model';
+import { Component } from '../../../node_modules/@angular/core';
+import { routerTransition } from '../router.animations';
 
+@Component({
+  selector: 'app-aluno-crud',
+  templateUrl: '../cadastrar/cadastro-crud/cadastro-crud.component.html',
+  styleUrls: ['../cadastrar/cadastro-crud/cadastro-crud.component.scss'],
+  animations: [routerTransition()]
+})
 export class AlunoComponent extends CadastroCrudComponent {
   validacaoCustomizada: any = true;
   rota = 'aluno';
@@ -34,7 +42,9 @@ export class AlunoComponent extends CadastroCrudComponent {
   finalizar() {
     if (this.formulario.valid) {
       let aluno = new Aluno(this.formulario.value.cadastro);
-      aluno.adicionarEndereco(this.formulario.controls.endereco.value, this.LimparCaracterEspecial(this.formulario.controls.endereco.value.cep));
+      aluno.adicionarEndereco(Object.assign({}, 
+        this.formulario.controls.endereco.value, 
+        { cep: this.LimparCaracterEspecial(this.formulario.controls.endereco.value.cep) }));
       this.Persistir(aluno);
     } else {
       this.TocarTodos(this.formulario);

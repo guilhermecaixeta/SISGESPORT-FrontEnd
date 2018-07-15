@@ -15,6 +15,8 @@ export class CadastroCrudEtapa1Component extends BaseEtapaComponent {
   cursoLista: any;
   cargoLista: any;
   instituicaoLista: any;
+  @Input() possuiMatricula: boolean;
+  @Input() senhasIguais: boolean;
 
   iniciar() {
     this.service.Get('instituicao/BuscarTodos').subscribe(object => this.instituicaoLista = object.data);

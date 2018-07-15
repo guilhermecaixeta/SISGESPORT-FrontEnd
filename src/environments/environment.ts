@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  apiEndPoint: 'http://localhost:8080/api/sisgesport/',
+  apiEndPoint: 'http://localhost:8080/api/',
   apiEndPointLogin: 'http://localhost:8080/auth'
 };
