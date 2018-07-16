@@ -4,7 +4,7 @@
     "license": "Apache",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve",
+        "start": "node server.js",
         "build": "ng build --prod",
         "gitbuild": "ng build --prod --base-href /start-angular/SB-Admin-BS4-Angular-6/master/dist/",
         "test": "ng test",
@@ -47,6 +47,7 @@
         "@types/jasminewd2": "~2.0.3",
         "@types/node": "^10.1.2",
         "codelyzer": "~4.3.0",
+        "enhanced-resolve": "^4.1.0",
         "jasmine-core": "~3.1.0",
         "jasmine-spec-reporter": "~4.2.1",
         "karma": "~2.0.0",
@@ -62,5 +63,5 @@
     "engines": {
         "node": "10.5.0",
         "npm": "6.1.0"
-      }
+    }
 }
