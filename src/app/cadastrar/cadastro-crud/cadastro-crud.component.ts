@@ -34,7 +34,7 @@ export class CadastroCrudComponent extends BaseCrudComponent {
   validarEtapa() {
     if (this.formulario.get('cadastro.confirmarSenha').value == null || this.formulario.get('cadastro.senha').value == null || this.possuiMatricula)
       this.multiValidacao.eValido = false;
-    else if (this.senhasIguais && this.formulario.valid && !this.possuiMatricula)
+    else if (this.senhasIguais && this.formulario.controls[Object.keys(this.formulario.controls)[this.etapa]].valid && !this.possuiMatricula)
       this.multiValidacao.eValido = true;
     else this.multiValidacao.eValido = false;
   }
