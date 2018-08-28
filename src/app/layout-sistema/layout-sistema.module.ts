@@ -5,6 +5,8 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { LayoutSistemaRoutingModule } from './layout-sistema-routing.module';
 import { LayoutSistemaComponent } from './layout-sistema.component';
+import { CabecalhoComponent } from './componentes/cabecalho/cabecalho.component';
+import { BarraLateralComponent } from './componentes/barra-lateral/barra-lateral.component';
 // import { SidebarComponent } from './components/sidebar/sidebar.component';
 // import { HeaderComponent } from './components/header/header.component';
 
@@ -15,6 +17,6 @@ import { LayoutSistemaComponent } from './layout-sistema.component';
         TranslateModule,
         NgbDropdownModule.forRoot()
     ],
-    declarations: [LayoutSistemaComponent]
+    declarations: [LayoutSistemaComponent, CabecalhoComponent, BarraLateralComponent]
 })
 export class LayoutModule {}
