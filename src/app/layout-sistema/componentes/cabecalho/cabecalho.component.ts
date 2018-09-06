@@ -11,15 +11,17 @@ export class CabecalhoComponent implements OnInit {
   pushRightClass: string = 'push-right';
   tarefa: boolean = true;
   idioma: boolean = false;
+  listaTarefa: any[] = [];
+  listaIdioma: any[] = [];
   nameFieldTarefa: string[] = ['nome', 'tarefa'];
   nameFieldIdioma: string[] = ['nome', 'idioma'];
-  listaTarefa:any[] =[];
-  listaIdioma:any[] =[];
+
+
   constructor(private translate: TranslateService, public router: Router) {
-    this.listaIdioma.push({nome:'Português', idioma:'pt'});
-    this.listaIdioma.push({nome:'Inglês', idioma:'en'});
-    this.listaIdioma.push({nome:'Espanhol', idioma:'es'});
-    
+    this.listaIdioma.push({ nome: 'Português', idioma: 'pt' });
+    this.listaIdioma.push({ nome: 'Inglês', idioma: 'en' });
+    this.listaIdioma.push({ nome: 'Espanhol', idioma: 'es' });
+
     this.translate.addLangs(['pt', 'en', 'es']);
     this.translate.setDefaultLang('pt');
     const browserLang = this.translate.getBrowserLang();
@@ -58,6 +60,7 @@ export class CabecalhoComponent implements OnInit {
   }
 
   changeLang(language: string) {
+    debugger
     this.translate.use(language);
   }
 }

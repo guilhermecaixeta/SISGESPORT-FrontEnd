@@ -21,9 +21,9 @@ import { StatModule } from '../../shared';
     ],
     declarations: [
         DashboardComponent,
-        TimelineComponent,
-        NotificationComponent,
-        ChatComponent
+        // TimelineComponent,
+        // NotificationComponent,
+        // ChatComponent
     ]
 })
 export class DashboardModule {}

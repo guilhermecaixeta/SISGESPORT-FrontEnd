@@ -54,7 +54,7 @@
                   </li>
               </ul>
           </li> -->
-          <!-- <app-li-drop-down-menu [lista]="listaIdioma" [isTask]="idioma" [value]="nameFieldIdioma"></app-li-drop-down-menu> -->
+          <app-li-drop-down-menu [lista]="listaIdioma" [isTask]="idioma" [value]="nameFieldIdioma" (emitLang)="changeLang($event)"></app-li-drop-down-menu>
           <li class="nav-item dropdown" ngbDropdown>
               <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
                   <i class="fa fa-user"></i> Nome usuário <b class="caret"></b>
