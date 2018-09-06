@@ -21,9 +21,9 @@ import { StatModule } from '../../shared';
     ],
     declarations: [
         PrincipalComponent,
-        TimelineComponent,
-        NotificationComponent,
-        ChatComponent
+        // TimelineComponent,
+        // NotificationComponent,
+        // ChatComponent
     ],
     exports: [
         PrincipalComponent
