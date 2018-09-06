@@ -17,7 +17,7 @@ export class LoginComponent extends BaseCrudComponent {
 
     onLoggedin() {
         this.service.Login(this.usuario).subscribe(
-            () => this.router.navigate(['/dashboard'], { relativeTo: this.activatedRoute }),
+            () => this.router.navigate(['/principal'], { relativeTo: this.activatedRoute }),
             err => this.alertas.push({
                 id: 1,
                 type: 'danger',

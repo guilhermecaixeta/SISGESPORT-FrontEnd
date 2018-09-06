@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './shared';
 
 const routes: Routes = [
-    { path: '', loadChildren: './layout/layout.module#LayoutModule', canActivate: [AuthGuard] },
+    { path: '', loadChildren: './layout-sistema/layout-sistema.module#LayoutSistemaModule', canActivate: [AuthGuard] },
     { path: 'login', loadChildren: './login/login.module#LoginModule' },
     { path: 'cadastrar', loadChildren: './cadastrar/cadastrar.module#CadastrarModule' },
     { path: 'servidor', loadChildren: './servidor/servidor.module#ServidorModule' },

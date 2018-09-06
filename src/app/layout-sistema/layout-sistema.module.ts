@@ -7,8 +7,7 @@ import { LayoutSistemaRoutingModule } from './layout-sistema-routing.module';
 import { LayoutSistemaComponent } from './layout-sistema.component';
 import { CabecalhoComponent } from './componentes/cabecalho/cabecalho.component';
 import { BarraLateralComponent } from './componentes/barra-lateral/barra-lateral.component';
-// import { SidebarComponent } from './components/sidebar/sidebar.component';
-// import { HeaderComponent } from './components/header/header.component';
+import { LiDropDownMenuComponent } from './componentes/li-drop-down-menu/li-drop-down-menu.component';
 
 @NgModule({
     imports: [
@@ -17,6 +16,11 @@ import { BarraLateralComponent } from './componentes/barra-lateral/barra-lateral
         TranslateModule,
         NgbDropdownModule.forRoot()
     ],
-    declarations: [LayoutSistemaComponent, CabecalhoComponent, BarraLateralComponent]
+    declarations: [
+        LayoutSistemaComponent, 
+        CabecalhoComponent, 
+        BarraLateralComponent, 
+        LiDropDownMenuComponent, 
+        ]
 })
-export class LayoutModule {}
+export class LayoutSistemaModule {}

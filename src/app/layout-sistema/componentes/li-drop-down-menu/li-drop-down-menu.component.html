@@ -1,0 +1,13 @@
+<li class="nav-item dropdown" ngbDropdown>
+  <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
+    <i class="fa fa-bell"></i> <b class="caret"></b><span class="sr-only">(current)</span>
+  </a>
+  <div class="dropdown-menu-right" *ngFor="let obj of lista" ngbDropdownMenu>
+    <a href="javascript:void(0)" class="dropdown-item" *ngIf="isTask">
+      {{ obj[value[0]] | translate }} <span class="badge badge-info">obj[value[1]]</span>
+    </a>
+    <a class="dropdown-item" href="javascript:void(0)" *ngIf="isTask" (click)="clickEmitLang(obj[value[0]])">
+      {{ obj[value[1]] | translate }}
+    </a>
+  </div>
+</li>
