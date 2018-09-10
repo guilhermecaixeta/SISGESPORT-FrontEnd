@@ -1,6 +1,6 @@
 <li class="nav-item dropdown" ngbDropdown>
   <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
-    <i class="fa fa-bell"></i> <b class="caret"></b><span class="sr-only">(current)</span>
+      <i [class]="isTag[0]"></i> {{isTag[1] | translate}} <b class="caret"></b>
   </a>
   <div class="dropdown-menu-right" ngbDropdownMenu>
     <div *ngFor="let obj of lista">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./cabecalho.component.scss']
 })
 export class CabecalhoComponent implements OnInit {
+  @Input() user: any = "Teste";
   pushRightClass: string = 'push-right';
   tarefa: boolean = true;
   idioma: boolean = false;
@@ -38,7 +39,8 @@ export class CabecalhoComponent implements OnInit {
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+   }
 
   isToggled(): boolean {
     const dom: Element = document.querySelector('body');
@@ -60,7 +62,6 @@ export class CabecalhoComponent implements OnInit {
   }
 
   changeLang(language: string) {
-    debugger
     this.translate.use(language);
   }
 }

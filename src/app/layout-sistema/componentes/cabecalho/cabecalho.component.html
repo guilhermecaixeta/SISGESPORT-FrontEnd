@@ -1,21 +1,19 @@
 <nav class="navbar navbar-expand-lg fixed-top">
-  <a class="navbar-brand" href="#">Sistema de Gestão Esportiva </a>
-  <button class="navbar-toggler" type="button" (click)="toggleSidebar()">
-      <i class="fa fa-bars text-muted" aria-hidden="true"></i>
-  </button>
-  <div class="collapse navbar-collapse">
-      <!-- <form class="form-inline my-2 my-lg-0">
+    <a class="navbar-brand" href="#">{{'Sistema de Gestão de Eventos Esportivos' | translate}}</a>
+    <button class="navbar-toggler" type="button" (click)="toggleSidebar()">
+        <i class="fa fa-bars text-muted" aria-hidden="true"></i>
+    </button>
+    <div class="collapse navbar-collapse">
+        <!-- <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="text" placeholder="{{ 'Buscar' | translate }}" >
       </form> -->
-      <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-              <a href="javascript:void(0)" class="nav-link mt-1"
-                  style="padding: 0.375rem 1rem !important; border-color: #999;"
-                  (click)="rltAndLtr()">
-                  Direita/Esquerda
-              </a>
-          </li> &nbsp;
-          <!-- <li class="nav-item dropdown" ngbDropdown>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a href="javascript:void(0)" class="nav-link mt-1" style="padding: 0.375rem 1rem !important; border-color: #999;" (click)="rltAndLtr()">
+                    Direita/Esquerda
+                </a>
+            </li> &nbsp;
+            <!-- <li class="nav-item dropdown" ngbDropdown>
               <a class="nav-link" href="javascript:void(0)" ngbDropdownToggle>
                   <i class="fa fa-envelope"></i> <b class="caret"></b><span class="sr-only">(current)</span>
               </a>
@@ -54,13 +52,13 @@
                   </li>
               </ul>
           </li> -->
-          <app-li-drop-down-menu [lista]="listaIdioma" [isTask]="idioma" [value]="nameFieldIdioma" (emitLang)="changeLang($event)"></app-li-drop-down-menu>
-          <li class="nav-item dropdown" ngbDropdown>
-              <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
-                  <i class="fa fa-user"></i> Nome usuário <b class="caret"></b>
-              </a>
-              <div class="dropdown-menu-right" ngbDropdownMenu>
-                  <!-- <a class="dropdown-item" href="javascript:void(0)">
+            <app-li-drop-down-menu [lista]="listaIdioma" [isTask]="idioma" [value]="nameFieldIdioma" (emitLang)="changeLang($event)"></app-li-drop-down-menu>
+            <li class="nav-item dropdown" ngbDropdown>
+                <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
+                    <i class="fa fa-user"></i> {{user}} <b class="caret"></b>
+                </a>
+                <div class="dropdown-menu-right" ngbDropdownMenu>
+                    <!-- <a class="dropdown-item" href="javascript:void(0)">
                       <i class="fa fa-fw fa-user"></i> {{ 'Profile' | translate }}
                   </a>
                   <a class="dropdown-item" href="javascript:void(0)">
@@ -69,11 +67,11 @@
                   <a class="dropdown-item" href="javascript:void(0)">
                       <i class="fa fa-fw fa-gear"></i> {{ 'Settings' | translate }}
                   </a> -->
-                  <a class="dropdown-item" [routerLink]="['/login']" (click)="onLoggedout()">
-                      <i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}
-                  </a>
-              </div>
-          </li>
-      </ul>
-  </div>
+                    <a class="dropdown-item" [routerLink]="['/login']" (click)="onLoggedout()">
+                        <i class="fa fa-fw fa-power-off"></i> {{ 'Sair' | translate }}
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
 </nav>

@@ -61,8 +61,18 @@ export class Service {
         return this.http.post<any>(`${environment.apiEndPointLogin}`, user, getHeader())
             .pipe(
                 map(response => {
-                    this.observablePadrao.setValue(response.data.name);
+                    this.observablePadrao.setValue(response.data);
                     localStorage.setItem('token', response.data.token);
+                }),
+                catchError(this.handleError));
+    }
+
+    ObterUsuario() {
+        return this.http.get(`${environment.apiEndPointLogin}/ObterUsuarioLogado`, getHeader())
+            .pipe(
+                retry(3),
+                map(response => {
+                    this.observablePadrao.setValue(response['data'])
                 }),
                 catchError(this.handleError));
     }
