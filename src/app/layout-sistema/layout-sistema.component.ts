@@ -1,3 +1,4 @@
+import { MenuSide } from './../entity/menu-side';
 import { BaseComponent } from './../base/base.component';
 import { Component } from '@angular/core';
 
@@ -8,7 +9,7 @@ import { Component } from '@angular/core';
 })
 export class LayoutSistemaComponent extends BaseComponent {
   userData: any;
-
+  
   ngOnInit() {
     this.observablePadrao.getValue.subscribe(x => {
       if (x) {

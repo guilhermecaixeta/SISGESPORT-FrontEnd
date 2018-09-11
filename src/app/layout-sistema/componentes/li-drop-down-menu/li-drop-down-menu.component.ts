@@ -10,7 +10,7 @@ export class LiDropDownMenuComponent implements OnInit {
   @Input() lista: any[];
   @Input() value: string[];
   @Input() isTask: boolean = false;
-  @Input() isTag: string[] = ['fa fa-language', 'Language'];
+  @Input() isTag: string[] = [];
   @Output() emitLang = new EventEmitter<any>();
   constructor() { }
 

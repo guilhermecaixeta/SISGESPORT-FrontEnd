@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./cabecalho.component.scss']
 })
 export class CabecalhoComponent implements OnInit {
-  @Input() user: any = "Teste";
+  @Input() user: any = "";
   pushRightClass: string = 'push-right';
   tarefa: boolean = true;
   idioma: boolean = false;
@@ -16,7 +16,7 @@ export class CabecalhoComponent implements OnInit {
   listaIdioma: any[] = [];
   nameFieldTarefa: string[] = ['nome', 'tarefa'];
   nameFieldIdioma: string[] = ['nome', 'idioma'];
-
+  tagIdioma: string[] = ['fa fa-language', 'Language'];
 
   constructor(private translate: TranslateService, public router: Router) {
     this.listaIdioma.push({ nome: 'Português', idioma: 'pt' });

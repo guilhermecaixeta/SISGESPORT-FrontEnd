@@ -42,8 +42,8 @@ export const createTranslateLoader = (http: HttpClient) => {
     ],
     declarations: [
         AppComponent
-        ],
+    ],
     providers: [AuthGuard, Service, FormBuilder, MaskField, ObservablePadrao],
     bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

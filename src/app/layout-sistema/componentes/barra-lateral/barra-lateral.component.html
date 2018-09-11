@@ -1,3 +1,27 @@
-<p>
-  barra-lateral works!
-</p>
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+  <div *ngFor="let obj of lista">
+    <div class="list-group">
+      <div *ngIf="!obj.nestedsMenus">
+        <a [routerLink]="obj.router" [routerLinkActive]="['router-link-active']" class="list-group-item">
+          <i [class]="obj.IClass"></i>&nbsp;{{ obj.legend | translate }}
+        </a>
+      </div>
+      <div *ngIf="obj.nestedsMenus" class="nested-menu">
+        <a class="list-group-item" (click)="expandirMenu(true)">
+          <span><i [class]="obj.IClass"></i>&nbsp; {{ obj.legend | translate }}</span>
+        </a>
+        <li class="nested" [class.expand]="showMenu">
+          <div *ngFor="let nest of obj.nestedsMenus">
+            <ul class="submenu">
+              <li>
+                <a [routerLink]="nest.router" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                  <i [class]="nest.IClass"></i>&nbsp;{{ nest.legend | translate }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </div>
+    </div>
+  </div>
+</nav>
