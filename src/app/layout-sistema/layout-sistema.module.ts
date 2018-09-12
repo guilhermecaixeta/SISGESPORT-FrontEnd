@@ -8,6 +8,7 @@ import { LayoutSistemaComponent } from './layout-sistema.component';
 import { CabecalhoComponent } from './componentes/cabecalho/cabecalho.component';
 import { BarraLateralComponent } from './componentes/barra-lateral/barra-lateral.component';
 import { LiDropDownMenuComponent } from './componentes/li-drop-down-menu/li-drop-down-menu.component';
+import { ManterPadraoComponent } from './manter-padrao/manter-padrao.component';
 
 @NgModule({
     imports: [
@@ -20,7 +21,7 @@ import { LiDropDownMenuComponent } from './componentes/li-drop-down-menu/li-drop
         LayoutSistemaComponent, 
         CabecalhoComponent, 
         BarraLateralComponent, 
-        LiDropDownMenuComponent, 
+        LiDropDownMenuComponent, ManterPadraoComponent, 
         ]
 })
 export class LayoutSistemaModule {}

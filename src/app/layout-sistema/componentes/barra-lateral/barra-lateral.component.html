@@ -1,11 +1,9 @@
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
-  <div *ngFor="let obj of lista">
-    <div class="list-group">
-      <div *ngIf="!obj.nestedsMenus">
-        <a [routerLink]="obj.router" [routerLinkActive]="['router-link-active']" class="list-group-item">
-          <i [class]="obj.IClass"></i>&nbsp;{{ obj.legend | translate }}
-        </a>
-      </div>
+  <div class="list-group">
+    <div *ngFor="let obj of lista; index as i">
+      <a *ngIf="!obj.nestedsMenus" [routerLink]="obj.router" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <i [class]="obj.IClass"></i>&nbsp;{{ obj.legend | translate }}
+      </a>
       <div *ngIf="obj.nestedsMenus" class="nested-menu">
         <a class="list-group-item" (click)="expandirMenu(true)">
           <span><i [class]="obj.IClass"></i>&nbsp; {{ obj.legend | translate }}</span>

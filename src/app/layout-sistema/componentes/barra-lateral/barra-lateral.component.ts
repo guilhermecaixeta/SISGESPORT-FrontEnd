@@ -1,6 +1,5 @@
-import { MenuSide } from './../../../entity/menu-side';
+import { MenuLateral } from '../../../entity/menu-lateral';
 import { Component, OnInit, Input } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
@@ -12,7 +11,7 @@ export class BarraLateralComponent implements OnInit {
   isActive: boolean = false;
   showMenu: boolean = false;
   pushRightClass: string = 'push-right';
-  @Input() lista: MenuSide[] = [
+  @Input() lista: MenuLateral[] = [
     {
       IClass: 'fa fa-fw fa-dashboard',
       legend: 'Principal',
@@ -22,36 +21,32 @@ export class BarraLateralComponent implements OnInit {
     {
       IClass: 'fa fa-fw fa-bar-chart-o',
       legend: 'Gráficos',
-      router: '/',
+      router: '/teste',
       nestedsMenus: null
     },
     {
       IClass: 'fa fa-plus',
       legend: 'Menus Diversos',
-      router: '/',
+      router: '/teste',
       nestedsMenus: [
         {
           IClass: 'fa fa-plus',
           legend: 'Sub-menu 1',
-          router: '/',
+          router: '/teste',
           nestedsMenus: null
         },
         {
           IClass: 'fa fa-plus',
           legend: 'Sub-menu 2',
-          router: '/',
+          router: '/teste',
           nestedsMenus: null
         }
       ]
     }
   ];
 
-  constructor(private translate: TranslateService, public router: Router) {
-    this.translate.addLangs(['pt', 'en', 'es']);
-    this.translate.setDefaultLang('pt');
-    const browserLang = this.translate.getBrowserLang();
-    this.translate.use(browserLang.match(/pt|en|es/) ? browserLang : 'pt');
-
+  constructor(public router: Router) {
+    
     this.router.events.subscribe(val => {
       if (
         val instanceof NavigationEnd &&
@@ -85,18 +80,5 @@ export class BarraLateralComponent implements OnInit {
   toggleSidebar() {
     const dom: any = document.querySelector('body');
     dom.classList.toggle(this.pushRightClass);
-  }
-
-  rltAndLtr() {
-    const dom: any = document.querySelector('body');
-    dom.classList.toggle('rtl');
-  }
-
-  changeLang(language: string) {
-    this.translate.use(language);
-  }
-
-  onLoggedout() {
-    localStorage.removeItem('isLoggedin');
   }
 }

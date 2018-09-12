@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
+import { DadosTabela } from '../../entity/tabela';
 
 @Component({
     selector: 'app-principal',
@@ -10,7 +11,8 @@ import { routerTransition } from '../../router.animations';
 export class PrincipalComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
-
+    listaValorCampo: any[] = [{ nome: 'Guilherme', idade: 25 }, { nome: 'Aline', idade: 19 }];
+    listaNomeCampo: DadosTabela[] = [{ nomeColuna: 'Nome', nomeValorColuna: 'nome' }, { nomeColuna: 'Idade', nomeValorColuna: 'idade' }];
     constructor() {
         this.sliders.push(
             {
@@ -52,7 +54,7 @@ export class PrincipalComponent implements OnInit {
         );
     }
 
-    ngOnInit() {}
+    ngOnInit() { }
 
     public closeAlert(alert: any) {
         const index: number = this.alerts.indexOf(alert);

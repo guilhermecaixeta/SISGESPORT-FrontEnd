@@ -1,4 +1,3 @@
-import { MenuSide } from './../entity/menu-side';
 import { BaseComponent } from './../base/base.component';
 import { Component } from '@angular/core';
 

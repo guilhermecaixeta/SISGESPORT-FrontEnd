@@ -13,6 +13,8 @@ import { Service } from './service/service.component';
 import { FormBuilder } from '@angular/forms';
 import { MaskField } from './utils/mask.util.component';
 import { ObservablePadrao } from './utils/observable.util.component';
+import { NgbDateCustomParserFormatter } from './utils/date-formate';
+import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -43,7 +45,8 @@ export const createTranslateLoader = (http: HttpClient) => {
     declarations: [
         AppComponent
     ],
-    providers: [AuthGuard, Service, FormBuilder, MaskField, ObservablePadrao],
+    providers: [AuthGuard, Service, FormBuilder, MaskField, ObservablePadrao, 
+        {provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter}],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,8 +1,7 @@
-
-export class MenuSide {
+export class MenuLateral {
     public router: string;
     public IClass: string;
     public legend: string;
 
-    public nestedsMenus: MenuSide[];
+    public nestedsMenus: MenuLateral[];
 }

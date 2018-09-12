@@ -10,6 +10,7 @@ import {
     ChatComponent
 } from '../../layout/dashboard/components';
 import { StatModule } from '../../shared';
+import { TabelaBasicaModule } from '../tabela-basica/tabela-basica.module';
 
 @NgModule({
     imports: [
@@ -17,7 +18,8 @@ import { StatModule } from '../../shared';
         NgbCarouselModule.forRoot(),
         NgbAlertModule.forRoot(),
         PrincipalRoutingModule,
-        StatModule
+        StatModule,
+        TabelaBasicaModule
     ],
     declarations: [
         PrincipalComponent,
