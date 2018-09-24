@@ -19,18 +19,21 @@ export class PrincipalComponent implements OnInit {
                 imagePath: 'assets/images/slider1.jpg',
                 label: 'First slide label',
                 text:
-                    'Nulla vitae elit libero, a pharetra augue mollis interdum.'
+                    'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+                html: '#'
             },
             {
                 imagePath: 'assets/images/slider2.jpg',
                 label: 'Second slide label',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                html: '#'
             },
             {
                 imagePath: 'assets/images/slider3.jpg',
                 label: 'Third slide label',
                 text:
-                    'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
+                    'Praesent commodo cursus magna, vel scelerisque nisl consectetur.',
+                html: '#'
             }
         );
 

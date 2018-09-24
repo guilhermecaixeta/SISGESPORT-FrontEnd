@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./layout-sistema.component.scss']
 })
 export class LayoutSistemaComponent extends BaseComponent {
-  userData: any;
-  
+  hasToken = localStorage.getItem('token') !== null;
+  userData: string;
   ngOnInit() {
     this.observablePadrao.getValue.subscribe(x => {
       if (x) {

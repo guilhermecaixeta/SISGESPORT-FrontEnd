@@ -1,20 +1,22 @@
 <div [@routerTransition]>
+    <div class="row">
+        <div class="col-md-12">
+            <ngb-carousel>
+                <ng-template ngbSlide *ngFor="let slider of sliders">
+                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="100%">
+                    <div class="carousel-caption">
+                        <h3>{{slider.label}}</h3>
+                        <p>
+                            <a href="{{slider.html}}" class="carrousell">{{slider.text}}</a>
+                        </p>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+        </div>
+    </div>
     <!-- <img src="assets/images/em_construcao.jpg" alt="Smiley face" height="100%" width="100%"> -->
-    <app-tabela-basica [listaValorCampo]="listaValorCampo" [listaNomeCampo]="listaNomeCampo" legenda="Tabela de Teste" ></app-tabela-basica>
+    <app-tabela-basica [listaValorCampo]="listaValorCampo" [listaNomeCampo]="listaNomeCampo" legenda="Tabela de Teste"></app-tabela-basica>
     <!-- <h2 class="text-muted">Principal <small>Statistics Overview</small></h2>
-  <div class="row">
-      <div class="col-md-12">
-          <ngb-carousel>
-              <ng-template ngbSlide *ngFor="let slider of sliders">
-                  <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="100%">
-                  <div class="carousel-caption">
-                      <h3>{{slider.label}}</h3>
-                      <p>{{slider.text}}</p>
-                  </div>
-              </ng-template>
-          </ngb-carousel>
-      </div>
-  </div>
   <hr>
   <div class="row">
       <div class="col-xl-3 col-lg-6">

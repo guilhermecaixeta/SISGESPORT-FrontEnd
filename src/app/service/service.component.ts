@@ -12,12 +12,13 @@ export class Service {
 
     constructor(private http: HttpClient, private observablePadrao: ObservablePadrao) { }
     /**
-     * Obtem os dados a partir da rota passada
-     * @param route rota a ser consumida
-     * @param value valor do parametro de busca
+    * Obtem os dados a partir da rota passada
+    * @param route rota a ser consumida
+    * @param value valor do parametro de busca
+     * @param param valor a ser adicionado no parametro do cabecalho
      */
-    Get(route: string, value?: any): Observable<any> {
-        return this.http.get(`${environment.apiEndPoint}${route}${value !== undefined ? '/' + value : ''}`, getHeader())
+    Get(route: string, value?: any, param?: any): Observable<any> {
+        return this.http.get(`${environment.apiEndPoint}${route}${value !== undefined ? '/' + value : ''}`, getHeader(param))
             .pipe(
                 retry(3),
                 map(response => response),

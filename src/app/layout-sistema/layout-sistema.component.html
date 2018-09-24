@@ -1,5 +1,5 @@
 <app-cabecalho [user]="userData"></app-cabecalho>
 <app-barra-lateral ></app-barra-lateral>
-<section class="main-container">
+<section class="main-container" *ngIf="hasToken">
     <router-outlet></router-outlet>
 </section>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { LayoutSistemaRoutingModule } from './layout-sistema-routing.module';
 import { LayoutSistemaComponent } from './layout-sistema.component';
@@ -15,7 +15,7 @@ import { ManterPadraoComponent } from './manter-padrao/manter-padrao.component';
         CommonModule,
         LayoutSistemaRoutingModule,
         TranslateModule,
-        NgbDropdownModule.forRoot()
+        NgbModule.forRoot()
     ],
     declarations: [
         LayoutSistemaComponent, 
