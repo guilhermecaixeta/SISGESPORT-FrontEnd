@@ -29,7 +29,7 @@
             </tr>
           </tbody>
         </table>
-        <ngb-pagination [collectionSize]="pageConfig.totalElements" [(page)]="pageConfig.page" (ngModelChange)="AtualizarLista()"
+        <ngb-pagination [collectionSize]="pageConfig.totalElements" [(page)]="pageConfig.page" (ngModelChange)="AtualizarLista($event)"
           [maxSize]="pageConfig.size" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="AtualizarLista($event)"></ngb-pagination>
       </div>
     </div>
