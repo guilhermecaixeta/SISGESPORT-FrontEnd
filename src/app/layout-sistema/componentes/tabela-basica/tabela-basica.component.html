@@ -9,28 +9,28 @@
           <thead>
             <tr>
               <th *ngFor="let nome of listaNomeCampo">{{nome.nomeColuna}}</th>
-              <td >Ação</td>
+              <td>Ação</td>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let valor of listaValorCampo; let nome = listaNomeCampo;">
               <td *ngFor="let nome of listaNomeCampo">{{valor[nome.nomeValorColuna]}}</td>
               <td>
-                <a href="javascript:void(0)" class="in col-1" (click)="Editar(valor)" ngbTooltip="Editar">
+                <a href="javascript:void(0)" class="in col-1" (click)="AcaoGrid($event, valor)" ngbTooltip="Editar" id="editar">
                   <i class="fa fa-file-text-o"></i>
                 </a>
-                <a href="javascript:void(0)" class="in col-1" (click)="Visualizar(valor)" ngbTooltip="Visualizar">
+                <a href="javascript:void(0)" class="in col-1" (click)="AcaoGrid($event, valor)" ngbTooltip="Visualizar" id="visualizar">
                   <i class="fa fa-eye"></i>
                 </a>
-                <a href="javascript:void(0)" class="in col-1" (click)="Delete(valor)" ngbTooltip="Deletar">
+                <a href="javascript:void(0)" class="in col-1" (click)="AcaoGrid($event, valor)" ngbTooltip="Deletar" id="deletar">
                   <i class="fa fa-remove"></i>
                 </a>
               </td>
             </tr>
           </tbody>
         </table>
-        <ngb-pagination [collectionSize]="pageConfig.totalElements" [(page)]="pageConfig.page" (ngModelChange)="AtualizarLista($event)"
-          [maxSize]="pageConfig.size" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="AtualizarLista($event)"></ngb-pagination>
+        <ngb-pagination [collectionSize]="pageConfig.totalElements" [(page)]="pageConfig.page" [maxSize]="pageConfig.size"
+          [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="AtualizarLista($event)"></ngb-pagination>
       </div>
     </div>
   </div>

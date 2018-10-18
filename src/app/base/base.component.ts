@@ -66,7 +66,7 @@ export class BaseComponent implements OnInit {
    * @param value String a ser verificada
    * @param comparer Valor a ser verificado se existe na string passada
    */
-  Contains(value: string, comparer: string): any {
+  public static Contains(value: string, comparer: string): any {
     if (value.search(comparer) < 0) {
       return false;
     } else {

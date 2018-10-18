@@ -1,5 +1,5 @@
-import { Service } from './../../service/service.component';
-import { DadosTabela } from './../../entity/tabela';
+import { Service } from './../../../service/service.component';
+import { DadosTabela } from './../../../entity/tabela';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -28,7 +28,8 @@ export class TabelaBasicaComponent implements OnInit {
   constructor(private service: Service) { }
 
   ngOnInit() {
-    this.ObterLista(this.pageConfig);
+    if (this.listaValorCampo.length == 0)
+      this.ObterLista(this.pageConfig);
   }
 
   /**
@@ -60,20 +61,27 @@ export class TabelaBasicaComponent implements OnInit {
       });
   }
   /**
-   * Deleta um elemento da lista a partir de uma chamada ao servico de delecao.
+   * Metodo para ação da gridview
    * @param event objeto de entrada
    */
-  Delete(event: any) {
-    this.service.Delete(this.route.replace(/\/.*/g, ''), event[this.field]).subscribe(
-      () => this.ObterLista({
-        totalElements: 0,
-        page: this.paginaAnterior,
-        size: 10,
-        order: "id",
-        sort: "DESC",
-      }),
-      err => console.log('Erro ao excluir', err)
-    );
-
+  AcaoGrid(event: any, data: any) {
+    switch (event.currentTarget.id) {
+      case "editar":
+        break;
+      case "visualizar":
+        break;
+      case "deletar":
+        this.service.Delete(this.route.replace(/\/.*/g, ''), data[this.field]).subscribe(
+          () => this.ObterLista({
+            totalElements: 0,
+            page: this.paginaAnterior,
+            size: 10,
+            order: "id",
+            sort: "DESC",
+          }),
+          err => console.log('Erro ao excluir', err)
+        );
+        break;
+    }
   }
 }

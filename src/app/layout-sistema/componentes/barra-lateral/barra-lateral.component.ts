@@ -20,8 +20,8 @@ export class BarraLateralComponent implements OnInit {
     },
     {
       IClass: 'fa fa-fw fa-bar-chart-o',
-      legend: 'Gráficos',
-      router: '/teste',
+      legend: 'Instituição',
+      router: '/instituicao',
       nestedsMenus: null
     },
     {

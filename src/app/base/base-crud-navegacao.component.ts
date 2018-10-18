@@ -1,3 +1,4 @@
+import { BaseComponent } from './base.component';
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -19,7 +20,7 @@ import { Router, ActivatedRoute } from '@angular/router';
     </div>`,
     styleUrls: ['./base.style.scss']
 })
-export class BaseCrudNavegacaoComponent {
+export class BaseCrudNavegacaoComponent extends BaseComponent {
     @Input() acao: String;
     @Input() validarAcaoButao = true;
     @Input() etapa: number;
@@ -49,8 +50,6 @@ export class BaseCrudNavegacaoComponent {
      * Variavel usada para validar se o formulario é válido caso o validacaoCustomizada seja falso
      */
     formularioValido: boolean;
-    constructor(public router: Router,
-        public activatedRoute: ActivatedRoute) { };
 
     paginacao(event: any, acao: boolean = true) {
         const etapaAtual = this.etapa + 1;
@@ -93,15 +92,5 @@ export class BaseCrudNavegacaoComponent {
 
     ValidacaoComum() {
         this.multiValidacao.isValid = this.validacaoCustomizada ? this.eValido : this.formularioValido;
-    }
-
-    public TocarTodos(formGroup: FormGroup | FormArray, func = 'markAsDirty', opts = { onlySelf: false }): void {
-        Object.keys(formGroup.controls).map((key, index) => {
-            let obj = formGroup.controls[key];
-            if (obj instanceof FormGroup || obj instanceof FormArray)
-                this.TocarTodos(obj, func, opts);
-            else
-                obj[func](opts);
-        });
     }
 }
