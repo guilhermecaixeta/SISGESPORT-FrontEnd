@@ -8,7 +8,6 @@ import { CabecalhoComponent } from './componentes/cabecalho/cabecalho.component'
 import { BarraLateralComponent } from './componentes/barra-lateral/barra-lateral.component';
 import { LiDropDownMenuComponent } from './componentes/li-drop-down-menu/li-drop-down-menu.component';
 
-
 @NgModule({
     imports: [
         CommonModule,

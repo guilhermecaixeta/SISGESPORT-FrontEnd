@@ -8,7 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-    imports: [CommonModule, 
+    imports: [
+        CommonModule, 
         LoginRoutingModule, 
         MenuLoginHeaderModule, 
         FormsModule,

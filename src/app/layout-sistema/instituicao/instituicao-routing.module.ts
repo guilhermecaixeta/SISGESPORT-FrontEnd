@@ -1,10 +1,16 @@
 import { InstituicaoComponent } from './instituicao.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { InstituicaoCrudComponent } from './instituicao-crud/instituicao-crud.component';
 
 const routes: Routes = [
   {
-    path: '', component: InstituicaoComponent
+    path: '',
+    children: [
+      { path: '', component: InstituicaoComponent },
+      { path: ':acao', component: InstituicaoCrudComponent },
+      { path: ':acao/:id', component: InstituicaoCrudComponent }
+    ]
   }
 ];
 

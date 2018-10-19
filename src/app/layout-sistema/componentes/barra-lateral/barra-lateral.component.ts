@@ -19,7 +19,7 @@ export class BarraLateralComponent implements OnInit {
       nestedsMenus: null
     },
     {
-      IClass: 'fa fa-fw fa-bar-chart-o',
+      IClass: 'fa fa-fw fa-bank',
       legend: 'Instituição',
       router: '/instituicao',
       nestedsMenus: null

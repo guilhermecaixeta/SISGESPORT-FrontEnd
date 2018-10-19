@@ -1,0 +1,10 @@
+<div class="login-page" [@routerTransition]>
+  <div class="ui-lg">
+    <fieldset legend="Instituição">
+      <app-insercao [formulario]="formulario" [acao]="acao" *ngIf="etapa == 0"></app-insercao>
+      <app-visualizacao [formulario]="formulario" [acao]="acao" *ngIf="etapa == 1"></app-visualizacao>
+    </fieldset>
+    <base-crud-navegacao [UseStyleHome]="value" [formulario]="formulario" [(etapa)]="etapa" [etapasTotal]="etapasTotal"
+      [acao]="acao" (finalizar)="finalizar()"></base-crud-navegacao>
+  </div>
+</div>

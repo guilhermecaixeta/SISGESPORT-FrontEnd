@@ -6,7 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'base-crud-navegacao',
     template: `
-    <div class="ui-g ui-md ui-lg">
+    <div class="ui-g ui-md ui-lg"  *ngIf="UseStyleHome">
         <div class="ui-g-5 ui-md-2 ui-lg-2">
             <p>
                 <a class="btn rounded-btn" (click)="paginacao($event,false)"> Voltar </a>
@@ -17,13 +17,22 @@ import { Router, ActivatedRoute } from '@angular/router';
             <a class="btn rounded-btn" *ngIf="(etapa + 1) < etapasTotal" (click)="paginacao($event,true)"> Avançar </a>
             <a class="btn rounded-btn" *ngIf="(etapa + 1) == etapasTotal" (click)="paginacao($event)"> Finalizar </a>
         </div>
-    </div>`,
+    </div>
+    
+    
+    <div class="ui-g ui-md ui-lg"  *ngIf="!UseStyleHome">
+            <button type="button" class="btn btn-secondary" (click)="paginacao($event,false)"> Voltar </button>
+            <button type="button" class="btn btn-info" style="float:right" *ngIf="(etapa + 1) < etapasTotal" (click)="paginacao($event,true)"> Avançar </button>
+            <button type="submit" class="btn btn-primary" style="float:right" *ngIf="(etapa + 1) == etapasTotal" (click)="paginacao($event)"> Finalizar </button>
+    </div>
+    `,
     styleUrls: ['./base.style.scss']
 })
 export class BaseCrudNavegacaoComponent extends BaseComponent {
     @Input() acao: String;
     @Input() validarAcaoButao = true;
     @Input() etapa: number;
+    @Input() UseStyleHome: boolean = true
     @Output() etapaChange = new EventEmitter<number>();
 
     @Input() etapasTotal: number;
@@ -50,7 +59,6 @@ export class BaseCrudNavegacaoComponent extends BaseComponent {
      * Variavel usada para validar se o formulario é válido caso o validacaoCustomizada seja falso
      */
     formularioValido: boolean;
-
     paginacao(event: any, acao: boolean = true) {
         const etapaAtual = this.etapa + 1;
 

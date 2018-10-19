@@ -86,10 +86,8 @@ export class Service {
 
     private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
-            console.log(error.error instanceof Array, error.error)
             // A client-side or network error occurred. Handle it accordingly.
             for (let index = 0; index < error['errors'].length; index++) {
-                console.log(error.error instanceof Array, error.error)
                 console.error('Um erro aconteceu :', error.error instanceof Array ? console.log(error.error) : error.error);
             }
         } else {

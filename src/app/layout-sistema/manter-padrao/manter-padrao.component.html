@@ -1,3 +1,16 @@
-<p>
-  manter-padrao works!
-</p>
+<fieldset legend="Instituição">
+  <div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-4">
+          <button type="submit" class="btn btn-primary" [routerLink]="['./cadastrar']">{{legenda}}</button>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="col-md-12">
+      <app-tabela-basica [listaNomeCampo]="listaNomeCampo" [listaValorCampo]="listaValorCampo" [dataRoute]="dataRoute"
+        [field]="field" [legenda]="legendaTabela" route="{{rota}}/BuscarTodosPaginavel" legenda="Instituição"></app-tabela-basica>
+    </div>
+  </div>
+</fieldset>
