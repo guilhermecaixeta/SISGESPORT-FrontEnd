@@ -10,4 +10,6 @@ import { routerTransition } from '../../../router.animations';
 })
 export class InstituicaoCrudComponent extends BaseCrudComponent {
   value: boolean = false;
+
+  finalizar() { }
 }
