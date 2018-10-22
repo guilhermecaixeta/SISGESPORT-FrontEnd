@@ -8,6 +8,4 @@ import { routerTransition } from '../../../../router.animations';
   styleUrls: ['./insercao.component.scss'],
   animations: [routerTransition()]
 })
-export class InsercaoComponent extends BaseEtapaComponent {
-
-}
+export class InsercaoComponent extends BaseEtapaComponent { }

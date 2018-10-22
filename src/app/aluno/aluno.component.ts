@@ -40,14 +40,10 @@ export class AlunoComponent extends CadastroCrudComponent {
   });
 
   finalizar() {
-    if (this.formulario.valid) {
-      let aluno = new Aluno(this.formulario.value.cadastro);
-      aluno.adicionarEndereco(Object.assign({}, 
-        this.formulario.controls.endereco.value, 
-        { cep: this.LimparCaracterEspecial(this.formulario.controls.endereco.value.cep) }));
-      this.Persistir(aluno);
-    } else {
-      this.TocarTodos(this.formulario);
-    }
+    let aluno = new Aluno(this.formulario.value.cadastro);
+    aluno.adicionarEndereco(Object.assign({},
+      this.formulario.controls.endereco.value,
+      { cep: this.LimparCaracterEspecial(this.formulario.controls.endereco.value.cep) }));
+    this.Persistir(aluno);
   }
 }

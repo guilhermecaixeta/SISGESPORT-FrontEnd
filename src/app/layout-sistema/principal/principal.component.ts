@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
-import { DadosTabela } from '../../entity/tabela';
+import { DadosTabela } from '../../model/tabela';
 
 @Component({
     selector: 'app-principal',

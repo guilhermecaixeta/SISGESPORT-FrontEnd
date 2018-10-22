@@ -1,4 +1,4 @@
-import { MenuLateral } from '../../../entity/menu-lateral';
+import { MenuLateral } from '../../../model/menu-lateral';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
@@ -22,6 +22,12 @@ export class BarraLateralComponent implements OnInit {
       IClass: 'fa fa-fw fa-bank',
       legend: 'Instituição',
       router: '/instituicao',
+      nestedsMenus: null
+    },
+    {
+      IClass: 'fa fa-fw fa-bank',
+      legend: 'Cargo',
+      router: '/cargo',
       nestedsMenus: null
     },
     {

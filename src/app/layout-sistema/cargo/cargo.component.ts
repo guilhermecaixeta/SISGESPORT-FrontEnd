@@ -3,15 +3,14 @@ import { DadosTabela } from '../../model/tabela';
 import { routerTransition } from '../../router.animations';
 
 @Component({
-  selector: 'app-instituicao',
-  templateUrl: './instituicao.component.html',
-  styleUrls: ['./instituicao.component.scss'],
+  selector: 'app-cargo',
+  templateUrl: './cargo.component.html',
+  styleUrls: ['./cargo.component.scss'],
   animations: [routerTransition()]
 })
-export class InstituicaoComponent implements OnInit {
+export class CargoComponent implements OnInit {
 
   constructor() { }
   listaNomeCampo: DadosTabela[] = [{ nomeColuna: 'Nome', nomeValorColuna: 'nome' }];
-  ngOnInit() {
-  }
+  ngOnInit() { }
 }

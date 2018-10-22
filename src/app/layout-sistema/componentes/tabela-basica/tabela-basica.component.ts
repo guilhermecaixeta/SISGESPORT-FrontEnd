@@ -1,13 +1,13 @@
-import { Service } from './../../../service/service.component';
-import { DadosTabela } from './../../../entity/tabela';
-import { Component, OnInit, Input } from '@angular/core';
+import { BaseComponent } from './../../../base/base.component';
+import { DadosTabela } from '../../../model/tabela';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tabela-basica',
   templateUrl: './tabela-basica.component.html',
   styleUrls: ['./tabela-basica.component.scss']
 })
-export class TabelaBasicaComponent implements OnInit {
+export class TabelaBasicaComponent extends BaseComponent {
 
   @Input() route: string = "";
   @Input() dataRoute: any;
@@ -24,9 +24,6 @@ export class TabelaBasicaComponent implements OnInit {
     order: "id",
     sort: "DESC",
   };
-
-  constructor(private service: Service) { }
-
   ngOnInit() {
     if (this.listaValorCampo.length == 0)
       this.ObterLista(this.pageConfig);
@@ -67,8 +64,10 @@ export class TabelaBasicaComponent implements OnInit {
   AcaoGrid(event: any, data: any) {
     switch (event.currentTarget.id) {
       case "editar":
+        this.router.navigate(['./editar', data[this.field]], { relativeTo: this.activatedRoute });
         break;
       case "visualizar":
+        this.router.navigate(['./visualizar', data[this.field]], { relativeTo: this.activatedRoute });
         break;
       case "deletar":
         this.service.Delete(this.route.replace(/\/.*/g, ''), data[this.field]).subscribe(

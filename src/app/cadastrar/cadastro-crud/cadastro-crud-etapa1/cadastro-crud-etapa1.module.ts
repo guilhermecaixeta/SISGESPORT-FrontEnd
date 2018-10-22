@@ -11,10 +11,10 @@ import {NgxMaskModule} from 'ngx-mask';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     CadastroCrudEtapa1RoutingModule,
     BaseModule,
+    FormsModule,
+    ReactiveFormsModule,
     NgbModule.forRoot(),
     NgxMaskModule.forRoot(),
     ],

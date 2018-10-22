@@ -1,0 +1,20 @@
+<div class="container">
+  <form [formGroup]="formulario" novalidate>
+    <div class="form-group">
+      <label>Institutos</label>
+      <select multiple class="form-control form-control" formControlName="instituicao_cargo">
+        <option *ngFor="let instituicao of listaInstituicao" [value]="instituicao.id">{{instituicao.nome}}</option>
+      </select>
+      <app-validator [field]="formulario.controls.instituicao_cargo"></app-validator>
+    </div>
+
+    <div class="form-group">
+      <input type="text" class="form-control " formControlName="nome" placeholder="Nome">
+      <app-validator [field]="formulario.controls.nome"></app-validator>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control " formControlName="descricao" placeholder="Descrição">
+      <app-validator [field]="formulario.controls.descricao"></app-validator>
+    </div>
+  </form>
+</div>

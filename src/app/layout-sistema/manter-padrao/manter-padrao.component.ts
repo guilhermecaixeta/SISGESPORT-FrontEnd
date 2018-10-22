@@ -1,6 +1,6 @@
 import { BaseComponent } from './../../base/base.component';
 import { Component, Input } from '@angular/core';
-import { DadosTabela } from '../../entity/tabela';
+import { DadosTabela } from '../../model/tabela';
 
 @Component({
   selector: 'app-manter-padrao',

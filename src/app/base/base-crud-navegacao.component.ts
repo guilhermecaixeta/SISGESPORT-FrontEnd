@@ -1,7 +1,6 @@
 import { BaseComponent } from './base.component';
 import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { FormGroup, FormArray } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'base-crud-navegacao',
@@ -9,21 +8,21 @@ import { Router, ActivatedRoute } from '@angular/router';
     <div class="ui-g ui-md ui-lg"  *ngIf="UseStyleHome">
         <div class="ui-g-5 ui-md-2 ui-lg-2">
             <p>
-                <a class="btn rounded-btn" (click)="paginacao($event,false)"> Voltar </a>
+                <a class="btn rounded-btn" (click)="PaginacaoEtapa($event,false)"> Voltar </a>
             </p>
         </div>
         
         <div class="ui-g-5 ui-md-2 ui-lg-2" *ngIf="acao != 'visualizar' && validarAcaoButao">
-            <a class="btn rounded-btn" *ngIf="(etapa + 1) < etapasTotal" (click)="paginacao($event,true)"> Avançar </a>
-            <a class="btn rounded-btn" *ngIf="(etapa + 1) == etapasTotal" (click)="paginacao($event)"> Finalizar </a>
+            <a class="btn rounded-btn" *ngIf="(etapa + 1) < etapasTotal" (click)="PaginacaoEtapa($event,true)"> Avançar </a>
+            <a class="btn rounded-btn" *ngIf="(etapa + 1) == etapasTotal" (click)="PaginacaoEtapa($event)"> Finalizar </a>
         </div>
     </div>
     
     
     <div class="ui-g ui-md ui-lg"  *ngIf="!UseStyleHome">
-            <button type="button" class="btn btn-secondary" (click)="paginacao($event,false)"> Voltar </button>
-            <button type="button" class="btn btn-info" style="float:right" *ngIf="(etapa + 1) < etapasTotal" (click)="paginacao($event,true)"> Avançar </button>
-            <button type="submit" class="btn btn-primary" style="float:right" *ngIf="(etapa + 1) == etapasTotal" (click)="paginacao($event)"> Finalizar </button>
+            <button type="button" class="btn btn-secondary" (click)="PaginacaoEtapa($event,false)"> Voltar </button>
+            <button type="button" class="btn btn-info" style="float:right" *ngIf="(etapa + 1) < etapasTotal && usarEtapa" (click)="PaginacaoEtapa($event,true)"> Avançar </button>
+            <button type="submit" class="btn btn-primary" style="float:right" *ngIf="(etapa + 1) == etapasTotal || !usarEtapa" (click)="PaginacaoEtapa($event)"> Finalizar </button>
     </div>
     `,
     styleUrls: ['./base.style.scss']
@@ -35,15 +34,16 @@ export class BaseCrudNavegacaoComponent extends BaseComponent {
     @Input() UseStyleHome: boolean = true
     @Output() etapaChange = new EventEmitter<number>();
 
+    @Input() usarEtapa: boolean = true;
     @Input() etapasTotal: number;
     @Input() formulario: FormGroup;
     @Output() finalizar: EventEmitter<any> = new EventEmitter();
-    
+
     /**
      * Váriavel usada para validar se será usado uma validação customizada
      */
     @Input() validacaoCustomizada: any = false;
-    
+
     /**
      * Variavel usada para indicar se é válido avançar para a próxima etapa caso a validacaoCustomizada seja verdadeira.
      */
@@ -59,46 +59,72 @@ export class BaseCrudNavegacaoComponent extends BaseComponent {
      * Variavel usada para validar se o formulario é válido caso o validacaoCustomizada seja falso
      */
     formularioValido: boolean;
-    paginacao(event: any, acao: boolean = true) {
+
+    /**
+     * Metodo usado para passar etapa ou acionar o evento para persistencia dos dados.
+     * @param evento 
+     * @param acao 
+     */
+    PaginacaoEtapa(evento: any, acao: boolean = true) {
         const etapaAtual = this.etapa + 1;
 
         if (this.formulario != undefined && this.formulario.controls[Object.keys(this.formulario.controls)[this.etapa]] instanceof FormGroup)
             this.formularioValido = this.formulario.controls[Object.keys(this.formulario.controls)[this.etapa]].valid;
         else this.formularioValido = this.formulario.valid;
-
-        if (acao && etapaAtual === this.etapasTotal) {
-            this.finalizar.emit(event);
-        } else if (acao && etapaAtual < this.etapasTotal) {
-            this.multiValidacao = this.multiValidacao == null ? {
-                formulario: this.formulario,
-                eValido: false,
-                validarEtapa: () => this.ValidacaoComum()
-            } : this.multiValidacao;
-            this.multiValidacao.validarEtapa();
-            if (this.multiValidacao.eValido) {
-                this.etapa++;
-            } else {
-                if (this.multiValidacao.formulario instanceof Array) {
-                    this.multiValidacao.formulario.forEach(x => this.TocarTodos(x));
+        //#region MultiValidacao
+        //Utilizado para preencher o objeto usado para validar o formulario
+        this.multiValidacao = this.multiValidacao == null ? {
+            formulario: this.formulario,
+            eValido: false,
+            validarEtapa: () => this.ValidacaoComum()
+        } : this.multiValidacao;
+        this.multiValidacao.validarEtapa();
+        //#endregion
+        if (!this.usarEtapa) {
+            if (acao)
+                this.VerificarValidacaoFormulario({ func: () => this.Finalizar(evento) });
+            else {
+                this.router.navigate([this.acao === 'cadastrar' ? '../' : '../../'],
+                    { relativeTo: this.activatedRoute });
+            }
+        } else {
+            if (acao && etapaAtual === this.etapasTotal) {
+                this.VerificarValidacaoFormulario({ func: () => this.Finalizar(evento) });
+            } else if (acao && etapaAtual < this.etapasTotal) {
+                this.VerificarValidacaoFormulario({ func: () => this.Avancar() });
+            } else if (!acao && etapaAtual > 1) {
+                if (this.acao !== 'visualizar') {
+                    this.etapa--;
+                    this.TocarTodos(this.formulario, 'markAsPristine');
                 } else {
-                    this.TocarTodos(this.multiValidacao.formulario);
+                    this.router.navigate(['../../'], { relativeTo: this.activatedRoute });
                 }
+            } else if (!acao && etapaAtual === 1) {
+                this.router.navigate([this.acao === "cadastrar" || this.acao === "editar" ? '../' : '../../'],
+                    { relativeTo: this.activatedRoute });
             }
-        } else if (!acao && etapaAtual > 1) {
-            if (this.acao !== 'visualizar') {
-                this.etapa--;
-                this.TocarTodos(this.formulario, 'markAsPristine');
-            } else {
-                this.router.navigate(['../../'], { relativeTo: this.activatedRoute });
-            }
-        } else if (!acao && etapaAtual === 1) {
-            this.router.navigate([this.acao === "cadastrar" || this.acao == "formulario" ? '../' : '../../'],
-                { relativeTo: this.activatedRoute });
+            this.etapaChange.emit(this.etapa);
         }
-        this.etapaChange.emit(this.etapa);
     }
 
+    Finalizar(evento) { this.finalizar.emit(evento); }
+
+    Avancar() { this.etapa++ }
+
+    VerificarValidacaoFormulario(acao: any) {
+        if (this.multiValidacao.eValido) {
+            acao.func();
+        } else {
+            if (this.multiValidacao.formulario instanceof Array) {
+                this.multiValidacao.formulario.forEach(x => this.TocarTodos(x));
+            } else {
+                this.TocarTodos(this.multiValidacao.formulario);
+            }
+        }
+    }
+
+
     ValidacaoComum() {
-        this.multiValidacao.isValid = this.validacaoCustomizada ? this.eValido : this.formularioValido;
+        this.multiValidacao.eValido = this.validacaoCustomizada ? this.eValido : this.formularioValido;
     }
 }

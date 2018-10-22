@@ -25,6 +25,11 @@ export class BaseCrudComponent extends BaseComponent {
      */
     etapasTotal = 2;
 
+    /**
+     * Variavel usada para indicar se a validacao é customizada.
+     */
+    validacaoCustomizada: boolean;
+
     validacaoData: RegExp = /(((\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2}))([+-](\d{2})\:(\d{2}))?Z?z?)/;
     /**
      * Objeto usado para realizar a multipla validação de dados em uma etapa. Deve ser implementado na classe filha.
@@ -38,13 +43,13 @@ export class BaseCrudComponent extends BaseComponent {
 
     ngOnInit() {
 
-        this.iniciar();
-
         this.activatedRoute.params.subscribe(param => {
             this.id = param['id'];
             let linkLista = location.href.split('/');
             this.acao = (param['acao'] !== undefined ? param['acao'] : "cadastrar").toLowerCase();
         });
+
+        this.iniciar();
 
         switch (this.acao) {
             case 'visualizar':
@@ -54,30 +59,30 @@ export class BaseCrudComponent extends BaseComponent {
                 this.carregarDados();
                 break;
         }
-        this.aposIniciar();
     }
 
     /**
      * Carrega os dados usados para editar um dado.
      */
     carregarDados() {
-        this.service.Get(this.rota, this.id).subscribe(obj => {
+        this.service.Get(`${this.rota}/BuscarPorId`, this.id).subscribe(obj => {
             Object.keys(obj).forEach(key => {
                 obj[key] = this.validacaoData.test(obj[key]) ? new Date(obj[key]) : obj[key];
             });
-            this.objetoRetorno = obj;
+            this.objetoRetorno = obj.data;
             this.formulario.patchValue(this.objetoRetorno);
+            this.aposIniciar();
         });
     }
     /**
      * Metodo de persistencia do sistema. A variaval ação diz qual deve ser a ação realizada pelo método.
      * @param obj Objeto a ser persisitido
      */
-    Persistir(obj: any) {
+    Persistir<T>(obj: any) {
         this.acao == 'cadastrar' ?
-            this.service.Post(this.rota, obj).subscribe(
+            this.service.Post<T>(this.rota, obj).subscribe(
                 () => this.router.navigate(['../'], { relativeTo: this.activatedRoute }),
                 err => console.log('Ocorreu algum erro no servidor: ', err)
-            ) : this.service.Put(this.rota, obj);
+            ) : this.service.Put<T>(this.rota, obj);
     }
 }

@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { BaseEtapaComponent } from '../base';
-import { MaskField } from '../utils/mask.util.component';
+import { Component } from '@angular/core';
+import { BaseEtapaComponent } from '../../base';
 
 @Component({
-  selector: 'app-endereco',
-  templateUrl: './endereco.component.html',
-  styleUrls: ['./endereco.component.scss']
+  selector: 'app-layout-endereco',
+  templateUrl: './layout-endereco.component.html',
+  styleUrls: ['./layout-endereco.component.scss']
 })
-export class EnderecoComponent extends BaseEtapaComponent {
+export class LayoutEnderecoComponent extends BaseEtapaComponent {
   estadosLista: any[];
   municipioLista: any[];
 
@@ -20,3 +19,4 @@ export class EnderecoComponent extends BaseEtapaComponent {
     });
   }
 }
+

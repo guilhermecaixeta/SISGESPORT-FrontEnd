@@ -16,7 +16,7 @@ import { NgxMaskModule } from 'ngx-mask';
     EnderecoRoutingModule,
     BaseModule,
     NgbModule.forRoot(),
-    NgxMaskModule.forRoot(),
+    NgxMaskModule.forRoot()
     ],
   exports:[EnderecoComponent],
   declarations: [EnderecoComponent]

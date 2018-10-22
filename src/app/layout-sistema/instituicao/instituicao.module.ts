@@ -1,3 +1,5 @@
+import { ComponentesFormularioModule } from './../componentes-formulario/componentes-formulario.module';
+import { EnderecoModule } from './../../endereco/endereco.module';
 import { BaseModule } from './../../base/base.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,14 +10,22 @@ import { ManterPadraoModule } from '../manter-padrao/manter-padrao.module';
 import { InstituicaoCrudComponent } from './instituicao-crud/instituicao-crud.component';
 import { InsercaoComponent } from './instituicao-crud/insercao/insercao.component';
 import { VisualizacaoComponent } from './instituicao-crud/visualizacao/visualizacao.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskModule } from 'ngx-mask';
+import { LayoutEnderecoModule } from '../layout-endereco/layout-endereco.module';
 
 @NgModule({
   imports: [
     CommonModule,
     InstituicaoRoutingModule,
-    NgbModule.forRoot(),
     ManterPadraoModule,
-    BaseModule
+    BaseModule,
+    FormsModule,
+    NgbModule.forRoot(),
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
+    LayoutEnderecoModule  ,
+    ComponentesFormularioModule
   ],
   declarations: [InstituicaoComponent, InstituicaoCrudComponent, InsercaoComponent, VisualizacaoComponent]
 })
