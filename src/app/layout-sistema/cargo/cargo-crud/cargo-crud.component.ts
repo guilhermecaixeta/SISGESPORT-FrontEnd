@@ -1,8 +1,8 @@
-import { Cargo } from './../../../model/cargo.model';
 import { Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { BaseCrudComponent } from '../../../base';
 import { routerTransition } from '../../../router.animations';
+import { Cargo } from '../../../model/cargo.model';
 
 @Component({
   selector: 'app-cargo-crud',
