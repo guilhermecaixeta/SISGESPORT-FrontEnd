@@ -36,7 +36,6 @@ export class CargoCrudComponent extends BaseCrudComponent {
   }
 
   finalizar(){
-    debugger
     let cargo = new Cargo(this.formulario.value);
     cargo.adicionarInstituicao(this.formulario.value.instituicao_cargo);
     this.Persistir<Cargo>(cargo);
