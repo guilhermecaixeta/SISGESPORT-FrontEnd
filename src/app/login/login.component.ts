@@ -1,6 +1,8 @@
+import { TipoAlerta } from './../enum/sisgesport.enum';
 import { Component } from '@angular/core';
 import { routerTransition } from '../router.animations';
 import { BaseCrudComponent } from '../base';
+import { Alerta } from '../model/alerta.model';
 
 @Component({
     selector: 'app-login',
@@ -18,11 +20,7 @@ export class LoginComponent extends BaseCrudComponent {
     onLoggedin() {
         this.service.Login(this.usuario).subscribe(
             () => this.router.navigate(['/principal'], { relativeTo: this.activatedRoute }),
-            err => this.alertas.push({
-                id: 1,
-                type: 'danger',
-                message: err
-            })
+            err => this.alertas.push(new Alerta(this.alertas.length + 1, TipoAlerta[4], err))
         );
     }
 }

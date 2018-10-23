@@ -1,5 +1,4 @@
 import { ComponentesFormularioModule } from './../componentes-formulario/componentes-formulario.module';
-import { EnderecoModule } from './../../endereco/endereco.module';
 import { BaseModule } from './../../base/base.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -24,7 +23,7 @@ import { LayoutEnderecoModule } from '../layout-endereco/layout-endereco.module'
     NgbModule.forRoot(),
     ReactiveFormsModule,
     NgxMaskModule.forRoot(),
-    LayoutEnderecoModule  ,
+    LayoutEnderecoModule,
     ComponentesFormularioModule
   ],
   declarations: [InstituicaoComponent, InstituicaoCrudComponent, InsercaoComponent, VisualizacaoComponent]

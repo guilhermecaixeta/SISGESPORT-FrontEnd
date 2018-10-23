@@ -2,12 +2,15 @@
     <div class="row justify-content-md-center">
         <div class="col-md-4">
             <app-menu-login-header></app-menu-login-header>
-            <app-cadastro-crud-etapa1 [formulario]="formulario.controls.cadastro" [possuiMatricula]="possuiMatricula" [senhasIguais]="senhasIguais"
-                [rota]="rota" [acao]="acao" [validacaoCustomizada]="validacaoCustomizada" [(multiValidacao)]="multiValidacao"
-                *ngIf="etapa == 0"></app-cadastro-crud-etapa1>
+            <app-cadastro-crud-etapa1 [formulario]="formulario.controls.cadastro" [possuiMatricula]="possuiMatricula"
+                [senhasIguais]="senhasIguais" [rota]="rota" [acao]="acao" [validacaoCustomizada]="validacaoCustomizada"
+                [(multiValidacao)]="multiValidacao" *ngIf="etapa == 0"></app-cadastro-crud-etapa1>
             <app-endereco [formulario]="formulario.controls.endereco" [acao]="acao" *ngIf="etapa == 1"></app-endereco>
-            <base-crud-navegacao [formulario]="formulario" [(etapa)]="etapa" [etapasTotal]="etapasTotal" [acao]="acao" [validacaoCustomizada]="validacaoCustomizada"
-                [multiValidacao]="multiValidacao" (finalizar)="finalizar()"></base-crud-navegacao>
+            <ngb-alert [type]="alerta.type" (close)="fecharAlerta(alerta)" *ngFor="let alerta of alertas">{{
+                alerta.message }}</ngb-alert>
+            <hr />
+            <base-crud-navegacao [formulario]="formulario" [(etapa)]="etapa" [etapasTotal]="etapasTotal" [acao]="acao"
+                [validacaoCustomizada]="validacaoCustomizada" [multiValidacao]="multiValidacao" (finalizar)="finalizar()"></base-crud-navegacao>
         </div>
     </div>
 </div>

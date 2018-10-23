@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { BaseComponent } from './base.component';
+import { Alerta } from '../model/alerta.model';
+import { TipoAlerta } from '../enum/sisgesport.enum';
 
 @Component({
     selector: 'app-base-crud',
@@ -82,7 +84,10 @@ export class BaseCrudComponent extends BaseComponent {
         this.acao == 'cadastrar' ?
             this.service.Post<T>(this.rota, obj).subscribe(
                 () => this.router.navigate(['../'], { relativeTo: this.activatedRoute }),
-                err => console.log('Ocorreu algum erro no servidor: ', err)
-            ) : this.service.Put<T>(this.rota, obj);
+                err => this.alertas.push(new Alerta(this.alertas.length + 1, TipoAlerta[4], err))
+            ) : this.service.Put<T>(this.rota, obj.id, obj).subscribe(
+                () => this.router.navigate(['../../'], { relativeTo: this.activatedRoute }),
+                err => this.alertas.push(new Alerta(this.alertas.length + 1, TipoAlerta[4], err))
+            );
     }
 }

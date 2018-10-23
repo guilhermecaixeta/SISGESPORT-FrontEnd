@@ -31,7 +31,7 @@ export class Service {
      * @param obj objeto a ser persistido
      */
     Post<T>(route: string, obj: any) {
-        return this.http.post<T>(`${environment.apiEndPoint}${route}/cadastrar`, obj, getHeader())
+        return this.http.post<T>(`${environment.apiEndPoint}${route}`, obj, getHeader())
             .pipe(catchError(this.handleError));
     }
 
@@ -40,8 +40,8 @@ export class Service {
      * @param route rota a ser consumida
      * @param obj objeto a ser atualizado
      */
-    Put<T>(route: string, obj: any) {
-        return this.http.put<T>(`${environment.apiEndPoint}${route}`, obj, getHeader()).pipe(catchError(this.handleError));
+    Put<T>(route: string, id: any, obj: any) {
+        return this.http.put<T>(`${environment.apiEndPoint}${route}/${id}`, obj, getHeader()).pipe(catchError(this.handleError));
     }
 
     /**

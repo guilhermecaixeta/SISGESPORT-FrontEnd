@@ -1,3 +1,4 @@
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AlunoComponent } from './aluno.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -19,7 +20,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     CadastroCrudModule,
     CadastroCrudEtapa1Module,
     EnderecoModule,
-    BaseModule
+    BaseModule,
+    NgbModule.forRoot()
   ],
   declarations: [AlunoComponent]
 })

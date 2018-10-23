@@ -9,5 +9,5 @@ import { Component, Input } from '@angular/core';
     styleUrls: ['../login/login.component.scss'],
 })
 export class MenuLoginHeaderComponent { 
-    @Input() Message = 'Sistema de Gestão de Eventos Esportivos'; 
+    @Input() Message = 'SISGESPORT'; 
 }

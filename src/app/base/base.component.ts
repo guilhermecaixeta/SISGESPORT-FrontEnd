@@ -1,3 +1,4 @@
+import { Alerta } from './../model/alerta.model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { Service } from '../service/service.component';
@@ -20,7 +21,7 @@ export class BaseComponent implements OnInit {
   /**
    * Array de alerta do sistema
    */
-  public alertas: Array<any> = [];
+  public alertas: Alerta[] = [];
   /**
    * Rota a ser consumida pelo componente filho.
    */

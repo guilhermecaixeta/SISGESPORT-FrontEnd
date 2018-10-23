@@ -1,6 +1,7 @@
 import { EntidadeComum } from "./base/entidade-comum.model";
 
 export class Instituicao extends EntidadeComum{
+    public id: number;
     public nome: string;
     public descricao: string;
 
@@ -9,6 +10,7 @@ export class Instituicao extends EntidadeComum{
      */
     constructor(obj: any) {
         super();
+        this.id = obj.id;
         this.nome = obj.nome;
         this.descricao = obj.descricao;
     }

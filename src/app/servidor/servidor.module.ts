@@ -8,6 +8,7 @@ import { MenuLoginHeaderModule } from '../menu-login-header/menu-login.module';
 import { BaseModule } from '../base/base.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { EnderecoModule } from '../endereco/endereco.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -19,8 +20,9 @@ import { EnderecoModule } from '../endereco/endereco.module';
     CadastroCrudModule,
     CadastroCrudEtapa1Module,
     EnderecoModule,
-    BaseModule
-    ],
+    BaseModule,
+    NgbModule.forRoot()
+  ],
   declarations: [ServidorComponent]
 })
 export class ServidorModule { }

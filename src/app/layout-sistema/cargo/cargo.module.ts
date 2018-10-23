@@ -21,7 +21,7 @@ import { VisualizacaoComponent } from './cargo-crud/visualizacao/visualizacao.co
     FormsModule,
     NgbModule.forRoot(),
     ReactiveFormsModule,
-    NgxMaskModule.forRoot(),
+    NgxMaskModule.forRoot()
   ],
   declarations: [CargoComponent, CargoCrudComponent, InsercaoComponent, VisualizacaoComponent]
 })

@@ -1,10 +1,10 @@
-import { InstituicaoCargo } from "./institucao-cargo.model";
+import { Instituicao } from "./instituicao.model";
 
 export class Cargo {
     public id: number;
     public nome: string;
     public descricao: string;
-    public instituicao_cargo: InstituicaoCargo[];
+    public instituicao: Instituicao[];
     /**
      *
      */
@@ -12,7 +12,7 @@ export class Cargo {
         this.id = obj.id;
         this.nome = obj.nome;
         this.descricao = obj.descricao;
-        this.instituicao_cargo = [];
+        this.instituicao = [];
     }
 
     /**
@@ -20,6 +20,6 @@ export class Cargo {
      * @param lista Lista contendo os ids das instituições a serem vinculadas
      */
     adicionarInstituicao(lista: number[]) {
-        lista.forEach(x => this.instituicao_cargo.push(new InstituicaoCargo(this.id, x)));
+        lista.forEach(x => this.instituicao.push(new Instituicao({id: x})));
     }
 }

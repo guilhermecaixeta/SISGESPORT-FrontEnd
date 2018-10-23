@@ -1,3 +1,4 @@
+import { Cargo } from './../../../model/cargo.model';
 import { Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { BaseCrudComponent } from '../../../base';
@@ -11,7 +12,9 @@ import { routerTransition } from '../../../router.animations';
 })
 export class CargoCrudComponent extends BaseCrudComponent {
   rota = 'cargo';
+  value: boolean = false;
   listaInstituicao: any[];
+  
   formulario = this.construtorFormulario.group({
     nome: [null, [Validators.required, Validators.maxLength(50)]],
     descricao: [null, [Validators.required, Validators.maxLength(255)]],
@@ -22,9 +25,6 @@ export class CargoCrudComponent extends BaseCrudComponent {
     this.service.Get('instituicao/BuscarTodos').subscribe(object => {
       this.listaInstituicao = object.data;
     });
-    this.formulario.get('instituicao_cargo').valueChanges.subscribe(x =>
-      console.log(x)
-    );
   }
 
   aposIniciar() {
@@ -33,5 +33,12 @@ export class CargoCrudComponent extends BaseCrudComponent {
       listaIdInstituicao.push(element.id);
     });
     this.formulario.get('instituicao_cargo').setValue(listaIdInstituicao);
+  }
+
+  finalizar(){
+    debugger
+    let cargo = new Cargo(this.formulario.value);
+    cargo.adicionarInstituicao(this.formulario.value.instituicao_cargo);
+    this.Persistir<Cargo>(cargo);
   }
 }
