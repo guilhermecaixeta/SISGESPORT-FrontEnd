@@ -20,6 +20,6 @@ export class Cargo {
      * @param lista Lista contendo os ids das instituições a serem vinculadas
      */
     adicionarInstituicao(lista: number[]) {
-        lista.forEach(x => this.instituicao.push(new Instituicao({id: x})));
+        lista.forEach(x => this.instituicao.push(new Instituicao({ id: x })));
     }
 }
