@@ -9,8 +9,8 @@
     </div>
     <br />
     <div class="col-md-12">
-      <app-tabela-basica [listaNomeCampo]="listaNomeCampo" [listaValorCampo]="listaValorCampo" [dataRoute]="dataRoute"
-        [field]="field" [legenda]="legendaTabela" route="{{rota}}/BuscarTodosPaginavel" legenda="Instituição"></app-tabela-basica>
+      <app-tabela-basica *ngIf="exibirGrid" [funcaoEspecifica]="funcaoEspecifica" [listaNomeCampo]="listaNomeCampo" [listaValorCampo]="listaValorCampo"
+        [dataRoute]="dataRoute" [field]="field" [legenda]="legendaTabela" [route]="rotaGrid" legenda="Instituição"></app-tabela-basica>
     </div>
   </div>
 </fieldset>

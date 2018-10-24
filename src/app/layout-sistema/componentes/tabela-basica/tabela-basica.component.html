@@ -19,13 +19,17 @@
                 <a href="javascript:void(0)" class="in col-1" (click)="AcaoGrid($event, valor)" ngbTooltip="Editar" id="editar">
                   <i class="fa fa-file-text-o"></i>
                 </a>
-                <a href="javascript:void(0)" class="in col-1" (click)="AcaoGrid($event, valor)" ngbTooltip="Visualizar" id="visualizar">
+                <a href="javascript:void(0)" class="in col-1" (click)="AcaoGrid($event, valor)" ngbTooltip="Visualizar"
+                  id="visualizar">
                   <i class="fa fa-eye"></i>
                 </a>
                 <a href="javascript:void(0)" class="in col-1" (click)="AcaoGrid($event, valor)" ngbTooltip="Deletar" id="deletar">
                   <i class="fa fa-remove"></i>
                 </a>
               </td>
+            </tr>
+            <tr *ngIf="listaValorCampo.length == 0">
+              <td>Nenhum registro encontrado!</td>
             </tr>
           </tbody>
         </table>
@@ -35,3 +39,6 @@
     </div>
   </div>
 </div>
+<ngb-alert [type]="alerta.type" (close)="fecharAlerta(alerta)" *ngFor="let alerta of alertas">{{
+  alerta.message }}</ngb-alert>
+<hr />

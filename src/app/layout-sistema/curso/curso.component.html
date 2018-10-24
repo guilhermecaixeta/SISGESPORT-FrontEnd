@@ -1,0 +1,13 @@
+<div [@routerTransition]>
+  <div class="col-md-12">
+    <div class="col-md-6">
+      <label><b>Selecione o Instituto:</b></label>
+      <select class="form-control" [(ngModel)]="idInstituicao" (ngModelChange)="BuscarCursos()">
+        <option *ngFor="let instituicao of listaInstituicao" [value]="instituicao.id">{{instituicao.nome}}</option>
+      </select>
+    </div>
+    <br />
+    <app-manter-padrao [exibirGrid]="abrirCurso" [funcaoEspecifica]="funcaoEspecifica" [dataRoute]="idInstituicao"
+      [listaNomeCampo]="listaNomeCampo" rotaPadrao="BuscarEquipePorIdInstituicaoPaginavel" legendaTabela="Curso" rota="curso"></app-manter-padrao>
+  </div>
+</div>

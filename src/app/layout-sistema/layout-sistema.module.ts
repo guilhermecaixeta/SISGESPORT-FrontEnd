@@ -9,7 +9,6 @@ import { CabecalhoComponent } from './componentes/cabecalho/cabecalho.component'
 import { BarraLateralComponent } from './componentes/barra-lateral/barra-lateral.component';
 import { LiDropDownMenuComponent } from './componentes/li-drop-down-menu/li-drop-down-menu.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { CargoComponent } from './cargo/cargo.component';
 
 @NgModule({
     imports: [

@@ -16,6 +16,7 @@ export class CargoCrudComponent extends BaseCrudComponent {
   listaInstituicao: any[];
   
   formulario = this.construtorFormulario.group({
+    id:[null],
     nome: [null, [Validators.required, Validators.maxLength(50)]],
     descricao: [null, [Validators.required, Validators.maxLength(255)]],
     instituicao_cargo: [null, [Validators.required]]

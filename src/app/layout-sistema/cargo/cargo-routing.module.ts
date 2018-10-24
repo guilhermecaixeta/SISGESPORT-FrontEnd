@@ -1,11 +1,13 @@
 import { CargoComponent } from './cargo.component';
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CargoCrudComponent } from './cargo-crud/cargo-crud.component';
+import { AuthGuard } from '../../shared';
 
 const routes: Routes = [
   {
     path: '',
+    canActivate: [AuthGuard],
     children: [
       { path: '', component: CargoComponent },
       { path: ':acao', component: CargoCrudComponent },

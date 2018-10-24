@@ -13,7 +13,7 @@ export class BarraLateralComponent implements OnInit {
   pushRightClass: string = 'push-right';
   @Input() lista: MenuLateral[] = [
     {
-      IClass: 'fa fa-fw fa-dashboard',
+      IClass: '	fa fa-home',
       legend: 'Principal',
       router: '/principal',
       nestedsMenus: null
@@ -25,9 +25,15 @@ export class BarraLateralComponent implements OnInit {
       nestedsMenus: null
     },
     {
-      IClass: 'fa fa-fw fa-bank',
+      IClass: 'fa fa-briefcase',
       legend: 'Cargo',
       router: '/cargo',
+      nestedsMenus: null
+    },
+    {
+      IClass: 'fa fa-address-book',
+      legend: 'Curso',
+      router: '/curso',
       nestedsMenus: null
     },
     {
@@ -52,7 +58,7 @@ export class BarraLateralComponent implements OnInit {
   ];
 
   constructor(public router: Router) {
-    
+
     this.router.events.subscribe(val => {
       if (
         val instanceof NavigationEnd &&

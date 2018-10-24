@@ -1,6 +1,8 @@
+import { TipoAlerta } from './../../../enum/sisgesport.enum';
 import { BaseComponent } from './../../../base/base.component';
 import { DadosTabela } from '../../../model/tabela';
 import { Component, Input } from '@angular/core';
+import { Alerta } from '../../../model/alerta.model';
 
 @Component({
   selector: 'app-tabela-basica',
@@ -15,6 +17,8 @@ export class TabelaBasicaComponent extends BaseComponent {
   @Input() legenda: string = '';
   @Input() listaValorCampo: any[] = [];
   @Input() listaNomeCampo: DadosTabela[] = [];
+  @Input() funcaoEspecifica: any = null;
+
   paginaAnterior: number = 0;
 
   pageConfig = {
@@ -53,9 +57,15 @@ export class TabelaBasicaComponent extends BaseComponent {
   ObterLista(pageConfig: any) {
     if (this.route !== "")
       this.service.Get(this.route, this.dataRoute, pageConfig).subscribe(data => {
-        this.pageConfig.totalElements = data.data.totalElements;
-        this.listaValorCampo = data.data.content;
-      });
+        if (data.data.content.length > 0) {
+          this.pageConfig.totalElements = data.data.totalElements;
+          if (this.funcaoEspecifica != null)
+            this.listaValorCampo = this.funcaoEspecifica.executar(data.data.content);
+          else
+            this.listaValorCampo = data.data.content;
+        }
+      },
+        err => this.alertas.push(new Alerta(this.alertas.length++, TipoAlerta[4], err)));
   }
   /**
    * Metodo para ação da gridview
@@ -78,7 +88,7 @@ export class TabelaBasicaComponent extends BaseComponent {
             order: "id",
             sort: "DESC",
           }),
-          err => console.log('Erro ao excluir', err)
+          err => this.alertas.push(new Alerta(this.alertas.length++, TipoAlerta[4], err))
         );
         break;
     }

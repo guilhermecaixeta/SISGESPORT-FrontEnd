@@ -1,3 +1,4 @@
+import { CursoModule } from './../curso/curso.module';
 import { ComponentesFormularioModule } from './../componentes-formulario/componentes-formulario.module';
 import { BaseModule } from './../../base/base.module';
 import { NgModule } from '@angular/core';
@@ -24,7 +25,8 @@ import { LayoutEnderecoModule } from '../layout-endereco/layout-endereco.module'
     ReactiveFormsModule,
     NgxMaskModule.forRoot(),
     LayoutEnderecoModule,
-    ComponentesFormularioModule
+    ComponentesFormularioModule,
+    CursoModule
   ],
   declarations: [InstituicaoComponent, InstituicaoCrudComponent, InsercaoComponent, VisualizacaoComponent]
 })
