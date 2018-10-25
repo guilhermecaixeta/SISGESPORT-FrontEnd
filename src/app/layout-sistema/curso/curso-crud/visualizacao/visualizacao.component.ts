@@ -1,0 +1,12 @@
+import { BaseEtapaComponent } from './../../../../base/base-etapa.component';
+import { Component, OnInit, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-visualizacao',
+  templateUrl: './visualizacao.component.html',
+  styleUrls: ['./visualizacao.component.scss']
+})
+export class VisualizacaoComponent extends BaseEtapaComponent {
+
+  @Input() listaInstituicao: any[] = [];
+}

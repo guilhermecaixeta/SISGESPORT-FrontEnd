@@ -105,4 +105,14 @@ export class BaseComponent implements OnInit {
     const index: number = this.alertas.indexOf(alert);
     this.alertas.splice(index, 1);
   }
+
+/**
+ * Retorna o primeiro elemento da lista a ter o valor comparado verdadeiro.
+ * @param lista lista a ser percorrida
+ * @param id identificador a ser comparado no objeto
+ * @param nomeCampo nome do campo a ser comparado por padrão o nome é id
+ */
+  public ObterItemPorId(lista: any[], id: any, nomeCampo: string = 'id'): any {
+    return lista.find(x => x[nomeCampo] == id);
+  }
 }

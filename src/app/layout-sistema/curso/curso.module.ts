@@ -8,6 +8,8 @@ import { BaseModule } from '../../base/base.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxMaskModule } from 'ngx-mask';
+import { InsercaoComponent } from './curso-crud/insercao/insercao.component';
+import { VisualizacaoComponent } from './curso-crud/visualizacao/visualizacao.component';
 
 @NgModule({
   imports: [
@@ -20,7 +22,7 @@ import { NgxMaskModule } from 'ngx-mask';
     ReactiveFormsModule,
     NgxMaskModule.forRoot()
   ],
-  declarations: [CursoComponent, CursoCrudComponent],
+  declarations: [CursoComponent, CursoCrudComponent, InsercaoComponent, VisualizacaoComponent],
   exports: [CursoComponent, CursoCrudComponent]
 })
 export class CursoModule { }

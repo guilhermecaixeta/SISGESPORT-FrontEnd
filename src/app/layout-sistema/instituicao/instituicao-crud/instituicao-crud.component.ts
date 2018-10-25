@@ -15,6 +15,8 @@ import { isNullOrUndefined } from 'util';
 export class InstituicaoCrudComponent extends BaseCrudComponent {
   rota = "instituicao";
   value: boolean = false;
+  estadosLista: any[];
+  municipioLista: any[];
 
   formulario = this.construtorFormulario.group({
     instituicao: this.construtorFormulario.group({
@@ -32,7 +34,16 @@ export class InstituicaoCrudComponent extends BaseCrudComponent {
       bairro: [null, [Validators.required, Validators.maxLength(255)]]
     })
   });
-  
+
+  iniciar() {
+    this.service.Get('estado/BuscarTodos').subscribe(object => {
+      this.estadosLista = object.data;
+    });
+    this.formulario.get('endereco.estado').valueChanges.subscribe(id => {
+      this.service.Get('municipio/BuscarPorIdEstado', id).subscribe(object => this.municipioLista = object.data);
+    });
+  }
+
   aposIniciar() {
     this.formulario.controls.instituicao.patchValue(this.objetoRetorno);
     if (!isNullOrUndefined(this.objetoRetorno.endereco)) {

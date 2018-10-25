@@ -11,8 +11,6 @@ import { DadosTabela } from '../../model/tabela';
 export class PrincipalComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
-    listaValorCampo: any[] = [{ nome: 'Guilherme', idade: 25 }, { nome: 'Aline', idade: 19 }];
-    listaNomeCampo: DadosTabela[] = [{ nomeColuna: 'Nome', nomeValorColuna: 'nome' }, { nomeColuna: 'Idade', nomeValorColuna: 'idade' }];
     constructor() {
         this.sliders.push(
             {

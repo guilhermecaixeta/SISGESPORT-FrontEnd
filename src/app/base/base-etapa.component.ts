@@ -5,7 +5,7 @@ import { BaseComponent } from './base.component';
 @Component({ template: '' })
 export class BaseEtapaComponent extends BaseComponent {
     @Input() formulario: FormGroup;
-    @Input() obj: any = null;
+    @Input() objetoRetorno: any = null;
     @Input() acao: string = "";
     @Input() rota: string = "";
     @Input() validacaoCustomizada = false;

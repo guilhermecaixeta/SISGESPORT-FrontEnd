@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BaseEtapaComponent } from '../../../../base';
 import { routerTransition } from '../../../../router.animations';
 
@@ -8,6 +8,7 @@ import { routerTransition } from '../../../../router.animations';
   styleUrls: ['./visualizacao.component.scss'],
   animations: [routerTransition()]
 })
-export class VisualizacaoComponent extends BaseEtapaComponent{
-
+export class VisualizacaoComponent extends BaseEtapaComponent {
+  @Input() estadosLista: any[] = [];
+  @Input() municipioLista: any[] = [];
 }

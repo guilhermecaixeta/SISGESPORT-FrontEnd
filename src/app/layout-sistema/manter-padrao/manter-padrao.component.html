@@ -1,16 +1,15 @@
 <fieldset legend="Instituição">
   <div>
     <div class="row">
-      <div class="col-md-12">
-        <div class="col-md-4">
-          <button type="submit" class="btn btn-primary" [routerLink]="['./cadastrar']">{{legenda}}</button>
-        </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary" [routerLink]="['./cadastrar']">{{legenda}}</button>
       </div>
-    </div>
-    <br />
-    <div class="col-md-12">
-      <app-tabela-basica *ngIf="exibirGrid" [funcaoEspecifica]="funcaoEspecifica" [listaNomeCampo]="listaNomeCampo" [listaValorCampo]="listaValorCampo"
-        [dataRoute]="dataRoute" [field]="field" [legenda]="legendaTabela" [route]="rotaGrid" legenda="Instituição"></app-tabela-basica>
+      <div class="col-12">
+        <br />
+        <app-tabela-basica *ngIf="exibirGrid" [funcaoEspecifica]="funcaoEspecifica" [listaNomeCampo]="listaNomeCampo"
+          [listaValorCampo]="listaValorCampo" [dataRoute]="dataRoute" [field]="field" [legenda]="legendaTabela" [route]="rotaGrid"
+          legenda="Instituição"></app-tabela-basica>
+      </div>
     </div>
   </div>
 </fieldset>

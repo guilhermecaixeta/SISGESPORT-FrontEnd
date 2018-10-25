@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BaseEtapaComponent } from '../../base';
 
 @Component({
@@ -7,16 +7,7 @@ import { BaseEtapaComponent } from '../../base';
   styleUrls: ['./layout-endereco.component.scss']
 })
 export class LayoutEnderecoComponent extends BaseEtapaComponent {
-  estadosLista: any[];
-  municipioLista: any[];
-
-  iniciar(){
-    this.service.Get('estado/BuscarTodos').subscribe(object => {
-      this.estadosLista = object.data;
-    });
-    this.formulario.get('estado').valueChanges.subscribe(id =>{
-      this.service.Get('municipio/BuscarPorIdEstado', id).subscribe(object => this.municipioLista = object.data);
-    });
-  }
+  @Input() estadosLista: any[];
+  @Input() municipioLista: any[];
 }
 

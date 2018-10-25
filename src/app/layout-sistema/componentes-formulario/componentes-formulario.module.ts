@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InputFormComponent } from './input-form/input-form.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BaseModule } from '../../base/base.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InputLabelComponent } from './input-label/input-label.component';
 
 @NgModule({
   imports: [
@@ -14,7 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgbModule.forRoot(),
     ReactiveFormsModule,
   ],
-  declarations: [InputFormComponent],
-  exports: [InputFormComponent]
+  declarations: [ InputLabelComponent],
+  exports: [InputLabelComponent]
 })
 export class ComponentesFormularioModule { }

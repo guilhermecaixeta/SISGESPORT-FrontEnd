@@ -44,19 +44,18 @@ export class BaseCrudComponent extends BaseComponent {
         };
 
     ngOnInit() {
-
         this.activatedRoute.params.subscribe(param => {
             this.id = param['id'];
             let linkLista = location.href.split('/');
             this.acao = (param['acao'] !== undefined ? param['acao'] : "cadastrar").toLowerCase();
         });
-
         this.iniciar();
-
         switch (this.acao) {
             case 'visualizar':
                 this.etapa = (this.etapasTotal - 1);
+                this.carregarDados();
                 this.formulario.disable();
+                break;
             case 'editar':
                 this.carregarDados();
                 break;

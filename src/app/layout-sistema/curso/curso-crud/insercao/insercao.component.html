@@ -1,0 +1,29 @@
+<div class="container">
+  <form [formGroup]="formulario" novalidate>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label>Instituto</label>
+          <select class="form-control form-control-sm" formControlName="instituicao">
+            <option *ngFor="let instituicao of listaInstituicao" [value]="instituicao.id">{{instituicao.nome}}</option>
+          </select>
+          <app-validator [field]="formulario.controls.instituicao"></app-validator>
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="form-group">
+          <input type="text" class="form-control " formControlName="nome" placeholder="Nome">
+          <app-validator [field]="formulario.controls.nome"></app-validator>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="1" id="flg_ativo" formControlName="flg_ativo">
+          <label class="form-check-label" for="flg_ativo">
+            Ativo
+          </label>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
