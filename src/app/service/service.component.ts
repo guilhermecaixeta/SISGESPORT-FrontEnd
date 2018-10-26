@@ -24,6 +24,17 @@ export class Service {
                 map(response => response),
                 catchError(this.handleError));
     }
+    /**
+     * Serviço para consultar endereço por cep.
+     * @param cep cep a ser consultado
+     */
+    GetAdress(cep: any): Observable<any> {
+        return this.http.get(`https://api.postmon.com.br/v1/cep/${cep}`)
+            .pipe(
+                retry(3),
+                map(response => response),
+                catchError(this.handleError));
+    }
 
     /**
      * Envia um objeto para persistencia.

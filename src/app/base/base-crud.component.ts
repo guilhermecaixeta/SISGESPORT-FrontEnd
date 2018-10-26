@@ -26,7 +26,8 @@ export class BaseCrudComponent extends BaseComponent {
      * Número total de etapas do crud a ser preenchido pelo usuário. Esse valor deve ser alterado conforme a necessidade do crud.
      */
     etapasTotal = 2;
-
+    
+    value: boolean = true;
     /**
      * Variavel usada para indicar se a validacao é customizada.
      */

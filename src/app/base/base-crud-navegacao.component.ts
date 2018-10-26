@@ -78,6 +78,7 @@ export class BaseCrudNavegacaoComponent extends BaseComponent {
             eValido: false,
             validarEtapa: () => this.ValidacaoComum()
         } : this.multiValidacao;
+        
         this.multiValidacao.validarEtapa();
         //#endregion
         if (!this.usarEtapa) {
@@ -112,6 +113,7 @@ export class BaseCrudNavegacaoComponent extends BaseComponent {
     Avancar() { this.etapa++ }
 
     VerificarValidacaoFormulario(acao: any) {
+        
         if (this.multiValidacao.eValido) {
             acao.func();
         } else {

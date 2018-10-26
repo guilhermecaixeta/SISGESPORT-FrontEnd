@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { Service } from '../service/service.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ObservablePadrao } from '../utils/observable.util.component';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-base',
@@ -49,25 +50,30 @@ export class BaseComponent implements OnInit {
    * Método a ser implementado na etapa ou funcionalidade crud afim de realizar multipla validação da etapa.
    * @param opt Opcional
    */
-  validarEtapa(opt?: any){ }
+  validarEtapa(opt?: any) { }
   /**
    * Verifica se uma variável é nula ou vazia.
    * @param value Variável a ser verificada
    */
-  public static IsNullOrEmpty(value: string): any {
+  public IsNullOrEmpty(value: string): any {
     if (value === null || value === undefined || value === '') {
       return true;
     } else {
       return false;
     }
   }
-
+  public ObterIdPorTamanhoLista(lista: any[]): number {
+    if (lista.length > 0) {
+      let tamanho = lista.length;
+      return tamanho++;
+    } else return 0;
+  }
   /**
    * Verifica se uma string contêm determinado valor.
    * @param value String a ser verificada
    * @param comparer Valor a ser verificado se existe na string passada
    */
-  public static Contains(value: string, comparer: string): any {
+  public Contains(value: string, comparer: string): any {
     if (value.search(comparer) < 0) {
       return false;
     } else {
@@ -106,13 +112,15 @@ export class BaseComponent implements OnInit {
     this.alertas.splice(index, 1);
   }
 
-/**
- * Retorna o primeiro elemento da lista a ter o valor comparado verdadeiro.
- * @param lista lista a ser percorrida
- * @param id identificador a ser comparado no objeto
- * @param nomeCampo nome do campo a ser comparado por padrão o nome é id
- */
+  /**
+   * Retorna o primeiro elemento da lista a ter o valor comparado verdadeiro.
+   * @param lista lista a ser percorrida
+   * @param id identificador a ser comparado no objeto
+   * @param nomeCampo nome do campo a ser comparado por padrão o nome é id
+   */
   public ObterItemPorId(lista: any[], id: any, nomeCampo: string = 'id'): any {
-    return lista.find(x => x[nomeCampo] == id);
+    if (!isNullOrUndefined(lista) && !isNullOrUndefined(id))
+      return lista.find(x => x[nomeCampo] == id);
+    else return '';
   }
 }

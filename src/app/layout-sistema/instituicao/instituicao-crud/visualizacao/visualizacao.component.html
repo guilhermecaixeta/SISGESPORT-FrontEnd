@@ -1,16 +1,16 @@
 <form [formGroup]="formulario" novalidate>
   <div class="row">
-    <app-input-label id="item1" legenda="Nome" [valor]="formulario.get('instituicao.nome').value"></app-input-label>
-    <app-input-label id="item2" legenda="Descrição" [valor]="formulario.get('instituicao.descricao').value"></app-input-label>
+    <app-input-label id="item1" legenda="Nome" [valor]="formulario.value?.instituicao?.nome"></app-input-label>
+    <app-input-label id="item2" legenda="Descrição" [valor]="formulario.value?.instituicao?.descricao"></app-input-label>
   </div>
   <br />
   <h3>Endereço</h3>
   <div class="row">
-    <app-input-label id="item1" legenda="Estado" [valor]="ObterItemPorId(estadosLista, formulario.get('endereco.estado').value)['nome']"></app-input-label>
-    <app-input-label *ngIf="municipioLista" id="item6" legenda="Município" [valor]="ObterItemPorId(municipioLista, formulario.get('endereco.municipio').value)['nome']"></app-input-label>
-    <app-input-label id="item2" legenda="CEP" [valor]="formulario.get('endereco.cep').value"></app-input-label>
-    <app-input-label id="item3" legenda="Logradouro" [valor]="formulario.get('endereco.logradouro').value"></app-input-label>
-    <app-input-label id="item4" legenda="Complemento" [valor]="formulario.get('endereco.complemento').value"></app-input-label>
-    <app-input-label id="item5" legenda="Bairro" [valor]="formulario.get('endereco.bairro').value"></app-input-label>
+    <app-input-label id="item1" legenda="Estado" [valor]="ObterItemPorId(estadosLista, formulario.value?.endereco?.estado)['nome']"></app-input-label>
+    <app-input-label *ngIf="municipioLista" id="item6" legenda="Município" [valor]="ObterItemPorId(municipioLista, formulario.value?.endereco?.municipio)['nome']"></app-input-label>
+    <app-input-label id="item2" legenda="CEP" [valor]="formulario.value?.endereco?.cep"></app-input-label>
+    <app-input-label id="item3" legenda="Logradouro" [valor]="formulario.value?.endereco?.logradouro"></app-input-label>
+    <app-input-label id="item4" legenda="Complemento" [valor]="formulario.value?.endereco?.complemento"></app-input-label>
+    <app-input-label id="item5" legenda="Bairro" [valor]="formulario.value?.endereco?.bairro"></app-input-label>
   </div>
 </form>
