@@ -9,6 +9,7 @@ import { CabecalhoComponent } from './componentes/cabecalho/cabecalho.component'
 import { BarraLateralComponent } from './componentes/barra-lateral/barra-lateral.component';
 import { LiDropDownMenuComponent } from './componentes/li-drop-down-menu/li-drop-down-menu.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MenuLateralComponent } from './componentes/menu-lateral/menu-lateral.component';
 
 @NgModule({
     imports: [
@@ -24,7 +25,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
         LayoutSistemaComponent, 
         CabecalhoComponent, 
         BarraLateralComponent, 
-        LiDropDownMenuComponent
+        LiDropDownMenuComponent, MenuLateralComponent
     ]
 })
 export class LayoutSistemaModule {}

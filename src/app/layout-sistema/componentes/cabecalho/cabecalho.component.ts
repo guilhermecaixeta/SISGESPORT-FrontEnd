@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./cabecalho.component.scss']
 })
 export class CabecalhoComponent implements OnInit {
-  @Input() user: any = "";
+  @Input() user: any;
   pushRightClass: string = 'push-right';
   tarefa: boolean = true;
   idioma: boolean = false;
@@ -40,7 +40,7 @@ export class CabecalhoComponent implements OnInit {
   }
 
   ngOnInit() {
-   }
+  }
 
   isToggled(): boolean {
     const dom: Element = document.querySelector('body');

@@ -1,25 +1,19 @@
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
   <div class="list-group">
-    <div *ngFor="let obj of lista; index as i">
-      <a *ngIf="!obj.nestedsMenus" [routerLink]="obj.router" [routerLinkActive]="['router-link-active']" class="list-group-item">
-        <i [class]="obj.IClass"></i>&nbsp;{{ obj.legend | translate }}
+    <app-menu-lateral [usuario]="user" [lista]="lista"></app-menu-lateral>
+    <div class="header-fields">
+      <a href="javascript:void(0)" class="nav-link mt-1" style="padding: 0.375rem 1rem !important; border-color: #999;"
+        (click)="rltAndLtr()">
+        {{'Direita/Esquerda' | translate}}
       </a>
-      <div *ngIf="obj.nestedsMenus" class="nested-menu">
-        <a class="list-group-item" (click)="expandirMenu(true)">
-          <span><i [class]="obj.IClass"></i>&nbsp; {{ obj.legend | translate }}</span>
-        </a>
-        <li class="nested" [class.expand]="showMenu">
-          <div *ngFor="let nest of obj.nestedsMenus">
-            <ul class="submenu">
-              <li>
-                <a [routerLink]="nest.router" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                  <i [class]="nest.IClass"></i>&nbsp;{{ nest.legend | translate }}
-                </a>
-              </li>
-            </ul>
-          </div>
-        </li>
-      </div>
+      <app-li-drop-down-menu [lista]="listaIdioma" [isTag]="tagIdioma" [isTask]="idioma" [value]="nameFieldIdioma"
+        (emitLang)="changeLang($event)"></app-li-drop-down-menu>
+      <a class="nav-link" href="javascript:void(0)">
+        <i class="fa fa-user"></i> {{user?.name}} <b class="caret"></b>
+      </a>
+      <a class="nav-link" [routerLink]="['/login']" (click)="onLoggedout()">
+        <i class="fa fa-fw fa-power-off"></i> {{ 'Sair' | translate }}
+      </a>
     </div>
   </div>
 </nav>

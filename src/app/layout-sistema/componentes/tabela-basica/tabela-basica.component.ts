@@ -65,7 +65,7 @@ export class TabelaBasicaComponent extends BaseComponent {
             this.listaValorCampo = data.data.content;
         }
       },
-        err => this.alertas.push(new Alerta(this.alertas.length++, TipoAlerta[4], err)));
+        err => this.alertas.push(new Alerta(this.ObterIdPorTamanhoLista(this.alertas), TipoAlerta[4], err)));
   }
   /**
    * Metodo para ação da gridview
@@ -88,7 +88,7 @@ export class TabelaBasicaComponent extends BaseComponent {
             order: "id",
             sort: "DESC",
           }),
-          err => this.alertas.push(new Alerta(this.alertas.length++, TipoAlerta[4], err))
+          err => this.alertas.push(new Alerta(this.ObterIdPorTamanhoLista(this.alertas), TipoAlerta[4], err))
         );
         break;
     }

@@ -12,7 +12,9 @@ import { routerTransition } from '../../../router.animations';
 })
 export class CursoCrudComponent extends BaseCrudComponent {
   listaInstituicao: any[] = [];
+  value: boolean = false;
   rota = "curso";
+
   formulario = this.construtorFormulario.group({
     id: [null],
     nome: [null, [Validators.required, Validators.maxLength(255)]],

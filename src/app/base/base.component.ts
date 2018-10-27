@@ -19,6 +19,9 @@ export class BaseComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     public observablePadrao: ObservablePadrao
   ) { }
+
+  dataMaxima: Date = new Date();
+  dataMinima: Date = new Date(this.dataMaxima.getFullYear() - 65, this.dataMaxima.getMonth(), this.dataMaxima.getDate());
   /**
    * Array de alerta do sistema
    */

@@ -8,11 +8,11 @@ import { Component } from '@angular/core';
 })
 export class LayoutSistemaComponent extends BaseComponent {
   hasToken = localStorage.getItem('token') !== null;
-  userData: string;
+  userData: any;
   ngOnInit() {
     this.observablePadrao.getValue.subscribe(x => {
       if (x) {
-        this.userData = x.data.name;
+        this.userData = x.data;
       } else {
         this.service.ObterUsuario().subscribe();
       }

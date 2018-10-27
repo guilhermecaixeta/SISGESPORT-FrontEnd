@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutSistemaComponent } from './layout-sistema.component';
 import { AuthGuard } from '../shared';
+import { PerfilSistema } from '../enum/sisgesport.enum';
 
 const routes: Routes = [
     {
         path: '',
         component: LayoutSistemaComponent,
         canActivate: [AuthGuard],
+        data: {perfil: PerfilSistema.NO_ROLE},
         children: [
             { path: '', redirectTo: 'principal' },
             { path: 'principal', loadChildren: './principal/principal.module#PrincipalModule' },

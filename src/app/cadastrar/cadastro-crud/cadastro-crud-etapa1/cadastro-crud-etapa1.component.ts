@@ -1,14 +1,14 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BaseEtapaComponent } from '../../../base';
 import { CustomLocalePtBR, I18n } from '../../../utils/locale.util.component';
-import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerI18n, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
   selector: 'app-cadastro-crud-etapa1',
   templateUrl: './cadastro-crud-etapa1.component.html',
   styleUrls: ['./cadastro-crud-etapa1.component.scss'],
-  providers: [I18n, { provide: NgbDatepickerI18n, useClass: CustomLocalePtBR }]
+  providers: [I18n, { provide: NgbDatepickerI18n, useClass: CustomLocalePtBR }, { provide: NgbDateParserFormatter, useClass: CustomLocalePtBR }]
 })
 export class CadastroCrudEtapa1Component extends BaseEtapaComponent {
   @Input() possuiMatricula: boolean;

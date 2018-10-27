@@ -1,5 +1,3 @@
-import { CadastroCrudEtapa1Module } from './../cadastrar/cadastro-crud/cadastro-crud-etapa1/cadastro-crud-etapa1.module';
-import { CadastroCrudModule } from './../cadastrar/cadastro-crud/cadastro-crud.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ServidorRoutingModule } from './servidor-routing.module';
@@ -9,6 +7,7 @@ import { BaseModule } from '../base/base.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { EnderecoModule } from '../endereco/endereco.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CadastrarModule } from '../cadastrar/cadastrar.module';
 
 @NgModule({
   imports: [
@@ -17,8 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     ServidorRoutingModule,
     MenuLoginHeaderModule,
-    CadastroCrudModule,
-    CadastroCrudEtapa1Module,
+    CadastrarModule,
     EnderecoModule,
     BaseModule,
     NgbModule.forRoot()

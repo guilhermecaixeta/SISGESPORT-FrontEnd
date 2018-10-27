@@ -1,6 +1,8 @@
 import { MenuLateral } from '../../../model/menu-lateral';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { PerfilSistema } from '../../../enum/sisgesport.enum';
 
 @Component({
   selector: 'app-barra-lateral',
@@ -9,55 +11,51 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class BarraLateralComponent implements OnInit {
   isActive: boolean = false;
-  showMenu: boolean = false;
   pushRightClass: string = 'push-right';
+  idioma: boolean = false;
+  listaIdioma: any[] = [];
+  nameFieldIdioma: string[] = ['nome', 'idioma'];
+  tagIdioma: string[] = ['fa fa-language', 'Language'];
+
+  @Input() user: any;
   @Input() lista: MenuLateral[] = [
     {
-      IClass: '	fa fa-home',
+      IClass: 'fa fa-home',
       legend: 'Principal',
       router: '/principal',
+      perfil: PerfilSistema.NO_ROLE,
       nestedsMenus: null
     },
     {
       IClass: 'fa fa-fw fa-bank',
       legend: 'Instituição',
       router: '/instituicao',
+      perfil: PerfilSistema.ROLE_ADMIN,
       nestedsMenus: null
     },
     {
       IClass: 'fa fa-briefcase',
       legend: 'Cargo',
       router: '/cargo',
+      perfil: PerfilSistema.ROLE_ADMIN,
       nestedsMenus: null
     },
     {
       IClass: 'fa fa-address-book',
       legend: 'Curso',
       router: '/curso',
+      perfil: PerfilSistema.ROLE_ADMIN,
       nestedsMenus: null
-    },
-    {
-      IClass: 'fa fa-plus',
-      legend: 'Menus Diversos',
-      router: '/teste',
-      nestedsMenus: [
-        {
-          IClass: 'fa fa-plus',
-          legend: 'Sub-menu 1',
-          router: '/teste',
-          nestedsMenus: null
-        },
-        {
-          IClass: 'fa fa-plus',
-          legend: 'Sub-menu 2',
-          router: '/teste',
-          nestedsMenus: null
-        }
-      ]
     }
   ];
 
-  constructor(public router: Router) {
+  constructor(private translate: TranslateService, public router: Router) {
+    this.listaIdioma.push({ nome: 'Português', idioma: 'pt' }, { nome: 'Inglês', idioma: 'en' }, { nome: 'Espanhol', idioma: 'es' });
+    this.translate.addLangs(['pt', 'en', 'es']);
+    this.translate.setDefaultLang('pt');
+
+    const browserLang = this.translate.getBrowserLang();
+    this.translate.use(browserLang.match(/pt|en|es/) ? browserLang : 'pt');
 
     this.router.events.subscribe(val => {
       if (
@@ -76,14 +74,6 @@ export class BarraLateralComponent implements OnInit {
     this.isActive = !this.isActive;
   }
 
-  expandirMenu(element: any) {
-    if (element === this.showMenu) {
-      this.showMenu = false;
-    } else {
-      this.showMenu = element;
-    }
-  }
-
   isToggled(): boolean {
     const dom: Element = document.querySelector('body');
     return dom.classList.contains(this.pushRightClass);
@@ -92,5 +82,18 @@ export class BarraLateralComponent implements OnInit {
   toggleSidebar() {
     const dom: any = document.querySelector('body');
     dom.classList.toggle(this.pushRightClass);
+  }
+
+  rltAndLtr() {
+    const dom: any = document.querySelector('body');
+    dom.classList.toggle('rtl');
+  }
+
+  onLoggedout() {
+    localStorage.removeItem('token');
+  }
+
+  changeLang(language: string) {
+    this.translate.use(language);
   }
 }

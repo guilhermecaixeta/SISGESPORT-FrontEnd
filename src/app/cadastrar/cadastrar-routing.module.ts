@@ -1,3 +1,4 @@
+import { CadastroCrudComponent } from './cadastro-crud/cadastro-crud.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CadastrarComponent } from './cadastrar.component';
@@ -5,7 +6,11 @@ import { CadastrarComponent } from './cadastrar.component';
 const routes: Routes = [
     {
         path: '',
-        component: CadastrarComponent
+        children:
+        [
+            {path: '', component: CadastrarComponent},
+            {path: ':acao', component: CadastroCrudComponent}
+        ] 
     }
 ];
 
