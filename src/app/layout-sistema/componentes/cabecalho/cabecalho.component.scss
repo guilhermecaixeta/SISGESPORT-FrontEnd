@@ -3,14 +3,14 @@ $topnav-background-color: #00FF00;
     .navbar {
         background-color: $topnav-background-color;
         .navbar-brand {
-            color: black;
+            color: #ffff;
             // text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
             &:hover {
                 color: #A9A9A9;
             }
         }
         .nav-item > a {
-            color: black;
+            color: #ffff;
             // text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
             &:hover {
                 color: #A9A9A9;
