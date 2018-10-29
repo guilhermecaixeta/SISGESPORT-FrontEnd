@@ -46,7 +46,15 @@ export class BarraLateralComponent implements OnInit {
       router: '/curso',
       perfil: PerfilSistema.ROLE_ADMIN,
       nestedsMenus: null
+    },
+    {
+      IClass: 'fa fa-group',
+      legend: 'Turma',
+      router: '/turma',
+      perfil: PerfilSistema.ROLE_ADMIN,
+      nestedsMenus: null
     }
+
   ];
 
   constructor(private translate: TranslateService, public router: Router) {

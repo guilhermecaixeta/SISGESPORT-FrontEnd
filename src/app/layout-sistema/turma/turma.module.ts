@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { TurmaRoutingModule } from './turma-routing.module';
 import { TurmaComponent } from './turma.component';
 import { TurmaCrudComponent } from './turma-crud/turma-crud.component';
@@ -11,17 +10,20 @@ import { BaseModule } from '../../base/base.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxMaskModule } from 'ngx-mask';
+import { ComponentesFormularioModule } from '../componentes-formulario/componentes-formulario.module';
 
 @NgModule({
   imports: [
     CommonModule,
     TurmaRoutingModule,
     ManterPadraoModule,
+    ManterPadraoModule,
     BaseModule,
     FormsModule,
     NgbModule.forRoot(),
     ReactiveFormsModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    ComponentesFormularioModule
   ],
   declarations: [TurmaComponent, TurmaCrudComponent, InsercaoComponent, VisualizacaoComponent]
 })

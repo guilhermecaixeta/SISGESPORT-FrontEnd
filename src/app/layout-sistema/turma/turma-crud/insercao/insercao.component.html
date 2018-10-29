@@ -1,3 +1,62 @@
-<p>
-  insercao works!
-</p>
+<div class="container">
+  <form [formGroup]="formulario" novalidate>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label>Instituto</label>
+          <select class="form-control form-control-sm" formControlName="instituicao">
+            <option *ngFor="let instituicao of listaInstituicao" [value]="instituicao.id">{{instituicao.nome}}</option>
+          </select>
+          <app-validator [field]="formulario.controls.instituicao"></app-validator>
+        </div>
+      </div>
+      <div class="col-6" *ngIf="formulario.get('instituicao').value">
+        <div class="form-group">
+          <label>Curso</label>
+          <select class="form-control form-control-sm" formControlName="curso">
+            <option *ngFor="let curso of listaCurso" [value]="curso.id">{{curso.nome}}</option>
+          </select>
+          <app-validator [field]="formulario.controls.curso"></app-validator>
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="form-group">
+          <input type="text" class="form-control " formControlName="nome" placeholder="Nome">
+          <app-validator [field]="formulario.controls.nome"></app-validator>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="1" id="flgAtivo" formControlName="flgAtivo">
+          <label class="form-check-label" for="flgAtivo">
+            Ativo
+          </label>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <div class="input-group datepicker-input">
+            <input class="form-control " formControlName="dataInicial" placeholder="Data Inicial" name="dp"
+              ngbDatepicker #d="ngbDatepicker" [minDate]="{year: dataMinima.getFullYear(), month: dataMinima.getMonth(), day: dataMinima.getDay()}">
+            <button class="input-group-addon" (click)="d.toggle()" type="button">
+              <span class="fa fa-calendar"></span>
+            </button>
+          </div>
+          <app-validator [field]="formulario.controls.dataInicial"></app-validator>
+        </div>
+      </div>
+      <div class="col-4" *ngIf="formulario.get('dataInicial').value">
+        <div class="form-group">
+          <div class="input-group datepicker-input">
+            <input class="form-control " formControlName="dataLimite" placeholder="Data de Encerramento" name="dp"
+              ngbDatepicker #d="ngbDatepicker" [minDate]="{year: dataMinima.getFullYear(), month: dataMinima.getMonth(), day: dataMinima.getDay()}">
+            <button class="input-group-addon" (click)="d.toggle()" type="button">
+              <span class="fa fa-calendar"></span>
+            </button>
+          </div>
+          <app-validator [field]="formulario.controls.dataLimite"></app-validator>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

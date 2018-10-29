@@ -1,3 +1,23 @@
-<p>
-  turma works!
-</p>
+<div [@routerTransition]>
+    <div class="row">
+      <div class="col-6">
+        <label><b>Selecione o Instituto:</b></label>
+        <select class="form-control form-control-sm" [(ngModel)]="idInstituicao" (ngModelChange)="BuscarCurso()">
+          <option *ngFor="let instituicao of listaInstituicao" [value]="instituicao.id">{{instituicao.nome}}</option>
+        </select>
+      </div>
+      <div *ngIf="idInstituicao > 0" class="col-6">
+        <label><b>Selecione o Curso:</b></label>
+        <select class="form-control form-control-sm" [(ngModel)]="idCurso" (ngModelChange)="BuscarTurma()">
+          <option *ngFor="let curso of listaCurso" [value]="curso.id">{{curso.nome}}</option>
+        </select>
+      </div>
+  
+      <div class="col-6"></div>
+      <div class="col-12">
+        <br />
+        <app-manter-padrao [exibirGrid]="abrirTurma" [funcaoEspecifica]="funcaoEspecifica" [dataRoute]="idCurso"
+          [listaNomeCampo]="listaNomeCampo" rotaPadrao="BuscarPorCursoIdPaginavel" legendaTabela="Turma" rota="turma"></app-manter-padrao>
+      </div>
+    </div>
+  </div>

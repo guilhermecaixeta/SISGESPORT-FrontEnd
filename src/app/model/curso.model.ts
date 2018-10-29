@@ -12,7 +12,7 @@ export class Curso {
     constructor(obj: any) {
         this.id = obj.id;
         this.nome = obj.nome;
-        this.flg_ativo = obj.flg_ativa == 1 ? true : false;
+        this.flg_ativo = obj.flg_ativo;
         this.instituicao = new Instituicao({ id: obj.instituicao });
     }
 }

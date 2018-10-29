@@ -130,8 +130,27 @@ $topnav-background-color: #006400;
     .sidebar {
         top: 54px;
         left: 0px;
+
+        @media screen and (max-width: 992px) {
+            .list-group {
+                margin-top: 5%
+            }
+        }
+        
+        @media screen and (max-width: 585px) {
+            .list-group {
+                margin-top: 15%
+            }
+        }
+        
+        @media screen and (max-width: 450px) {
+            .list-group {
+                margin-top: 20%
+            }
+        }
     }
 }
+
 @media (min-width: 992px) {
     .header-fields {
         display: none;

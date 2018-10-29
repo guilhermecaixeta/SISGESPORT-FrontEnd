@@ -26,14 +26,12 @@ export class BaseCrudComponent extends BaseComponent {
      * Número total de etapas do crud a ser preenchido pelo usuário. Esse valor deve ser alterado conforme a necessidade do crud.
      */
     etapasTotal = 2;
-    
+
     value: boolean = true;
     /**
      * Variavel usada para indicar se a validacao é customizada.
      */
     validacaoCustomizada: boolean;
-
-    validacaoData: RegExp = /(((\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2}))([+-](\d{2})\:(\d{2}))?Z?z?)/;
     /**
      * Objeto usado para realizar a multipla validação de dados em uma etapa. Deve ser implementado na classe filha.
      */
@@ -68,10 +66,7 @@ export class BaseCrudComponent extends BaseComponent {
      */
     carregarDados() {
         this.service.Get(`${this.rota}/BuscarPorId`, this.id).subscribe(obj => {
-            Object.keys(obj).forEach(key => {
-                obj[key] = this.validacaoData.test(obj[key]) ? new Date(obj[key]) : obj[key];
-            });
-            this.objetoRetorno = obj.data;
+            this.objetoRetorno = this.DateConvert(obj.data);
             this.formulario.patchValue(this.objetoRetorno);
             this.aposIniciar();
         });

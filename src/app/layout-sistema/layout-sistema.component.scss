@@ -7,9 +7,25 @@
     overflow-y: scroll;
     position: relative;
     overflow: hidden;
+    margin-top: 7%;
 }
 @media screen and (max-width: 992px) {
     .main-container {
         margin-left: 0px !important;
+        margin-top: 10%;
+    }
+}
+
+@media screen and (max-width: 628px) {
+    .main-container {
+        margin-left: 0px !important;
+        margin-top: 15%;
+    }
+}
+
+@media screen and (max-width: 411px) {
+    .main-container {
+        margin-left: 0px !important;
+        margin-top: 35%;
     }
 }

@@ -40,7 +40,10 @@ import { FormControl } from '@angular/forms';
     </div>
     <div *ngIf="field.errors.dateLessThen">
         {{field.errors.dateLessThen}}
-    </div>                        
+    </div>  
+    <div *ngIf="field.errors.ComparerDate">
+        {{field.errors.ComparerDate}}
+    </div>                            
 </div>
   `
 })

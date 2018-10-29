@@ -1,6 +1,6 @@
 <div class="list-group">
   <div *ngFor="let obj of lista; index as i">
-    <a *ngIf="!obj.nestedsMenus && usuario && usuario.authorities[0].authority == obj.perfil || obj.perfil == 'NO_RULE'"
+    <a *ngIf="!obj.nestedsMenus && usuario && usuario.authorities[0].authority == obj.perfil || obj.perfil == 'NO_ROLE'"
       [routerLink]="obj.router" [routerLinkActive]="['router-link-active']" class="list-group-item">
       <i [class]="obj.IClass"></i>&nbsp;{{ obj.legend | translate }}
     </a>

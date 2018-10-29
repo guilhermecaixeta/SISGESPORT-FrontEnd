@@ -4,10 +4,10 @@ import { FormControl } from "@angular/forms";
  * Verifica se o campo possui somente números.
  * @param form Control a ser validada
  */
-export function SomenteNumeros(form: FormControl){
+export function SomenteNumeros(form: FormControl) {
     const regexSoNumero: RegExp = /[^0-9]/;
-    if(String(form.value).match(regexSoNumero)){
-        return {soNumero: true}
+    if (String(form.value).match(regexSoNumero)) {
+        return { soNumero: true }
     }
 }
 
@@ -68,8 +68,9 @@ export function requiredMaxLength(valueComparer, withSpecialCharacter = false) {
  */
 export function validateDateMoreThen(dateComparer: Date = new Date) {
     return function (control: FormControl) {
-        if (new Date(control.value) > dateComparer)
-            return { dateMoreThen: 'O campo não pode possuir valor maior que a data:' + dateComparer.toLocaleDateString() + '.' }
+        if (control.value && control.value.year)
+            if (new Date(`${control.value.year}-${control.value.month}-${control.value.day}`) > dateComparer)
+                return { dateMoreThen: 'O campo não pode possuir valor maior que a data:' + dateComparer.toLocaleDateString() + '.' }
     }
 }
 
@@ -79,7 +80,23 @@ export function validateDateMoreThen(dateComparer: Date = new Date) {
  */
 export function validateDateLessThen(dateComparer: Date = new Date) {
     return function (control: FormControl) {
-        if (new Date(control.value) < dateComparer)
-            return { dateLessThen: 'O campo não pode possuir valor menor que a data:' + dateComparer.toLocaleDateString() + '.' }
+        if (control.value && control.value.year)
+            if (new Date(`${control.value.year}-${control.value.month}-${control.value.day}`) < dateComparer)
+                return { dateLessThen: 'O campo não pode possuir valor menor que a data:' + dateComparer.toLocaleDateString() + '.' }
+    }
+}
+
+/**
+ * Compara duas data diferentes usando dois formControls
+ * @param dateComparer Campo do formulario a ser comparado ao valor selecionado
+ */
+export function ComparerDate(dateComparer: FormControl) {
+    return function (control: FormControl) {
+        if (control.value && control.value.year && dateComparer.value && dateComparer.value.year) {
+            let data = new Date(`${control.value.year}-${control.value.month}-${control.value.day}`);
+            let dataComparacao = new Date(`${dateComparer.value.year}-${dateComparer.value.month}-${dateComparer.value.day}`);
+            if (data < dataComparacao)
+                return { dateLessThen: `O campo não pode possuir valor menor que a data: ${dataComparacao}` }
+        }
     }
 }

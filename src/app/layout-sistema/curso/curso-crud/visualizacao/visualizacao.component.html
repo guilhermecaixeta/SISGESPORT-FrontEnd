@@ -1,3 +1,7 @@
-<p>
-  visualizacao works!
-</p>
+<form [formGroup]="formulario" novalidate>
+  <div class="row">
+    <app-input-label id="item1" legenda="Nome" [valor]="formulario.value?.nome"></app-input-label>
+    <app-input-label id="item2" legenda="Descrição" valor="{{formulario.value?.flg_ativo == 1? 'Sim' : 'Não'}}"></app-input-label>
+    <app-input-label id="item3" legenda="Estado" [valor]="ObterItemPorId(listaInstituicao, formulario.value?.instituicao)['nome']"></app-input-label>
+  </div>
+</form>

@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxMaskModule } from 'ngx-mask';
 import { InsercaoComponent } from './curso-crud/insercao/insercao.component';
 import { VisualizacaoComponent } from './curso-crud/visualizacao/visualizacao.component';
+import { ComponentesFormularioModule } from '../componentes-formulario/componentes-formulario.module';
 
 @NgModule({
   imports: [
@@ -20,9 +21,9 @@ import { VisualizacaoComponent } from './curso-crud/visualizacao/visualizacao.co
     FormsModule,
     NgbModule.forRoot(),
     ReactiveFormsModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    ComponentesFormularioModule
   ],
-  declarations: [CursoComponent, CursoCrudComponent, InsercaoComponent, VisualizacaoComponent],
-  exports: [CursoComponent, CursoCrudComponent]
+  declarations: [CursoComponent, CursoCrudComponent, InsercaoComponent, VisualizacaoComponent]
 })
 export class CursoModule { }

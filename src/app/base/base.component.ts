@@ -34,6 +34,8 @@ export class BaseComponent implements OnInit {
    * Ação a ser executada.
    */
   acao: any;
+
+  validacaoData: RegExp = /(\d{2})\/(\d{2})\/(\d{4})/;
   /**
    * Método a ser executado ao iniciar o componente. Deve ser implementado nas classes filhas.
    */
@@ -83,7 +85,24 @@ export class BaseComponent implements OnInit {
       return true;
     }
   }
+  /**
+   * Converte os campos do objeto onde o valor é igual á: dd/mm/aaaa para: {aaaa, mm, dd}
+   * @param obj objeto a ser percorrido
+   */
+  public DateConvert(obj: any): any {
+    Object.keys(obj).forEach(key => {
+      obj[key] = this.validacaoData.test(obj[key]) ? { day: +String(obj[key]).substr(0, 2), month: +String(obj[key]).substr(3, 2), year: +String(obj[key]).substr(6, 4) } : obj[key];
+    });
+    return obj;
+  }
 
+  /**
+   * Converte um objeto para o formato de string: dd/mm/aaaa
+   * @param obj obejto a ser convertido para string em formato de data
+   */
+  public ConvertObjectToDate(obj: any): string {
+    return `${obj.day}/${obj.month}/${obj.year}`;
+  }
   /**
    * Seta todos os valores de um formulario percorrendo e marcado cada campo com o valor passado.
    * @param formGroup Formulário a ser tocado
