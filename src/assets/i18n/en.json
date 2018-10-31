@@ -17,5 +17,9 @@
     "Direita/Esquerda": "Right/Left",
     "Instituição": "Institution",
     "Cargo": "Office",
-    "Curso": "Course"
+    "Curso": "Course",
+    "Turma": "Class",
+    "Esporte": "Sport",
+    "Tipo Ponto": "Type Point",
+    "Penalidade": "Penalty"
 }

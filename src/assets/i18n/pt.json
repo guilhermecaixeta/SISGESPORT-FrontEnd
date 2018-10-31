@@ -21,5 +21,9 @@
     "Direita/Esquerda": "Direita/Esquerda",
     "Instituição": "Instituição",
     "Cargo": "Cargo",
-    "Curso": "Curso"
+    "Curso": "Curso",
+    "Turma": "Turma",
+    "Esporte": "Esporte",
+    "Tipo Ponto": "Tipo Ponto",
+    "Penalidade": "Penalidade"
 }
