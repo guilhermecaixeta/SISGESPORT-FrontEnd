@@ -16,7 +16,8 @@ const routes: Routes = [
             { path: 'instituicao', loadChildren: './instituicao/instituicao.module#InstituicaoModule' },
             { path: 'cargo', loadChildren: './cargo/cargo.module#CargoModule' },
             { path: 'curso', loadChildren: './curso/curso.module#CursoModule' },
-            { path: 'turma', loadChildren: './turma/turma.module#TurmaModule' }
+            { path: 'turma', loadChildren: './turma/turma.module#TurmaModule' },
+            { path: 'esporte', loadChildren: './esporte/esporte.module#EsporteModule' }
         ]
     }
 ];

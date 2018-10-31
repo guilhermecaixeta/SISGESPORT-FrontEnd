@@ -22,10 +22,11 @@ import { MenuLateralComponent } from './componentes/menu-lateral/menu-lateral.co
         ReactiveFormsModule
     ],
     declarations: [
-        LayoutSistemaComponent, 
-        CabecalhoComponent, 
-        BarraLateralComponent, 
-        LiDropDownMenuComponent, MenuLateralComponent
+        LayoutSistemaComponent,
+        CabecalhoComponent,
+        BarraLateralComponent,
+        LiDropDownMenuComponent,
+        MenuLateralComponent
     ]
 })
-export class LayoutSistemaModule {}
+export class LayoutSistemaModule { }

@@ -1,14 +1,13 @@
 import { PerfilSistema } from './../../enum/sisgesport.enum';
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRoute, NavigationEnd, RoutesRecognized, ResolveStart } from '@angular/router';
+import { CanActivate, ResolveStart } from '@angular/router';
 import { Router } from '@angular/router';
 import { ObservablePadrao } from '../../utils/observable.util.component';
 import { filter, map } from 'rxjs/operators';
-import { isNullOrUndefined } from 'util';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    constructor(private router: Router, private observablePadrao: ObservablePadrao, private activatedRoute: ActivatedRoute) { }
+    constructor(private router: Router, private observablePadrao: ObservablePadrao) { }
     canActivate() {
         if ((localStorage.getItem('token') !== 'undefined' || localStorage.getItem('token') !== undefined && null) && localStorage.getItem('token')) {
             this.observablePadrao.getValue.subscribe(x => {

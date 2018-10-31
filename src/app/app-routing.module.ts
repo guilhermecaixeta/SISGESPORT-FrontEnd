@@ -10,12 +10,12 @@ const routes: Routes = [
     { path: 'aluno', loadChildren: './aluno/aluno.module#AlunoModule' },
     { path: 'error', loadChildren: './server-error/server-error.module#ServerErrorModule' },
     { path: 'access-denied', loadChildren: './access-denied/access-denied.module#AccessDeniedModule' },
-    { path: 'not-found', loadChildren: './not-found/not-found.module#NotFoundModule' },
-    { path: '**', redirectTo: 'not-found' }
+    { path: 'nao-encontrado', loadChildren: './not-found/not-found.module#NotFoundModule' },
+    { path: '**', redirectTo: 'nao-encontrado' }
 ];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

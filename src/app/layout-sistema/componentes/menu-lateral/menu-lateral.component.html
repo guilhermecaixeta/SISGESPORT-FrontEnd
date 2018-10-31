@@ -1,23 +1,25 @@
-<div class="list-group">
+<div class="list-group" *ngIf="usuario">
   <div *ngFor="let obj of lista; index as i">
-    <a *ngIf="!obj.nestedsMenus && usuario && usuario.authorities[0].authority == obj.perfil || obj.perfil == 'NO_ROLE'"
+    <a *ngIf="!obj.nestedsMenus && usuario.authorities[0].authority == obj.perfil || obj.perfil == 'NO_ROLE'"
       [routerLink]="obj.router" [routerLinkActive]="['router-link-active']" class="list-group-item">
       <i [class]="obj.IClass"></i>&nbsp;{{ obj.legend | translate }}
     </a>
     <div *ngIf="obj.nestedsMenus" class="nested-menu">
-      <a class="list-group-item" (click)="expandirMenu(true)">
-        <span><i [class]="obj.IClass"></i>&nbsp; {{ obj.legend | translate }}</span>
-      </a>
+      <div *ngIf="usuario.authorities[0].authority == obj.perfil || obj.perfil == 'NO_ROLE'">
+        <a class="list-group-item" (click)="expandirMenu(true)">
+          <span><i [class]="obj.IClass"></i>&nbsp; {{ obj.legend | translate }}</span>
+        </a>
+      </div>
       <li class="nested" [class.expand]="showMenu">
-        <div *ngFor="let nest of obj.nestedsMenus">
-          <ul class="submenu">
-            <li>
+        <ul class="submenu">
+          <div *ngFor="let nest of obj.nestedsMenus">
+            <li *ngIf="usuario.authorities[0].authority == obj.perfil || obj.perfil == 'NO_ROLE'">
               <a [routerLink]="nest.router" [routerLinkActive]="['router-link-active']" class="list-group-item">
                 <i [class]="nest.IClass"></i>&nbsp;{{ nest.legend | translate }}
               </a>
             </li>
-          </ul>
-        </div>
+          </div>
+        </ul>
       </li>
     </div>
   </div>

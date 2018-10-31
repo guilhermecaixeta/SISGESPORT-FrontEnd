@@ -1,0 +1,6 @@
+<form [formGroup]="formulario" novalidate>
+  <div class="row">
+    <app-input-label id="item1" legenda="Nome" [valor]="formulario.value?.nome"></app-input-label>
+    <app-input-label id="item2" legenda="Valor Ponto" [valor]="formulario.value?.valor"></app-input-label>
+  </div>
+</form>

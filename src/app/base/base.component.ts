@@ -101,7 +101,9 @@ export class BaseComponent implements OnInit {
    * @param obj obejto a ser convertido para string em formato de data
    */
   public ConvertObjectToDate(obj: any): string {
-    return `${obj.day}/${obj.month}/${obj.year}`;
+    if (!isNullOrUndefined(obj))
+      return `${obj.day}/${obj.month}/${obj.year}`;
+    else return '';
   }
   /**
    * Seta todos os valores de um formulario percorrendo e marcado cada campo com o valor passado.

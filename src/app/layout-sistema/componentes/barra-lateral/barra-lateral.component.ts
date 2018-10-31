@@ -53,6 +53,28 @@ export class BarraLateralComponent implements OnInit {
       router: '/turma',
       perfil: PerfilSistema.ROLE_ADMIN,
       nestedsMenus: null
+    },
+    {
+      IClass: 'fa fa-soccer-ball-o',
+      legend: 'Esporte',
+      router: null,
+      perfil: PerfilSistema.ROLE_ADMIN,
+      nestedsMenus: [
+        {
+          IClass: 'fa fa-check-circle-o',
+          legend: 'Tipo-Ponto',
+          router: '/esporte/tipo-ponto',
+          perfil: PerfilSistema.ROLE_ADMIN,
+          nestedsMenus: null
+        },
+        {
+          IClass: 'fa fa-user-times',
+          legend: 'Penalidade',
+          router: '/esporte/penalidade',
+          perfil: PerfilSistema.ROLE_ADMIN,
+          nestedsMenus: null
+        }
+      ]
     }
 
   ];
