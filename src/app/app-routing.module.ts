@@ -9,7 +9,7 @@ const routes: Routes = [
     { path: 'servidor', loadChildren: './servidor/servidor.module#ServidorModule' },
     { path: 'aluno', loadChildren: './aluno/aluno.module#AlunoModule' },
     { path: 'error', loadChildren: './server-error/server-error.module#ServerErrorModule' },
-    { path: 'access-denied', loadChildren: './access-denied/access-denied.module#AccessDeniedModule' },
+    { path: 'acesso-negado', loadChildren: './access-denied/access-denied.module#AccessDeniedModule' },
     { path: 'nao-encontrado', loadChildren: './not-found/not-found.module#NotFoundModule' },
     { path: '**', redirectTo: 'nao-encontrado' }
 ];

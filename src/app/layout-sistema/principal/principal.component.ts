@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { routerTransition } from '../../router.animations';
-import { DadosTabela } from '../../model/tabela';
 
 @Component({
     selector: 'app-principal',
@@ -11,14 +10,15 @@ import { DadosTabela } from '../../model/tabela';
 export class PrincipalComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
+
     constructor() {
         this.sliders.push(
             {
-                imagePath: 'assets/images/slider1.jpg',
-                label: 'First slide label',
+                imagePath: 'assets/images/campus.jpg',
+                label: 'IFG Campus Luziânia',
                 text:
-                    'Nulla vitae elit libero, a pharetra augue mollis interdum.',
-                html: '#'
+                    'Saiba mais sobre o IFG...',
+                html: 'http://ifg.edu.br/luziania/'
             },
             {
                 imagePath: 'assets/images/slider2.jpg',
@@ -55,7 +55,8 @@ export class PrincipalComponent implements OnInit {
         );
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+    }
 
     public closeAlert(alert: any) {
         const index: number = this.alerts.indexOf(alert);

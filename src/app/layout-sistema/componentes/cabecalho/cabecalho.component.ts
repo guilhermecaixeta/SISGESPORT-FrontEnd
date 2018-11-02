@@ -16,7 +16,7 @@ export class CabecalhoComponent implements OnInit {
   listaIdioma: any[] = [];
   nameFieldTarefa: string[] = ['nome', 'tarefa'];
   nameFieldIdioma: string[] = ['nome', 'idioma'];
-  tagIdioma: string[] = ['fa fa-language', 'Language'];
+  tagIdioma: string[] = ['fa fa-language', 'Idioma'];
 
   constructor(private translate: TranslateService, public router: Router) {
     this.listaIdioma.push({ nome: 'Português', idioma: 'pt' });

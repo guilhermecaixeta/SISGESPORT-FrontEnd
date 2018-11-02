@@ -10,11 +10,11 @@
                 <div class="form-content">
                     <div class="form-group">
                         <input type="text" ng-model="name" class="form-control input-underline input-lg" name="matricula"
-                            [(ngModel)]="usuario.matricula" placeholder="Matrícula">
+                            [(ngModel)]="usuario.matricula" placeholder="Matrícula" (keydown.enter)="onLoggedin()">
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control input-underline input-lg" name="senha" [(ngModel)]="usuario.senha"
-                            placeholder="Senha">
+                            placeholder="Senha" (keydown.enter)="onLoggedin()">
                     </div>
                 </div>
                 <a class="btn rounded-btn" (click)="onLoggedin()"> Entrar </a>

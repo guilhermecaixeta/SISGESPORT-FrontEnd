@@ -3,11 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { PerfilSistema } from '../../../enum/sisgesport.enum';
 import { PenalidadeComponent } from './penalidade.component';
 import { PenalidadeCrudComponent } from './penalidade-crud/penalidade-crud.component';
+import { AuthGuard } from '../../../shared';
 
 const routes: Routes = [
   {
     path: '',
-    data: { pefil: PerfilSistema.ROLE_ADMIN },
+    data: { perfil: PerfilSistema.ROLE_ADMIN },
+    canActivateChild: [AuthGuard],
     children:
       [
         { path: '', component: PenalidadeComponent, data: { pefil: PerfilSistema.ROLE_ADMIN } },

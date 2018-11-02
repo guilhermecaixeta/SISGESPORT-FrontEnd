@@ -1,3 +1,4 @@
+import { AuthGuard } from './../../shared/guard/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CursoComponent } from './curso.component';
@@ -8,6 +9,7 @@ const routes: Routes = [
   {
     path: '',
     data: { perfil: PerfilSistema.ROLE_ADMIN },
+    canActivateChild: [AuthGuard],
     children: [
       { path: '', component: CursoComponent },
       { path: ':acao', component: CursoCrudComponent },

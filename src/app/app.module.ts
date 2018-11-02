@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
@@ -45,8 +44,8 @@ export const createTranslateLoader = (http: HttpClient) => {
     declarations: [
         AppComponent
     ],
-    providers: [AuthGuard, Service, FormBuilder, MaskField, ObservablePadrao, 
-        {provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter}],
+    providers: [AuthGuard, Service, FormBuilder, MaskField, ObservablePadrao,
+        { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

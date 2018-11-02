@@ -5,8 +5,8 @@ export enum TipoAlerta {
     danger = 4
 }
 
-export enum PerfilSistema{
+export enum PerfilSistema {
     ROLE_ADMIN = 'ROLE_ADMIN',
-    ROLE_USER = 'ROLE_USER',
-    NO_ROLE = 'NO_ROLE' 
+    ROLE_USER = 'ROLE_USUARIO',
+    NO_ROLE = 'NO_ROLE'
 }

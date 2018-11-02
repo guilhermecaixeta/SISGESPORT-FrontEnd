@@ -1,45 +1,41 @@
-import { PerfilSistema } from './../../enum/sisgesport.enum';
 import { Injectable } from '@angular/core';
-import { CanActivate, ResolveStart } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateChild } from '@angular/router';
 import { Router } from '@angular/router';
 import { ObservablePadrao } from '../../utils/observable.util.component';
-import { filter, map } from 'rxjs/operators';
+import { PerfilSistema } from '../../enum/sisgesport.enum';
+import { isNullOrUndefined } from 'util';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
-    constructor(private router: Router, private observablePadrao: ObservablePadrao) { }
-    canActivate() {
-        if ((localStorage.getItem('token') !== 'undefined' || localStorage.getItem('token') !== undefined && null) && localStorage.getItem('token')) {
-            this.observablePadrao.getValue.subscribe(x => {
-                if (x) {
-                    this.router.events.pipe(
-                        filter(event => event instanceof ResolveStart),
-                        map(event => {
-                            let data = null;
-                            let route = event['state'].root;
-                            while (route) {
-                                data = route.data || data;
-                                route = route.firstChild;
-                            }
-                            return data;
-                        }),
-                    ).subscribe(data => {
-                        if (data.perfil)
-                            if (data instanceof Object && data.perfil == x.data.authorities[0].authority
-                                || data == PerfilSistema.NO_ROLE) {
-                                return true;
-                            }
-                            else {
-                                this.router.navigate(['/principal']);
-                                return false;
-                            }
-                    });
+export class AuthGuard implements CanActivate, CanActivateChild {
+    constructor(private observablePadrao: ObservablePadrao, private router: Router) {
+    }
+    autenticado: boolean;
+    public Permissions(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
+        this.observablePadrao.getValue.subscribe(permissoes => {
+            if (permissoes.data && route.data && !isNullOrUndefined(route.data.perfil)) {
+                let perfil = route.data.perfil;
+                console.log(route.data.perfil);
+                if (permissoes.data.authorities[0].authority == perfil || perfil == PerfilSistema.NO_ROLE)
+                    this.autenticado = true;
+                else {
+                    this.router.navigate(['/acesso-negado']);
+                    this.autenticado = false;
                 }
-            });
-            return true;
+            } else {
+                this.autenticado = true;
+            }
+            return this.autenticado;
+        });
+    }
+
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+        if (localStorage.getItem('token')) {
+            this.Permissions(route, state);
+            return this.autenticado;
         } else {
             this.router.navigate(['/login']);
-            return false;
+            return true;
         }
     }
+    canActivateChild = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => this.canActivate(route, state);
 }

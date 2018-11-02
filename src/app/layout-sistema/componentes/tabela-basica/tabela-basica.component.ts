@@ -57,13 +57,12 @@ export class TabelaBasicaComponent extends BaseComponent {
   ObterLista(pageConfig: any) {
     if (this.route !== "")
       this.service.Get(this.route, this.dataRoute, pageConfig).subscribe(data => {
-        if (data.data.content.length > 0) {
-          this.pageConfig.totalElements = data.data.totalElements;
-          if (this.funcaoEspecifica != null)
-            this.listaValorCampo = this.funcaoEspecifica.executar(data.data.content);
-          else
-            this.listaValorCampo = data.data.content;
-        }
+        debugger
+        this.pageConfig.totalElements = data.data.totalElements;
+        if (this.funcaoEspecifica != null)
+          this.listaValorCampo = this.funcaoEspecifica.executar(data.data.content);
+        else
+          this.listaValorCampo = data.data.content;
       },
         err => this.alertas.push(new Alerta(this.ObterIdPorTamanhoLista(this.alertas), TipoAlerta[4], err)));
   }
@@ -81,14 +80,27 @@ export class TabelaBasicaComponent extends BaseComponent {
         break;
       case "deletar":
         this.service.Delete(this.route.replace(/\/.*/g, ''), data[this.field]).subscribe(
-          () => this.ObterLista({
-            totalElements: 0,
-            page: this.paginaAnterior,
-            size: 10,
-            order: "id",
-            sort: "DESC",
-          }),
-          err => this.alertas.push(new Alerta(this.ObterIdPorTamanhoLista(this.alertas), TipoAlerta[4], err))
+          () => {
+            debugger
+            this.ObterLista({
+              totalElements: 0,
+              page: this.paginaAnterior,
+              size: 10,
+              order: "id",
+              sort: "DESC",
+            })
+          },
+          err => this.alertas.push(new Alerta(this.ObterIdPorTamanhoLista(this.alertas), TipoAlerta[4], err)),
+          () => {
+            debugger
+            this.ObterLista({
+              totalElements: 0,
+              page: this.paginaAnterior,
+              size: 10,
+              order: "id",
+              sort: "DESC",
+            })
+          }
         );
         break;
     }

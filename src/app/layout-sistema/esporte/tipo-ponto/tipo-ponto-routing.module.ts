@@ -3,16 +3,18 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TipoPontoComponent } from './tipo-ponto.component';
 import { TipoPontoCrudComponent } from './tipo-ponto-crud/tipo-ponto-crud.component';
+import { AuthGuard } from '../../../shared';
 
 const routes: Routes = [
   {
     path: '',
-    data: { pefil: PerfilSistema.ROLE_ADMIN },
+    data: { perfil: PerfilSistema.ROLE_ADMIN },
+    canActivateChild: [AuthGuard],
     children:
       [
-        { path: '', component: TipoPontoComponent, data: { pefil: PerfilSistema.ROLE_ADMIN } },
-        { path: ':acao', component: TipoPontoCrudComponent, data: { pefil: PerfilSistema.ROLE_ADMIN } },
-        { path: ':acao/:id', component: TipoPontoCrudComponent, data: { pefil: PerfilSistema.ROLE_ADMIN } }
+        { path: '', component: TipoPontoComponent },
+        { path: ':acao', component: TipoPontoCrudComponent },
+        { path: ':acao/:id', component: TipoPontoCrudComponent }
       ]
   }
 ];
