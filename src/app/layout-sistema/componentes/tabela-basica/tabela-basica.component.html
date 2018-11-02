@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col col-xl-12 col-lg-12">
+  <div class="col-12 col-md-12 col-lg-12">
     <div class="card mb-3">
       <div class="card-header">
         {{legenda}}
@@ -16,16 +16,20 @@
             <tr *ngFor="let valor of listaValorCampo; let nome = listaNomeCampo;">
               <td *ngFor="let nome of listaNomeCampo">{{valor[nome.nomeValorColuna]}}</td>
               <td>
-                <a href="javascript:void(0)" class="in col-1" (click)="AcaoGrid($event, valor)" ngbTooltip="Editar" id="editar">
-                  <i class="fa fa-edit"></i>
-                </a>
-                <a href="javascript:void(0)" class="in col-1" (click)="AcaoGrid($event, valor)" ngbTooltip="Visualizar"
-                  id="visualizar">
-                  <i class="fa fa-eye"></i>
-                </a>
-                <a href="javascript:void(0)" class="in col-1" (click)="AcaoGrid($event, valor)" ngbTooltip="Deletar" id="deletar">
-                  <i class="fa fa-remove"></i>
-                </a>
+                <div style="align-items: center;">
+                  <a href="javascript:void(0)" class="in col-1" (click)="AcaoGrid($event, valor)" ngbTooltip="Editar"
+                    id="editar">
+                    <i class="fa fa-edit"></i>
+                  </a>
+                  <a href="javascript:void(0)" class="in col-1" (click)="AcaoGrid($event, valor)" ngbTooltip="Visualizar"
+                    id="visualizar">
+                    <i class="fa fa-eye"></i>
+                  </a>
+                  <a href="javascript:void(0)" class="in col-1" (click)="AcaoGrid($event, valor)" ngbTooltip="Deletar"
+                    id="deletar">
+                    <i class="fa fa-remove"></i>
+                  </a>
+                </div>
               </td>
             </tr>
             <tr *ngIf="listaValorCampo.length == 0">

@@ -13,7 +13,9 @@ const routes: Routes = [
       {
         path: '', component: EsporteComponent, children: [
           { path: 'tipo-ponto', loadChildren: './tipo-ponto/tipo-ponto.module#TipoPontoModule' },
-          { path: 'penalidade', loadChildren: './penalidade/penalidade.module#PenalidadeModule' }
+          { path: 'penalidade', loadChildren: './penalidade/penalidade.module#PenalidadeModule' },
+          { path: 'posicao', loadChildren: './posicao/posicao.module#PosicaoModule' },
+          { path: 'modalidade', loadChildren: './modalidade/modalidade.module#ModalidadeModule' }
         ]
       }
     ]

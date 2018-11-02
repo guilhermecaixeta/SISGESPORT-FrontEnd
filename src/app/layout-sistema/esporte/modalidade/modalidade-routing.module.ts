@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PerfilSistema } from '../../../enum/sisgesport.enum';
-import { PenalidadeComponent } from './penalidade.component';
-import { PenalidadeCrudComponent } from './penalidade-crud/penalidade-crud.component';
 import { AuthGuard } from '../../../shared';
+import { ModalidadeComponent } from './modalidade.component';
+import { ModalidadeCrudComponent } from './modalidade-crud/modalidade-crud.component';
 
 const routes: Routes = [
   {
@@ -12,9 +12,9 @@ const routes: Routes = [
     canActivateChild: [AuthGuard],
     children:
       [
-        { path: '', component: PenalidadeComponent },
-        { path: ':acao', component: PenalidadeCrudComponent },
-        { path: ':acao/:id', component: PenalidadeCrudComponent }
+        { path: '', component: ModalidadeComponent },
+        { path: ':acao', component: ModalidadeCrudComponent },
+        { path: ':acao/:id', component: ModalidadeCrudComponent }
       ]
   }
 ];
@@ -23,4 +23,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class PenalidadeRoutingModule { }
+export class ModalidadeRoutingModule { }

@@ -1,0 +1,53 @@
+<div class="container">
+  <form [formGroup]="formulario" novalidate>
+    <fieldset>
+      <div class="row">
+        <div class="col-12 col-md-12 col-lg-6">
+          <div class="form-group">
+            <input type="text" class="form-control " formControlName="nome" placeholder="Nome">
+            <app-validator [field]="formulario.get('nome')"></app-validator>
+          </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-6">
+          <div class="form-group">
+            <input type="text" class="form-control " formControlName="descricao" placeholder="Descrição">
+            <app-validator [field]="formulario.get('descricao')"></app-validator>
+          </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-6">
+          <div class="form-group">
+            <input type="number" class="form-control" formControlName="numMaxJogador" placeholder="Número Máximo de Jogadores">
+            <app-validator [field]="formulario.get('numMaxJogador')"></app-validator>
+          </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-6">
+          <div class="form-group">
+            <input type="number" class="form-control " formControlName="numMinJogador" placeholder="Número Minímo de Jogadores">
+            <app-validator [field]="formulario.get('numMinJogador')"></app-validator>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Posicao</label>
+        <select multiple class="form-control form-control" formControlName="posicao">
+          <option *ngFor="let posicao of listaPosicao" [value]="posicao.id">{{posicao.nome}}</option>
+        </select>
+        <app-validator [field]="formulario.controls.posicao"></app-validator>
+      </div>
+      <div class="form-group">
+        <label>Tipo Ponto</label>
+        <select multiple class="form-control form-control" formControlName="tipoPonto">
+          <option *ngFor="let tipoPonto of listaTipoPonto" [value]="tipoPonto.id">{{tipoPonto.nome}}</option>
+        </select>
+        <app-validator [field]="formulario.controls.tipoPonto"></app-validator>
+      </div>
+      <div class="form-group">
+        <label>Penalidade</label>
+        <select multiple class="form-control form-control" formControlName="penalidade">
+          <option *ngFor="let penalidade of listaPenalidade" [value]="penalidade.id">{{penalidade.nome}}</option>
+        </select>
+        <app-validator [field]="formulario.controls.penalidade"></app-validator>
+      </div>
+    </fieldset>
+  </form>
+</div>

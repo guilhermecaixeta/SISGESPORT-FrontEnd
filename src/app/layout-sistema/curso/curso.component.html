@@ -1,6 +1,6 @@
 <div [@routerTransition]>
   <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-md-12 col-lg-6">
       <label><b>Selecione o Instituto:</b></label>
       <select class="form-control form-control-sm" [(ngModel)]="idInstituicao" (ngModelChange)="BuscarCursos()">
         <option *ngFor="let instituicao of listaInstituicao" [value]="instituicao.id">{{instituicao.nome}}</option>

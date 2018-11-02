@@ -1,0 +1,27 @@
+<form [formGroup]="formulario" novalidate>
+  <div class="row">
+    <app-input-label id="item1" legenda="Nome" [valor]="formulario.value?.nome"></app-input-label>
+    <app-input-label id="item2" legenda="Descrição" [valor]="formulario.value?.descricao"></app-input-label>
+    <app-input-label id="item3" legenda="Número Máximo de Jogadores" [valor]="formulario.value?.numMaxJogador"></app-input-label>
+    <app-input-label id="item4" legenda="Número Minímo de Jogadores" [valor]="formulario.value?.numMinJogador"></app-input-label>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-md-12 col-lg-4">
+      <div *ngFor="let obj of formulario.value?.posicao">
+        <app-input-label id="item5" legenda="Posição" [valor]="ObterItemPorId(listaPosicao, obj)['nome']"></app-input-label>
+      </div>
+    </div>
+    <div class="col-12 col-md-12 col-lg-4">
+      <div *ngFor="let obj of formulario.value?.tipoPonto">
+        <app-input-label id="item6" legenda="Tipo Ponto" [valor]="ObterItemPorId(listaTipoPonto, obj)['nome']"></app-input-label>
+        <app-input-label id="item6" legenda="Valor" [valor]="ObterItemPorId(listaTipoPonto, obj)['valor']"></app-input-label>
+      </div>
+    </div>
+    <div class="col-12 col-md-12 col-lg-4">
+      <div *ngFor="let obj of formulario.value?.penalidade">
+        <app-input-label id="item7" legenda="Penalidade" [valor]="ObterItemPorId(listaPenalidade, obj)['nome']"></app-input-label>
+      </div>
+    </div>
+  </div>
+</form>

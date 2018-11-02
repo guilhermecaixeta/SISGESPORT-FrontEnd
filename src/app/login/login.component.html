@@ -6,15 +6,17 @@
             <ngb-alert [type]="alerta.type" (close)="fecharAlerta(alerta)" *ngFor="let alerta of alertas">{{
                 alerta.message }}</ngb-alert>
             <hr />
-            <form role="form">
+            <form role="form" [formGroup]="formulario" novalidate>
                 <div class="form-content">
                     <div class="form-group">
-                        <input type="text" ng-model="name" class="form-control input-underline input-lg" name="matricula"
-                            [(ngModel)]="usuario.matricula" placeholder="Matrícula" (keydown.enter)="onLoggedin()">
+                        <input type="text" class="form-control input-underline input-lg" name="matricula" formControlName="matricula"
+                            placeholder="Matrícula" (keydown.enter)="onLoggedin()">
+                        <app-validator [field]="formulario.controls.matricula"></app-validator>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" name="senha" [(ngModel)]="usuario.senha"
+                        <input type="password" class="form-control input-underline input-lg" name="senha" formControlName="senha"
                             placeholder="Senha" (keydown.enter)="onLoggedin()">
+                        <app-validator [field]="formulario.controls.senha"></app-validator>
                     </div>
                 </div>
                 <a class="btn rounded-btn" (click)="onLoggedin()"> Entrar </a>

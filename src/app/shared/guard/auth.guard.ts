@@ -14,7 +14,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         this.observablePadrao.getValue.subscribe(permissoes => {
             if (permissoes.data && route.data && !isNullOrUndefined(route.data.perfil)) {
                 let perfil = route.data.perfil;
-                console.log(route.data.perfil);
                 if (permissoes.data.authorities[0].authority == perfil || perfil == PerfilSistema.NO_ROLE)
                     this.autenticado = true;
                 else {
