@@ -1,5 +1,5 @@
 import { BaseCrudComponent } from './../../../base/base-crud.component';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { Curso } from '../../../model/curso.model';
 import { routerTransition } from '../../../router.animations';

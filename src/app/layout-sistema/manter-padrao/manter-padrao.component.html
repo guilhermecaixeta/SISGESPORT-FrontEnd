@@ -1,14 +1,15 @@
 <fieldset legend="Instituição">
   <div>
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 col-md-12 col-lg-12" *ngIf="!desabilitarAdicionar">
         <button type="submit" class="btn btn-primary" [routerLink]="['./cadastrar']">{{legenda}}</button>
       </div>
       <div class="col-12">
         <br />
-        <app-tabela-basica *ngIf="exibirGrid" [funcaoEspecifica]="funcaoEspecifica" [listaNomeCampo]="listaNomeCampo"
-          [listaValorCampo]="listaValorCampo" [dataRoute]="dataRoute" [field]="field" [legenda]="legendaTabela" [route]="rotaGrid"
-          legenda="Instituição"></app-tabela-basica>
+        <app-tabela-basica *ngIf="exibirGrid" [desabilitarEdicao]="desabilitarEdicao" [desabilitarVisualizacao]="desabilitarVisualizacao"
+          [desabilitarDelecao]="desabilitarDelecao" (acaoTabela)="emitirAcao($event)" [useRoute]="useRoute"
+          [funcaoEspecifica]="funcaoEspecifica" [listaNomeCampo]="listaNomeCampo" [listaValorCampo]="listaValorCampo"
+          [dataRoute]="dataRoute" [field]="field" [legenda]="legendaTabela" [route]="rotaGrid" legenda="Instituição"></app-tabela-basica>
       </div>
     </div>
   </div>

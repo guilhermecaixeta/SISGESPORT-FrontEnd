@@ -17,6 +17,8 @@ import { BaseComponent, BaseCrudComponent, BaseValidatorsComponent,
   ],
   exports: 
   [
+    BaseComponent, 
+    BaseCrudComponent, 
     BaseValidatorsComponent, 
     BaseCrudNavegacaoComponent, 
     BaseEtapaComponent

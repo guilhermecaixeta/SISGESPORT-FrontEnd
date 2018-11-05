@@ -1,5 +1,5 @@
 import { BaseComponent } from './../../base/base.component';
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { DadosTabela } from '../../model/tabela';
 
 @Component({
@@ -9,6 +9,18 @@ import { DadosTabela } from '../../model/tabela';
 })
 export class ManterPadraoComponent extends BaseComponent {
 
+  @Output() acaoTabela: EventEmitter<any> = new EventEmitter<any>();
+  @Input() desabilitarEdicao: boolean = false;
+  @Input() desabilitarVisualizacao: boolean = false;
+  @Input() desabilitarDelecao: boolean = false;
+  /**
+   * Variavel usada para habilitar o botão adicionar.
+   */
+  @Input() desabilitarAdicionar: boolean = false;
+  /**
+   * Variavel par o uso da rota 
+   */
+  @Input() useRoute: boolean = true;
   /**
    * Nome da rota da funcionalidade. Ex: curso, instituicao...
    */
@@ -51,7 +63,12 @@ export class ManterPadraoComponent extends BaseComponent {
    */
   @Input() exibirGrid: boolean = true;
   rotaGrid: string;
-  iniciar(){
-   this.rotaGrid = `${this.rota}/${this.rotaPadrao}`;
+  iniciar() {
+    if (this.rota)
+      this.rotaGrid = `${this.rota}/${this.rotaPadrao}`;
+  }
+
+  emitirAcao(event: any) {
+    this.acaoTabela.emit(event);
   }
 }

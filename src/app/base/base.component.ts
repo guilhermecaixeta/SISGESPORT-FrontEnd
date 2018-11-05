@@ -1,10 +1,11 @@
 import { Alerta } from './../model/alerta.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { Service } from '../service/service.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ObservablePadrao } from '../utils/observable.util.component';
 import { isNullOrUndefined } from 'util';
+import { TipoAlerta } from '../enum/sisgesport.enum';
 
 @Component({
   selector: 'app-base',
@@ -19,6 +20,33 @@ export class BaseComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     public observablePadrao: ObservablePadrao
   ) { }
+
+  /**
+   * Emite a lista dos metodos AdicionarItem e DeletarItem
+   */
+  @Output() emiteLista: EventEmitter<any[]> = new EventEmitter<any[]>();
+  /**
+   * Objeto usado para realizar ações específicas em determinados métodos ou classes.
+   */
+  funcaoEspecifica = {
+    executar: (lista: any[]) => this.executar(lista),
+    validar: (lista: any[]) => this.validar(lista)
+  }
+
+  /**
+   * Método a se implementado na classe filha
+   * @param lista lista de entrada
+   */
+  executar(lista: any[]): any[] {
+    return lista;
+  }
+  /**
+   * Método a se implementado na classe filha
+   * @param lista lista de entrada
+   */
+  validar(lista: any[]): boolean {
+    return true;
+  }
 
   dataMaxima: Date = new Date();
   dataMinima: Date = new Date(this.dataMaxima.getFullYear() - 65, this.dataMaxima.getMonth(), this.dataMaxima.getDate());
@@ -39,11 +67,11 @@ export class BaseComponent implements OnInit {
   /**
    * Método a ser executado ao iniciar o componente. Deve ser implementado nas classes filhas.
    */
-  iniciar() { }
+  public iniciar() { }
   /**
    * Método a ser executado após iniciar. Deve ser implementado nas classes filhas.
    */
-  aposIniciar() { }
+  public aposIniciar() { }
   /**
    * Metodo que carrega os componentes iniciais, não sobrescrever em componentes onde serão realizados os cruds.
    */
@@ -100,9 +128,11 @@ export class BaseComponent implements OnInit {
    * Converte um objeto para o formato de string: dd/mm/aaaa
    * @param obj obejto a ser convertido para string em formato de data
    */
-  public ConvertObjectToDate(obj: any): string {
-    if (!isNullOrUndefined(obj))
+  public ConvertObjectToDate(obj: any, date: boolean = false): any {
+    if (!isNullOrUndefined(obj) && !date)
       return `${obj.day}/${obj.month}/${obj.year}`;
+    else if (!isNullOrUndefined(obj) && date)
+      return new Date(`${obj.year}-${obj.month}-${obj.day}`);
     else return '';
   }
   /**
@@ -111,7 +141,7 @@ export class BaseComponent implements OnInit {
    * @param func Tipo de função a ser usada no método, markAsDirty ou markAsPristine
    * @param opts Opcional
    */
-  TocarTodos(formGroup: FormGroup | FormArray, func = 'markAsDirty', opts = { onlySelf: false }): void {
+  public TocarTodos(formGroup: FormGroup | FormArray, func = 'markAsDirty', opts = { onlySelf: false }): void {
     Object.keys(formGroup.controls).map((key, index) => {
       let obj = formGroup.controls[key];
       if (obj instanceof FormGroup || obj instanceof FormArray)
@@ -125,7 +155,7 @@ export class BaseComponent implements OnInit {
    * Limpa todos os caracteres especiais da variavel passada, retorna uma string que possui caracateres alfanuméricos.
    * @param campo Variável a ser limpa
    */
-  LimparCaracterEspecial(campo: string): string {
+  public LimparCaracterEspecial(campo: string): string {
     if (campo != null)
       return campo.replace(/[^0-9A-Za-z]/g, '');
     else return '';
@@ -146,5 +176,42 @@ export class BaseComponent implements OnInit {
     if (!isNullOrUndefined(lista) && !isNullOrUndefined(id))
       return lista.find(x => x[nomeCampo] == id);
     else return '';
+  }
+
+  /**
+   * Adiciona um item a uma lista.
+   * @param lista lista a ser adicionado o item.
+   * @param objeto item a ser adicionado a lista.
+   * @param msg mensagem a ser exibida caso erro. 
+   */
+  public AdicionarItem(lista: any[], objeto: FormGroup, msg: string = 'Esse item já foi adicionado!') {
+    if (objeto.valid) {
+      if (this.funcaoEspecifica.validar(lista)) {
+        lista.push(objeto.value);
+        lista = this.funcaoEspecifica.executar(lista);
+      } else {
+        this.alertas.push(new Alerta(this.ObterIdPorTamanhoLista(lista), TipoAlerta[4], msg));
+      }
+      objeto.reset();
+    } else {
+      this.TocarTodos(objeto)
+    }
+    this.emiteLista.emit(lista);
+  }
+
+  /**
+   * Deleta um item da lista.
+   * @param lista lista a ter o item deletado.
+   * @param index indice do item a ser deletado.
+   * @param msg Mensagem a ser exibida caso erro.
+   */
+  public DeletarItem(lista: any[], index: number, msg: string = 'Erro ao excluir o item!') {
+    if (lista.length > 0) {
+      if (this.funcaoEspecifica.validar(lista))
+        lista.splice(index, 1);
+    } else {
+      this.alertas.push(new Alerta(this.ObterIdPorTamanhoLista(lista), TipoAlerta[4], msg));
+    }
+    this.emiteLista.emit(lista);
   }
 }

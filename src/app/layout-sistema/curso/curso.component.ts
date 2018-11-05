@@ -1,5 +1,5 @@
 import { BaseComponent } from './../../base/base.component';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { DadosTabela } from '../../model/tabela';
 
@@ -18,10 +18,6 @@ export class CursoComponent extends BaseComponent {
     { nomeColuna: 'Ativo', nomeValorColuna: 'flg_ativo' },
     { nomeColuna: 'Instituição', nomeValorColuna: 'instituicao' }
   ];
-
-  funcaoEspecifica = {
-    executar: (lista: any[]) => this.executar(lista)
-  }
 
   iniciar() {
     this.service.Get('instituicao/BuscarTodos').subscribe(object => {
@@ -42,6 +38,6 @@ export class CursoComponent extends BaseComponent {
 
   BuscarCursos() {
     this.abrirCurso = false;
-    setTimeout(() => {this.abrirCurso = true}, 5);
+    setTimeout(() => { this.abrirCurso = true }, 5);
   }
 }

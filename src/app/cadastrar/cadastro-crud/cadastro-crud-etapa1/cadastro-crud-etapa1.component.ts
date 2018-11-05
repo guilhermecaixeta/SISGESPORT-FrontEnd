@@ -8,7 +8,11 @@ import { NgbDatepickerI18n, NgbDateParserFormatter } from '@ng-bootstrap/ng-boot
   selector: 'app-cadastro-crud-etapa1',
   templateUrl: './cadastro-crud-etapa1.component.html',
   styleUrls: ['./cadastro-crud-etapa1.component.scss'],
-  providers: [I18n, { provide: NgbDatepickerI18n, useClass: CustomLocalePtBR }, { provide: NgbDateParserFormatter, useClass: CustomLocalePtBR }]
+  providers: [
+    I18n,
+    { provide: NgbDatepickerI18n, useClass: CustomLocalePtBR },
+    { provide: NgbDateParserFormatter, useClass: CustomLocalePtBR }
+  ]
 })
 export class CadastroCrudEtapa1Component extends BaseEtapaComponent {
   @Input() possuiMatricula: boolean;

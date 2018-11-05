@@ -11,5 +11,4 @@ import { routerTransition } from '../../../../router.animations';
 export class InsercaoComponent extends BaseEtapaComponent {
   @Input() estadosLista: any[] = [];
   @Input() municipioLista: any[] = [];
-
 }

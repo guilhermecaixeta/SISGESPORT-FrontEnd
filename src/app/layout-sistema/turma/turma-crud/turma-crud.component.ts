@@ -1,8 +1,8 @@
 import { Validators, FormControl } from '@angular/forms';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { BaseCrudComponent } from '../../../base';
 import { routerTransition } from '../../../router.animations';
-import { validateDateMoreThen, ComparerDate } from '../../../utils/validators.util.component';
+import { validateDateMoreThen, validateDateLessThen, } from '../../../utils/validators.util.component';
 import { Turma } from '../../../model/turma.model';
 
 @Component({
@@ -28,7 +28,7 @@ export class TurmaCrudComponent extends BaseCrudComponent {
   });
 
   iniciar() {
-    this.formulario.get('dataLimite').setValidators(ComparerDate(this.formulario.get('dataInicial') as FormControl));
+    this.formulario.get('dataLimite').setValidators(validateDateLessThen(this.formulario.get('dataInicial') as FormControl));
     this.formulario.get('dataInicial').valueChanges.subscribe(x => {
       if (x)
         this.formulario.get('dataLimite').setValue({ year: x.year + 4, month: x.month, day: x.day })

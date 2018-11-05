@@ -1,7 +1,7 @@
 <form [formGroup]="formulario" novalidate>
     <div class="form-content">
         <div class="row">
-            <div class="col-4">
+            <div class="col-12 col-md-6 col-lg-4">
                 <div class="form-group">
                     <label>Estado</label>
                     <select class="form-control form-control-sm" formControlName="estado">
@@ -10,7 +10,7 @@
                     <app-validator [field]="formulario.controls.estado"></app-validator>
                 </div>
             </div>
-            <div class="col-5">
+            <div class="col-12 col-md-6 col-lg-5">
                 <div class="form-group">
                     <label>Município</label>
                     <select class="form-control form-control-sm" formControlName="municipio">
@@ -19,26 +19,34 @@
                     <app-validator [field]="formulario.controls.municipio"></app-validator>
                 </div>
             </div>
-            <div class="col-3">
-                <label>CEP</label>
+            <div class="col-12 col-md-6 col-lg-3">
+                <label></label>
                 <div class="form-group">
                     <input type="text" clearIfNotMatch="true" mask="00000-000" class="form-control" formControlName="cep"
                         placeholder="CEP">
                     <app-validator [field]="formulario.controls.cep"></app-validator>
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control " formControlName="bairro" placeholder="Bairro">
-            <app-validator [field]="formulario.controls.bairro"></app-validator>
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control " formControlName="logradouro" placeholder="Logradouro">
-            <app-validator [field]="formulario.controls.logradouro"></app-validator>
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control " formControlName="complemento" placeholder="Complemento">
-            <app-validator [field]="formulario.controls.complemento"></app-validator>
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <input type="text" class="form-control " formControlName="logradouro" placeholder="Logradouro">
+                    <app-validator [field]="formulario.controls.logradouro"></app-validator>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-6">
+                <div class="form-group">
+                    <input type="text" class="form-control " formControlName="bairro" placeholder="Bairro">
+                    <app-validator [field]="formulario.controls.bairro"></app-validator>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-6">
+                <div class="form-group">
+                    <input type="text" class="form-control " formControlName="complemento" placeholder="Complemento">
+                    <app-validator [field]="formulario.controls.complemento"></app-validator>
+                </div>
+            </div>
         </div>
     </div>
 </form>
+<ngb-alert [type]="alerta?.type" (close)="fecharAlerta(alerta)" *ngFor="let alerta of alertas">{{
+    alerta?.message }}</ngb-alert>

@@ -23,8 +23,7 @@ export class CustomLocalePtBR implements IMixtin {
   parse(value: string): NgbDateStruct { //parse receive your string dd/mm/yyy
     //return a NgbDateStruct
     //calculate year,month and day from "value"
-    let data = new Date();
-    return { year: data.getFullYear(), month: data.getMonth(), day: data.getDay() }//{year:year,month:month,day:day}
+    return { day: +String(value).substr(0, 2), month: +String(value).substr(3, 2), year: +String(value).substr(6, 4) }
   }
 
   constructor(private _i18n: I18n) { }

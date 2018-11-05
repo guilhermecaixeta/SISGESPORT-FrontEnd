@@ -18,11 +18,10 @@ import { FormGroup } from '@angular/forms';
         </div>
     </div>
     
-    
     <div class="ui-g ui-md ui-lg"  *ngIf="!UseStyleHome">
-            <button type="button" class="btn btn-secondary" (click)="PaginacaoEtapa($event,false)"> Voltar </button>
-            <button type="button" class="btn btn-info" style="float:right" *ngIf="(etapa + 1) < etapasTotal && usarEtapa" (click)="PaginacaoEtapa($event,true)"> Avançar </button>
-            <button type="submit" class="btn btn-primary" style="float:right" *ngIf="((etapa + 1) == etapasTotal || !usarEtapa) && acao != 'visualizar'" (click)="PaginacaoEtapa($event)"> Finalizar </button>
+        <button type="button" class="btn btn-secondary" (click)="PaginacaoEtapa($event,false)"> Voltar </button>
+        <button type="button" class="btn btn-info" style="float:right" *ngIf="(etapa + 1) < etapasTotal && usarEtapa" (click)="PaginacaoEtapa($event,true)"> Avançar </button>
+        <button type="submit" class="btn btn-primary" style="float:right" *ngIf="((etapa + 1) == etapasTotal || !usarEtapa) && acao != 'visualizar'" (click)="PaginacaoEtapa($event)"> Finalizar </button>
     </div>
     `,
     styleUrls: ['./base.style.scss']

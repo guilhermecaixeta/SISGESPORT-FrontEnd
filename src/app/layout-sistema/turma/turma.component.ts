@@ -25,10 +25,6 @@ export class TurmaComponent extends BaseComponent {
     { nomeColuna: 'Curso', nomeValorColuna: 'curso' }
   ];
 
-  funcaoEspecifica = {
-    executar: (lista: any[]) => this.executar(lista)
-  }
-
   iniciar() {
     this.service.Get('instituicao/BuscarTodos').subscribe(object => {
       this.listaInstituicao = object.data;

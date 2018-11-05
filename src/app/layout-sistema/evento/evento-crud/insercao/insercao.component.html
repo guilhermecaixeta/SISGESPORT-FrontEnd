@@ -1,0 +1,157 @@
+<form [formGroup]="formulario" novalidate>
+  <ngb-alert [type]="alerta.type" (close)="fecharAlerta(alerta)" *ngFor="let alerta of alertas">{{
+    alerta.message }}</ngb-alert>
+
+  <!-- Evento -->
+  <fieldset formGroupName="evento">
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-6">
+        <div class="form-group">
+          <input type="text" class="form-control " formControlName="nome" placeholder="Nome">
+          <app-validator [field]="formulario.get('evento.nome')"></app-validator>
+        </div>
+      </div>
+      <div class="col-12 col-md-3 col-lg-3">
+        <div class="form-group">
+          <input type="number" class="form-control " formControlName="qntEquipes" placeholder="Nº de Equipes">
+          <app-validator [field]="formulario.get('evento.qntEquipes')"></app-validator>
+        </div>
+      </div>
+      <div class="col-12 col-md-12 col-lg-12">
+        <div class="form-group">
+          <input type="text" class="form-control " formControlName="descricao" placeholder="Descrição">
+          <app-validator [field]="formulario.get('evento.descricao')"></app-validator>
+        </div>
+      </div>
+      <!-- Data inicio evento -->
+      <div class="col-12 col-md-12 col-lg-3">
+        <div class="form-group">
+          <div class="input-group datepicker-input">
+            <input class="form-control " formControlName="dataInicio" placeholder="Data Início Evento" name="dpI"
+              ngbDatepicker #d="ngbDatepicker" [minDate]="{year: dataMinima.getFullYear(), month: dataMinima.getMonth(), day: dataMinima.getDay()}">
+            <button class="input-group-addon" (click)="d.toggle()" type="button">
+              <span class="fa fa-calendar"></span>
+            </button>
+          </div>
+          <app-validator [field]="formulario.get('evento.dataInicio')"></app-validator>
+        </div>
+      </div>
+      <div class="col-12 col-md-12 col-lg-3">
+        <div class="form-group">
+          <ngb-timepicker formControlName="horaInicio"></ngb-timepicker>
+          <app-validator [field]="formulario.get('evento.horaInicio')"></app-validator>
+        </div>
+      </div>
+      <!--  -->
+      <div class="col-12 col-md-12 col-lg-3" *ngIf="formulario.get('evento.dataInicio').value">
+        <div class="form-group">
+          <div class="input-group datepicker-input">
+            <input class="form-control " formControlName="dataFim" placeholder="Data de Encerramento" name="dpII"
+              ngbDatepicker #d="ngbDatepicker" [minDate]="{year: dataMinima.getFullYear(), month: dataMinima.getMonth(), day: dataMinima.getDay()}">
+            <button class="input-group-addon" (click)="d.toggle()" type="button">
+              <span class="fa fa-calendar"></span>
+            </button>
+          </div>
+          <app-validator [field]="formulario.get('evento.dataFim')"></app-validator>
+        </div>
+      </div>
+      <div class="col-12 col-md-12 col-lg-3" *ngIf="formulario.get('evento.dataInicio').value">
+        <div class="form-group">
+          <ngb-timepicker formControlName="horaFim"></ngb-timepicker>
+          <app-validator [field]="formulario.get('evento.horaFim')"></app-validator>
+        </div>
+      </div>
+      <!-- Data inicio inscricao evento -->
+      <div class="col-12 col-md-12 col-lg-3" *ngIf="formulario.get('evento.dataFim').value">
+        <div class="form-group">
+          <div class="input-group datepicker-input">
+            <input class="form-control " formControlName="dataInicioInscricao" placeholder="Data Início Inscrição" name="dpIII"
+              ngbDatepicker #d="ngbDatepicker" [minDate]="{year: dataMinima.getFullYear(), month: dataMinima.getMonth(), day: dataMinima.getDay()}">
+            <button class="input-group-addon" (click)="d.toggle()" type="button">
+              <span class="fa fa-calendar"></span>
+            </button>
+          </div>
+          <app-validator [field]="formulario.get('evento.dataInicioInscricao')"></app-validator>
+        </div>
+      </div>
+      <div class="col-12 col-md-12 col-lg-3" *ngIf="formulario.get('evento.dataFim').value">
+        <div class="form-group">
+          <ngb-timepicker formControlName="horaInicioInscricao"></ngb-timepicker>
+          <app-validator [field]="formulario.get('evento.horaInicioInscricao')"></app-validator>
+        </div>
+      </div>
+      <!--  -->
+      <div class="col-12 col-md-12 col-lg-3" *ngIf="formulario.get('evento.dataInicioInscricao').value">
+        <div class="form-group">
+          <div class="input-group datepicker-input">
+            <input class="form-control " formControlName="dataFimInscricao" placeholder="Data de Encerramento Inscrição"
+              name="dpIIII" ngbDatepicker #d="ngbDatepicker" [minDate]="{year: dataMinima.getFullYear(), month: dataMinima.getMonth(), day: dataMinima.getDay()}">
+            <button class="input-group-addon" (click)="d.toggle()" type="button">
+              <span class="fa fa-calendar"></span>
+            </button>
+          </div>
+          <app-validator [field]="formulario.get('evento.dataFimInscricao')"></app-validator>
+        </div>
+      </div>
+      <div *ngIf="acao == 'editar'">
+        <app-input-label id="item1" legenda="Data Criação" [valor]="formulario.value?.evento?.dataCriacao"></app-input-label>
+        <app-input-label id="item2" legenda="Código do Evento" [valor]="formulario.value?.evento?.codigoEvento"></app-input-label>
+        <app-input-label id="item3" legenda="Criador" [valor]="formulario.value?.evento?.criador"></app-input-label>
+      </div>
+    </div>
+  </fieldset>
+
+  <!-- Endereço -->
+  <fieldset formGroupName="endereco">
+    <legend>Endereço</legend>
+    <div class="ui-md-12">
+      <app-layout-endereco [acao]="acao" [estadosLista]="estadosLista" [municipioLista]="municipioLista" [formulario]="formulario.controls.endereco"
+        [acao]="acao"></app-layout-endereco>
+    </div>
+  </fieldset>
+
+  <!-- EventoModalidade -->
+  <fieldset formGroupName="eventoModalidade">
+    <legend>Modalidade Evento</legend>
+    <div class="row">
+      <div class="col-12 col-md-3 col-lg-3">
+        <div class="form-group">
+          <label>Modalidade</label>
+          <select class="form-control form-control-sm" formControlName="modalidade">
+            <option *ngFor="let modalidade of listaModalidade" [value]="modalidade.id">{{modalidade.nome}}</option>
+          </select>
+          <app-validator [field]="formulario.get('eventoModalidade.modalidade')"></app-validator>
+        </div>
+      </div>
+      <div class="col-12 col-md-3 col-lg-3">
+        <div class="form-group">
+          <label>Sexo</label>
+          <select class="form-control form-control-sm" formControlName="sexo">
+            <option value="F">Feminino</option>
+            <option value="M">Masculino</option>
+          </select>
+          <app-validator [field]="formulario.get('eventoModalidade.sexo')"></app-validator>
+        </div>
+      </div>
+      <div class="col-12 col-md-3 col-lg-3">
+        <div class="form-group">
+          <label></label>
+          <input type="number" class="form-control " formControlName="idadeMaximaPermitida" placeholder="Idade Máxima Permitida">
+          <app-validator [field]="formulario.get('eventoModalidade.idadeMaximaPermitida')"></app-validator>
+        </div>
+      </div>
+      <div class="col-12 col-md-12 col-lg-12">
+        <div class="ui-g-9 ui-md-6 ui-lg-3">
+          <button type="button" class="btn btn-primary" style="float:right" (click)="AdicionarItem(listaEventoModalidade, formulario.controls.eventoModalidade)">
+            Adicionar
+          </button>
+        </div>
+      </div>
+      <div class="col-12 col-md-12 col-lg-12">
+        <app-manter-padrao [listaNomeCampo]="listaNomeCampo" legendaTabela="Modalidades do Evento" [funcaoEspecifica]="funcaoEspecifica"
+          [desabilitarAdicionar]="desabilitar" [listaValorCampo]="listaEventoModalidade" [useRoute]="useRoute"
+          [desabilitarEdicao]="desabilitar" [desabilitarVisualizacao]="desabilitar" (acaoTabela)="DeletarItem(listaEventoModalidade, $event.index)"></app-manter-padrao>
+      </div>
+    </div>
+  </fieldset>
+</form>

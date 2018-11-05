@@ -9,8 +9,11 @@ import { NgbDatepickerI18n, NgbDateParserFormatter } from '@ng-bootstrap/ng-boot
   templateUrl: './insercao.component.html',
   styleUrls: ['./insercao.component.scss'],
   animations: [routerTransition()],
-  providers: [I18n, { provide: NgbDatepickerI18n, useClass: CustomLocalePtBR }, { provide: NgbDateParserFormatter, useClass: CustomLocalePtBR }]
-
+  providers: [
+    I18n,
+    { provide: NgbDatepickerI18n, useClass: CustomLocalePtBR },
+    { provide: NgbDateParserFormatter, useClass: CustomLocalePtBR }
+  ]
 })
 export class InsercaoComponent extends BaseEtapaComponent {
 
