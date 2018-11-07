@@ -16,7 +16,7 @@ export class Turma {
         this.nome = obj.nome;
         this.curso = new Curso({ id: obj.curso });
         this.flgAtivo = obj.flgAtivo;
-        this.dataLimite = `${obj.dataLimite.day}/${obj.dataLimite.month}/${obj.dataLimite.year}`;
-        this.dataInicial = `${obj.dataInicial.day}/${obj.dataInicial.month}/${obj.dataInicial.year}`;
+        this.dataLimite = `${obj.dataLimite.day}/${obj.dataLimite.month}/${obj.dataLimite.year} 00:00`;
+        this.dataInicial = `${obj.dataInicial.day}/${obj.dataInicial.month}/${obj.dataInicial.year} 00:00`;
     }
 }
