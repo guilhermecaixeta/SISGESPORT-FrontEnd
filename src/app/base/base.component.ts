@@ -184,17 +184,18 @@ export class BaseComponent implements OnInit {
    * @param objeto item a ser adicionado a lista.
    * @param msg mensagem a ser exibida caso erro. 
    */
-  public AdicionarItem(lista: any[], objeto: FormGroup, msg: string = 'Esse item já foi adicionado!') {
-    if (objeto.valid) {
+  public AdicionarItem(lista: any[], objeto: any, msg: string = 'Esse item já foi adicionado!') {
+    let form = objeto as FormGroup;
+    if (form.valid) {
       if (this.funcaoEspecifica.validar(lista)) {
-        lista.push(objeto.value);
+        lista.push(form.value);
         lista = this.funcaoEspecifica.executar(lista);
       } else {
         this.alertas.push(new Alerta(this.ObterIdPorTamanhoLista(lista), TipoAlerta[4], msg));
       }
       objeto.reset();
     } else {
-      this.TocarTodos(objeto)
+      this.TocarTodos(form)
     }
     this.emiteLista.emit(lista);
   }
