@@ -14,7 +14,7 @@ export class Pessoa extends EntidadeComum {
         this.id = obj.id;
         this.nome = obj.nome;
         this.sexo = obj.sexo;
-        this.dataNascimento = `${obj.dataNascimento.day}/${obj.dataNascimento.month}/${obj.dataNascimento.year}`;
+        this.dataNascimento = `${obj.dataNascimento.day}/${obj.dataNascimento.month}/${obj.dataNascimento.year} 00:00`;
         this.email = obj.email;
         this.matricula = obj.matricula;
         this.senha = obj.senha;
