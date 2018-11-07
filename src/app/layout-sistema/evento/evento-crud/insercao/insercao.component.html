@@ -93,6 +93,12 @@
           <app-validator [field]="formulario.get('evento.dataFimInscricao')"></app-validator>
         </div>
       </div>
+      <div class="col-12 col-md-12 col-lg-3" *ngIf="formulario.get('evento.dataInicioInscricao').value">
+        <div class="form-group">
+          <ngb-timepicker formControlName="horaFimInscricao"></ngb-timepicker>
+          <app-validator [field]="formulario.get('evento.horaFimInscricao')"></app-validator>
+        </div>
+      </div>
       <div *ngIf="acao == 'editar'">
         <app-input-label id="item1" legenda="Data Criação" [valor]="formulario.value?.evento?.dataCriacao"></app-input-label>
         <app-input-label id="item2" legenda="Código do Evento" [valor]="formulario.value?.evento?.codigoEvento"></app-input-label>

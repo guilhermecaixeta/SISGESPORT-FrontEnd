@@ -60,7 +60,7 @@ export class EventoCrudComponent extends BaseCrudComponent {
   });
 
   validarEtapa() {
-    if (this.formulario.get('evento').valid && this.listaEventoModalidade.length > 0) {
+    if (this.formulario.controls.evento.valid && this.formulario.controls.endereco.valid && this.listaEventoModalidade.length > 0) {
       this.multiValidacao.eValido = true;
     } else {
       let formValidacao: FormGroup = this.construtorFormulario.group({});

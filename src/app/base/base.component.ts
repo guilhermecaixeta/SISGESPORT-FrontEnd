@@ -1,6 +1,6 @@
 import { Alerta } from './../model/alerta.model';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { Service } from '../service/service.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ObservablePadrao } from '../utils/observable.util.component';
@@ -63,7 +63,7 @@ export class BaseComponent implements OnInit {
    */
   acao: any;
 
-  validacaoData: RegExp = /(\d{2})\/(\d{2})\/(\d{4})/;
+  validacaoData: RegExp = /(\d{2})\/(\d{2})\/(\d{4}).*(\d{2}\:\d{2})/;
   /**
    * Método a ser executado ao iniciar o componente. Deve ser implementado nas classes filhas.
    */
@@ -184,7 +184,7 @@ export class BaseComponent implements OnInit {
    * @param objeto item a ser adicionado a lista.
    * @param msg mensagem a ser exibida caso erro. 
    */
-  public AdicionarItem(lista: any[], objeto: FormGroup, msg: string = 'Esse item já foi adicionado!') {
+  public AdicionarItem(lista: any[], objeto: FormGroup | FormControl, msg: string = 'Esse item já foi adicionado!') {
     if (objeto.valid) {
       if (this.funcaoEspecifica.validar(lista)) {
         lista.push(objeto.value);
@@ -194,7 +194,7 @@ export class BaseComponent implements OnInit {
       }
       objeto.reset();
     } else {
-      this.TocarTodos(objeto)
+      this.TocarTodos(objeto as FormGroup)
     }
     this.emiteLista.emit(lista);
   }

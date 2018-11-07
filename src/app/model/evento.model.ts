@@ -27,11 +27,11 @@ export class Evento extends EntidadeComum {
         this.codigoEvento = obj.codigoEvento;
         this.nome = obj.nome;
         this.descricao = obj.descricao;
-        this.dataInicio = `${obj.dataInicio.day}/${obj.dataInicio.month}/${obj.dataInicio.year}`;
-        this.dataFim = `${obj.dataFim.day}/${obj.dataFim.month}/${obj.dataFim.year}`;
-        this.dataInicioInscricao = `${obj.dataInicioInscricao.day}/${obj.dataInicioInscricao.month}/${obj.dataInicioInscricao.year}`;
-        this.dataFimInscricao = `${obj.dataFimInscricao.day}/${obj.dataFimInscricao.month}/${obj.dataFimInscricao.year}`;
-        this.dataCriacao = obj.dataCriacao ? `${obj.dataCriacao.day}/${obj.dataCriacao.month}/${obj.dataCriacao.year}` : null;
+        this.dataInicio = `${obj.dataInicio.day}/${obj.dataInicio.month}/${obj.dataInicio.year} ${obj.horaInicio.hour}:${obj.horaInicio.minute}`;
+        this.dataFim = `${obj.dataFim.day}/${obj.dataFim.month}/${obj.dataFim.year} ${obj.horaFim.hour}:${obj.horaFim.minute}`;
+        this.dataInicioInscricao = `${obj.dataInicioInscricao.day}/${obj.dataInicioInscricao.month}/${obj.dataInicioInscricao.year} ${obj.horaInicioInscricao.hour}:${obj.horaInicioInscricao.minute}`;
+        this.dataFimInscricao = `${obj.dataFimInscricao.day}/${obj.dataFimInscricao.month}/${obj.dataFimInscricao.year} ${obj.horaFimInscricao.hour}:${obj.horaFimInscricao.minute}`;
+        this.dataCriacao = obj.dataCriacao ? `${obj.dataCriacao.day}/${obj.dataCriacao.month}/${obj.dataCriacao.year} 00:00` : null;
 
         this.eventoModalidade = [];
     }
