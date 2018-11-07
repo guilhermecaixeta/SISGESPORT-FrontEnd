@@ -184,7 +184,7 @@ export class BaseComponent implements OnInit {
    * @param objeto item a ser adicionado a lista.
    * @param msg mensagem a ser exibida caso erro. 
    */
-  public AdicionarItem(lista: any[], objeto: FormGroup | FormControl, msg: string = 'Esse item já foi adicionado!') {
+  public AdicionarItem(lista: any[], objeto: FormGroup, msg: string = 'Esse item já foi adicionado!') {
     if (objeto.valid) {
       if (this.funcaoEspecifica.validar(lista)) {
         lista.push(objeto.value);
@@ -194,7 +194,7 @@ export class BaseComponent implements OnInit {
       }
       objeto.reset();
     } else {
-      this.TocarTodos(objeto as FormGroup)
+      this.TocarTodos(objeto)
     }
     this.emiteLista.emit(lista);
   }
