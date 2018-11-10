@@ -27,7 +27,7 @@ export class CadastroCrudEtapa1Component extends BaseEtapaComponent {
     this.service.Get('instituicao/BuscarTodos').subscribe(object => this.instituicaoLista = object.data);
     if (this.rota == 'aluno') {
       this.formulario.get('instituicao').valueChanges.subscribe(id => {
-        this.service.Get('curso/BuscarEquipePorIdInstituicao', id).subscribe(object => this.cursoLista = object.data);
+        this.service.Get('curso/BuscarCursoPorIdInstituicao', id).subscribe(object => this.cursoLista = object.data);
       });
 
       this.formulario.get('curso').valueChanges.subscribe(id => {

@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <fieldset>
       <legend>Evento</legend>
-      <app-insercao [formulario]="formulario" [estadosLista]="estadosLista" [municipioLista]="municipioLista"
+      <app-insercao [formulario]="formulario" [iniciando]="iniciando" [estadosLista]="estadosLista" [municipioLista]="municipioLista"
         [listaModalidade]="listaModalidade" [(listaEventoModalidade)]="listaEventoModalidade" [acao]="acao" *ngIf="etapa == 0"></app-insercao>
       <app-visualizacao [formulario]="formulario" [estadosLista]="estadosLista" [municipioLista]="municipioLista"
         [listaModalidade]="listaModalidade" [(listaEventoModalidade)]="listaEventoModalidade" [acao]="acao" *ngIf="etapa == 1"></app-visualizacao>

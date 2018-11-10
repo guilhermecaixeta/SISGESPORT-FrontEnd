@@ -1,3 +1,4 @@
+import { EventoModalidade } from './../../../model/evento-modalidade.model';
 import { Evento } from './../../../model/evento.model';
 import { Component } from '@angular/core';
 import { BaseCrudComponent } from '../../../base';
@@ -16,12 +17,16 @@ import { TipoAlerta } from '../../../enum/sisgesport.enum';
 })
 export class EventoCrudComponent extends BaseCrudComponent {
   rota: string = 'evento';
+
   value: boolean = false;
+  iniciando: boolean = true;
+  validacaoCustomizada = true;
+
   estadosLista: any[];
   municipioLista: any[];
   listaModalidade: any[] = [];
   listaEventoModalidade: any[] = [];
-  validacaoCustomizada = true;
+
   dataAtual: Date = new Date();
   dataComparacao = new Date(`${this.dataAtual.getFullYear()}-${this.dataAtual.getMonth()}-${this.dataAtual.getDay() - 1}`);
 
@@ -37,10 +42,11 @@ export class EventoCrudComponent extends BaseCrudComponent {
       horaFimInscricao: [null, [Validators.required]],
       horaInicio: [null, [Validators.required, validateDateLessThen()]],
       horaFim: [null, [Validators.required]],
-      qntEquipes: [null, [Validators.required]],
+      qntEquipes: [null, [Validators.required, Validators.min(2)]],
       codigoEvento: [null, { readonly: true }],
       dataCriacao: [null, { readonly: true }],
       criador: [null, { readonly: true }],
+      idCriador: [null, { readonly: true }],
       id: [null],
     }),
     eventoModalidade: this.construtorFormulario.group({
@@ -73,6 +79,7 @@ export class EventoCrudComponent extends BaseCrudComponent {
       this.TocarTodos(formValidacao);
     }
   }
+
   iniciar() {
     this.multiValidacao.formulario = this.formulario;
     this.formulario.get('evento.dataInicioInscricao').setValidators(validateDateMoreThen(this.formulario.get('evento.dataInicio') as FormControl));
@@ -93,7 +100,36 @@ export class EventoCrudComponent extends BaseCrudComponent {
     });
   }
 
-  aposIniciar() { }
+  aposIniciar() {
+    this.formulario.get('evento.qntEquipes').disable();
+
+    this.formulario.get('evento').patchValue(this.objetoRetorno);
+    this.formulario.get('evento.criador').setValue(this.objetoRetorno.criador.nome);
+    this.formulario.get('evento.idCriador').setValue(this.objetoRetorno.criador.id);
+
+    this.formulario.get('evento.horaFim').setValue(this.objetoRetorno.dataFim);
+    this.formulario.get('evento.horaInicio').setValue(this.objetoRetorno.dataInicio);
+
+    this.formulario.get('evento.horaFimInscricao').setValue(this.objetoRetorno.dataFimInscricao);
+    this.formulario.get('evento.horaInicioInscricao').setValue(this.objetoRetorno.dataInicioInscricao);
+
+    this.formulario.get('evento.dataCriacao').setValue(this.ConvertObjectToDate(this.objetoRetorno.dataCriacao));
+
+    if (!isNullOrUndefined(this.objetoRetorno.endereco) && this.objetoRetorno.endereco.length > 0) {
+      this.formulario.controls.endereco.patchValue(this.objetoRetorno.endereco[0]);
+      if (!isNullOrUndefined(this.objetoRetorno.endereco[0].municipio.estado)) {
+        this.formulario.get('endereco.estado').setValue(this.objetoRetorno.endereco[0].municipio.estado.id);
+        this.formulario.get('endereco.municipio').setValue(this.objetoRetorno.endereco[0].municipio.id);
+      }
+    }
+    this.iniciando = false;
+    this.objetoRetorno.eventoModalidade.forEach(element => {
+      element.modalidadeNome = element.modalidade.nome;
+      element.sexoNome = element.sexo == 'F' ? 'Feminino' : 'Masculino';
+      element.modalidade = element.modalidade.id;
+      this.listaEventoModalidade.push(element);
+    });;
+  }
 
   finalizar() {
     let evento = new Evento(this.formulario.get('evento').value);

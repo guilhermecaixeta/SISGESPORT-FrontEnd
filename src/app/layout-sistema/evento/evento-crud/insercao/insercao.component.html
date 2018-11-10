@@ -108,8 +108,8 @@
   <fieldset formGroupName="endereco">
     <legend>Endereço</legend>
     <div class="ui-md-12">
-      <app-layout-endereco [acao]="acao" [estadosLista]="estadosLista" [municipioLista]="municipioLista" [formulario]="formulario.controls.endereco"
-        [acao]="acao"></app-layout-endereco>
+      <app-layout-endereco [acao]="acao" [iniciando]="iniciando" [estadosLista]="estadosLista" [municipioLista]="municipioLista"
+        [formulario]="formulario.controls.endereco" [acao]="acao"></app-layout-endereco>
     </div>
   </fieldset>
 
@@ -117,9 +117,9 @@
   <fieldset formGroupName="eventoModalidade">
     <legend>Modalidade Evento</legend>
     <ngb-alert [type]="alerta.type" (close)="fecharAlerta(alerta)" *ngFor="let alerta of alertas">{{
-    alerta.message }}</ngb-alert>
+      alerta.message }}</ngb-alert>
     <div class="row">
-      <div class="col-12 col-md-3 col-lg-3">
+      <div *ngIf="acao !== 'editar'" class="col-12 col-md-3 col-lg-3">
         <div class="form-group">
           <label>Modalidade</label>
           <select class="form-control form-control-sm" formControlName="modalidade">
@@ -128,7 +128,7 @@
           <app-validator [field]="formulario.get('eventoModalidade.modalidade')"></app-validator>
         </div>
       </div>
-      <div class="col-12 col-md-3 col-lg-3">
+      <div *ngIf="acao !== 'editar'" class="col-12 col-md-3 col-lg-3">
         <div class="form-group">
           <label>Sexo</label>
           <select class="form-control form-control-sm" formControlName="sexo">
@@ -138,7 +138,7 @@
           <app-validator [field]="formulario.get('eventoModalidade.sexo')"></app-validator>
         </div>
       </div>
-      <div class="col-12 col-md-3 col-lg-3">
+      <div *ngIf="acao !== 'editar'" class="col-12 col-md-3 col-lg-3">
         <div class="form-group">
           <label></label>
           <input type="number" class="form-control " formControlName="idadeMaximaPermitida" placeholder="Idade Máxima Permitida">
@@ -147,7 +147,7 @@
       </div>
       <div class="col-12 col-md-12 col-lg-12">
         <div class="ui-g-9 ui-md-6 ui-lg-3">
-          <button type="button" class="btn btn-primary" style="float:right" (click)="AdicionarItem(listaEventoModalidade, formulario.controls.eventoModalidade)">
+          <button *ngIf="acao !== 'editar'" type="button" class="btn btn-primary" style="float:right" (click)="AdicionarItem(listaEventoModalidade, formulario.controls.eventoModalidade)">
             Adicionar
           </button>
         </div>
@@ -155,7 +155,8 @@
       <div class="col-12 col-md-12 col-lg-12">
         <app-manter-padrao [listaNomeCampo]="listaNomeCampo" legendaTabela="Modalidades do Evento" [funcaoEspecifica]="funcaoEspecifica"
           [desabilitarAdicionar]="desabilitar" [listaValorCampo]="listaEventoModalidade" [useRoute]="useRoute"
-          [desabilitarEdicao]="desabilitar" [desabilitarVisualizacao]="desabilitar" (acaoTabela)="DeletarItem(listaEventoModalidade, $event.index)"></app-manter-padrao>
+          [desabilitarEdicao]="desabilitar" [desabilitarDelecao]="desabilitarDelecao" [desabilitarVisualizacao]="desabilitar"
+          (acaoTabela)="DeletarItem(listaEventoModalidade, $event.index)"></app-manter-padrao>
       </div>
     </div>
   </fieldset>

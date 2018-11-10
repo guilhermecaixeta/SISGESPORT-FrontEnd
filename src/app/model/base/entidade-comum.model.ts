@@ -1,17 +1,19 @@
 import { Endereco } from "../endereco.model";
 import { Imagem } from "../imagem.model";
+import { DateTimeConversor } from "./date-time.model";
 
-export class EntidadeComum{
+export class EntidadeComum extends DateTimeConversor {
     public id: number;
     public endereco: Endereco[];
     public imagem: Imagem[];
-    
-    constructor(){
+
+    constructor() {
+        super();
         this.endereco = [];
         this.imagem = [];
     }
 
-    public adicionarEndereco(form: any){
+    public adicionarEndereco(form: any) {
 
         this.endereco.push({
             id: form.id,

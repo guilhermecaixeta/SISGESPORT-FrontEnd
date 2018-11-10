@@ -1,6 +1,7 @@
 import { Curso } from "./curso.model";
+import { DateTimeConversor } from "./base/date-time.model";
 
-export class Turma {
+export class Turma extends DateTimeConversor {
     public id: number;
     public nome: string;
     public curso: Curso;
@@ -12,11 +13,12 @@ export class Turma {
      *
      */
     constructor(obj: any) {
+        super();
         this.id = obj.id;
         this.nome = obj.nome;
         this.curso = new Curso({ id: obj.curso });
         this.flgAtivo = obj.flgAtivo;
-        this.dataLimite = `${obj.dataLimite.day}/${obj.dataLimite.month}/${obj.dataLimite.year} 00:00`;
-        this.dataInicial = `${obj.dataInicial.day}/${obj.dataInicial.month}/${obj.dataInicial.year} 00:00`;
+        this.dataLimite = this.ConverterDateParaString(obj, 'dataLimite');
+        this.dataInicial = this.ConverterDateParaString(obj, 'dataInicial');
     }
 }

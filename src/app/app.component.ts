@@ -10,12 +10,5 @@ export class AppComponent implements OnInit {
     constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     }
 
-    ngOnInit() {
-       let token = localStorage.get('token');
-       if(token){
-        this.router.navigate(['/principal'], { relativeTo: this.activatedRoute });
-       }else{
-        this.router.navigate(['/login'], { relativeTo: this.activatedRoute });
-       }    
-    }
+    ngOnInit() { }
 }

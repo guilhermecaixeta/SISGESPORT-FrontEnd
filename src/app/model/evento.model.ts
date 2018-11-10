@@ -1,6 +1,7 @@
 import { Servidor } from "./servidor.model";
 import { EventoModalidade } from "./evento-modalidade.model";
 import { EntidadeComum } from "./base/entidade-comum.model";
+import { isNullOrUndefined } from "util";
 
 export class Evento extends EntidadeComum {
     public id: number;
@@ -27,13 +28,14 @@ export class Evento extends EntidadeComum {
         this.codigoEvento = obj.codigoEvento;
         this.nome = obj.nome;
         this.descricao = obj.descricao;
-        this.dataInicio = `${obj.dataInicio.day}/${obj.dataInicio.month}/${obj.dataInicio.year} ${obj.horaInicio.hour}:${obj.horaInicio.minute}`;
-        this.dataFim = `${obj.dataFim.day}/${obj.dataFim.month}/${obj.dataFim.year} ${obj.horaFim.hour}:${obj.horaFim.minute}`;
-        this.dataInicioInscricao = `${obj.dataInicioInscricao.day}/${obj.dataInicioInscricao.month}/${obj.dataInicioInscricao.year} ${obj.horaInicioInscricao.hour}:${obj.horaInicioInscricao.minute}`;
-        this.dataFimInscricao = `${obj.dataFimInscricao.day}/${obj.dataFimInscricao.month}/${obj.dataFimInscricao.year} ${obj.horaFimInscricao.hour}:${obj.horaFimInscricao.minute}`;
-        this.dataCriacao = obj.dataCriacao ? `${obj.dataCriacao.day}/${obj.dataCriacao.month}/${obj.dataCriacao.year} 00:00` : null;
-
+        this.dataInicio = this.ConverterDateParaString(obj, 'dataInicio', true, 'horaInicio');
+        this.dataFim = this.ConverterDateParaString(obj, 'dataFim', true, 'horaFim');
+        this.dataInicioInscricao = this.ConverterDateParaString(obj, 'dataInicioInscricao', true, 'horaInicioInscricao');
+        this.dataFimInscricao = this.ConverterDateParaString(obj, 'dataFimInscricao', true, 'horaFimInscricao');
+        this.dataCriacao = isNullOrUndefined(obj.dataCriacao) ? '' : `${obj.dataCriacao} 00:00`;
         this.eventoModalidade = [];
+        if (obj.idCriador) this.criador = new Servidor({ id: obj.idCriador });
+
     }
 
     AdicionarListaEventoModalidade(lista: any[]) {

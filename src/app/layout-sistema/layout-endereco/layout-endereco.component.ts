@@ -11,9 +11,10 @@ import { TipoAlerta } from '../../enum/sisgesport.enum';
 export class LayoutEnderecoComponent extends BaseEtapaComponent {
   @Input() estadosLista: any[];
   @Input() municipioLista: any[];
-  iniciando: boolean = true;
+  @Input() iniciando: boolean = true;
   iniciar() {
     if (this.acao == 'cadastrar') this.iniciando = false;
+
     this.formulario.get('cep').valueChanges.subscribe(cep => {
       cep = this.LimparCaracterEspecial(cep);
       if (String(cep).length > 7 && this.acao !== 'visualizar' && !this.iniciando) {

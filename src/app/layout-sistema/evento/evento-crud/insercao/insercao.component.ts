@@ -16,17 +16,23 @@ import { NgbDatepickerI18n, NgbDateParserFormatter } from '@ng-bootstrap/ng-boot
   ]
 })
 export class InsercaoComponent extends BaseEtapaComponent {
+  @Input() iniciando: boolean;
   @Input() estadosLista: any[] = [];
   @Input() municipioLista: any[] = [];
   @Input() listaModalidade: any[] = [];
   @Input() listaEventoModalidade: any[] = [];
   desabilitar: boolean = true;
+  desabilitarDelecao: boolean;
   useRoute: boolean = false;
   listaNomeCampo: DadosTabela[] = [
     { nomeColuna: 'Modalidade', nomeValorColuna: 'modalidadeNome' },
     { nomeColuna: 'Idade Máxima', nomeValorColuna: 'idadeMaximaPermitida' },
     { nomeColuna: 'Sexo', nomeValorColuna: 'sexoNome' }
   ];
+
+  iniciar() {
+    this.desabilitarDelecao = this.acao == 'editar';
+  }
 
   validar(lista: any[]): boolean {
     let retorno: boolean = true;

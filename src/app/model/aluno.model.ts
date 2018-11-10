@@ -6,13 +6,6 @@ export class Aluno extends Pessoa {
 
     constructor(obj: any) {
         super(obj);
-        this.turma = {
-            id: obj.turma,
-            curso: null,
-            dataInicial: null,
-            dataLimite: null,
-            flgAtivo: null,
-            nome: null
-        };
+        this.turma = new Turma({ id: obj.turma });
     }
 }

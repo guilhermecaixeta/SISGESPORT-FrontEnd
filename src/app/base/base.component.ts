@@ -119,20 +119,33 @@ export class BaseComponent implements OnInit {
    */
   public DateConvert(obj: any): any {
     Object.keys(obj).forEach(key => {
-      obj[key] = this.validacaoData.test(obj[key]) ? { day: +String(obj[key]).substr(0, 2), month: +String(obj[key]).substr(3, 2), year: +String(obj[key]).substr(6, 4) } : obj[key];
+      obj[key] = this.validacaoData.test(obj[key]) ? {
+        day: +String(obj[key]).substr(0, 2), month: +String(obj[key]).substr(3, 2),
+        year: +String(obj[key]).substr(6, 4), hour: +String(obj[key]).substr(11, 2), minute: +String(obj[key]).substr(14, 2)
+      } : obj[key];
     });
     return obj;
   }
 
   /**
-   * Converte um objeto para o formato de string: dd/mm/aaaa
-   * @param obj obejto a ser convertido para string em formato de data
+   * Converte um objeto para o formato de string: dd/mm/aaaa  ou para uma data no tio Date
+   * @param obj objeto a ser convertido
+   * @param date verifica para qual formato vai ser convertido
    */
   public ConvertObjectToDate(obj: any, date: boolean = false): any {
     if (!isNullOrUndefined(obj) && !date)
       return `${obj.day}/${obj.month}/${obj.year}`;
     else if (!isNullOrUndefined(obj) && date)
       return new Date(`${obj.year}-${obj.month}-${obj.day}`);
+    else return '';
+  }
+  /**
+   * Converte um objeto para o formato: hh:mm
+   * @param obj objeto a ser convertido
+   */
+  public ConvertObjectToTime(obj: any) {
+    if (!isNullOrUndefined(obj))
+      return `${String(obj.hour).length > 1 ? obj.hour : '0' + obj.hour}:${String(obj.minute).length > 1 ? obj.minute : '0' + obj.minute}`;
     else return '';
   }
   /**

@@ -17,7 +17,6 @@ export class InstituicaoCrudComponent extends BaseCrudComponent {
   estadosLista: any[];
   municipioLista: any[];
   value: boolean = false;
-  iniciando: boolean = true;
   validacaoCustomizada: boolean = true;
 
   formulario = this.construtorFormulario.group({
@@ -57,7 +56,6 @@ export class InstituicaoCrudComponent extends BaseCrudComponent {
         this.formulario.get('endereco.municipio').setValue(this.objetoRetorno.endereco[0].municipio.id);
       }
     }
-    this.iniciando = false;
   }
 
   validarEtapa() {

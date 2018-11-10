@@ -1,3 +1,35 @@
-<p>
-  visualizacao works!
-</p>
+<form [formGroup]="formulario" novalidate>
+  <div class="row">
+    <app-input-label id="item1" legenda="Nome" [valor]="formulario.value?.evento?.nome"></app-input-label>
+    <app-input-label id="item2" legenda="Descrição" [valor]="formulario.value?.evento?.descricao"></app-input-label>
+    <div class="col-12 col-md-12 col-lg-12"></div>
+    <app-input-label id="item3" legenda="Início Inscrição" valor="{{ConvertObjectToDate(formulario.value?.evento?.dataInicioInscricao)+' '+ConvertObjectToTime(formulario.value?.evento?.horaInicioInscricao)}}"></app-input-label>
+    <app-input-label id="item4" legenda="Término Inscrição" valor="{{ConvertObjectToDate(formulario.value?.evento?.dataFimInscricao)+' '+ConvertObjectToTime(formulario.value?.evento?.horaFimInscricao)}}"></app-input-label>
+    <app-input-label id="item5" legenda="Início" valor="{{ConvertObjectToDate(formulario.value?.evento?.dataInicio)+' '+ConvertObjectToTime(formulario.value?.evento?.horaInicio)}}"></app-input-label>
+    <app-input-label id="item6" legenda="Término" valor="{{ConvertObjectToDate(formulario.value?.evento?.dataFim)+' '+ConvertObjectToTime(formulario.value?.evento?.horaFim)}}"></app-input-label>
+    <div class="col-12 col-md-12 col-lg-12"></div>
+    <app-input-label id="item7" legenda="Total de Equipes" [valor]="formulario.value?.evento?.qntEquipes"></app-input-label>
+    <app-input-label id="item8" legenda="Código do Evento" [valor]="formulario.value?.evento?.codigoEvento"></app-input-label>
+    <app-input-label id="item9" legenda="Data de Criação" [valor]="formulario.value?.evento?.dataCriacao"></app-input-label>
+    <app-input-label id="item10" legenda="Criador" [valor]="formulario.value?.evento?.criador"></app-input-label>
+  </div>
+  <br />
+  <h4>Endereço</h4>
+  <div class="row">
+    <app-input-label id="item11" legenda="Estado" [valor]="ObterItemPorId(estadosLista, formulario.value?.endereco?.estado)['nome']"></app-input-label>
+    <app-input-label *ngIf="municipioLista" id="item6" legenda="Município" [valor]="ObterItemPorId(municipioLista, formulario.value?.endereco?.municipio)['nome']"></app-input-label>
+    <app-input-label id="item12" legenda="CEP" [valor]="formulario.value?.endereco?.cep"></app-input-label>
+    <app-input-label id="item13" legenda="Logradouro" [valor]="formulario.value?.endereco?.logradouro"></app-input-label>
+    <app-input-label id="item14" legenda="Complemento" [valor]="formulario.value?.endereco?.complemento"></app-input-label>
+    <app-input-label id="item15" legenda="Bairro" [valor]="formulario.value?.endereco?.bairro"></app-input-label>
+  </div>
+  <br />
+  <h4>Evento Modalidade</h4>
+  <div class="row">
+    <div *ngFor="let eventoModalidade of listaEventoModalidade">
+      <app-input-label id="item16" legenda="Modalidade" [valor]="eventoModalidade?.modalidadeNome"></app-input-label>
+      <app-input-label id="item17" legenda="Sexo" [valor]="eventoModalidade?.sexoNome"></app-input-label>
+      <app-input-label id="item18" legenda="Idade Máxima Permitida" [valor]="eventoModalidade?.idadeMaximaPermitida"></app-input-label>
+    </div>
+  </div>
+</form>

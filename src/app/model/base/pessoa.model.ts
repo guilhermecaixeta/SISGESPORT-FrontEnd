@@ -1,3 +1,4 @@
+import { PerfilSistema } from './../../enum/sisgesport.enum';
 import { EntidadeComum } from "./entidade-comum.model";
 
 export class Pessoa extends EntidadeComum {
@@ -14,10 +15,10 @@ export class Pessoa extends EntidadeComum {
         this.id = obj.id;
         this.nome = obj.nome;
         this.sexo = obj.sexo;
-        this.dataNascimento = `${obj.dataNascimento.day}/${obj.dataNascimento.month}/${obj.dataNascimento.year} 00:00`;
+        this.dataNascimento =  this.ConverterDateParaString(obj, 'dataNascimento');
         this.email = obj.email;
         this.matricula = obj.matricula;
         this.senha = obj.senha;
-        this.perfil = "ROLE_USUARIO";
+        this.perfil = PerfilSistema.ROLE_USER;
     }
 }
