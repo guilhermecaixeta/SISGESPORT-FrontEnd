@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { BaseEtapaComponent } from '../../../../base';
+import { BaseEtapaComponent } from '../../../../../base';
 
 @Component({
   selector: 'app-visualizacao',

@@ -1,13 +1,12 @@
-import { EventoModalidade } from './../../../model/evento-modalidade.model';
-import { Evento } from './../../../model/evento.model';
+import { Evento } from './../../../../model/evento.model';
 import { Component } from '@angular/core';
-import { BaseCrudComponent } from '../../../base';
+import { BaseCrudComponent } from '../../../../base';
 import { Validators, FormControl, FormGroup } from '@angular/forms';
-import { requiredMinLength, validateDateLessThen, validateDateMoreThen, ComparerBetweenDate } from '../../../utils/validators.util.component';
-import { routerTransition } from '../../../router.animations';
+import { requiredMinLength, validateDateLessThen, validateDateMoreThen, ComparerBetweenDate } from '../../../../utils/validators.util.component';
+import { routerTransition } from '../../../../router.animations';
 import { isNullOrUndefined } from 'util';
-import { Alerta } from '../../../model/alerta.model';
-import { TipoAlerta } from '../../../enum/sisgesport.enum';
+import { Alerta } from '../../../../model/alerta.model';
+import { TipoAlerta } from '../../../../enum/sisgesport.enum';
 
 @Component({
   selector: 'app-evento-crud',

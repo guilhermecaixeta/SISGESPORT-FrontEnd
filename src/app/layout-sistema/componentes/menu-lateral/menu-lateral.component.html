@@ -6,11 +6,11 @@
     </a>
     <div *ngIf="obj.nestedsMenus" class="nested-menu">
       <div *ngIf="usuario.authorities[0].authority == obj.perfil || obj.perfil == 'NO_ROLE'">
-        <a class="list-group-item" (click)="expandirMenu(true)">
+        <a class="list-group-item" (click)="expandirMenu(true, obj.router)">
           <span><i [class]="obj.IClass"></i>&nbsp; {{ obj.legend | translate }}</span>
         </a>
       </div>
-      <li class="nested" [class.expand]="showMenu">
+      <li class="nested" [class.expand]="expandir.showMenu && expandir.rota == obj.router">
         <ul class="submenu">
           <div *ngFor="let nest of obj.nestedsMenus">
             <li *ngIf="usuario.authorities[0].authority == obj.perfil || obj.perfil == 'NO_ROLE'">

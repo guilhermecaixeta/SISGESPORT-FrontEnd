@@ -18,7 +18,11 @@ export class InstituicaoCrudComponent extends BaseCrudComponent {
   municipioLista: any[];
   value: boolean = false;
   validacaoCustomizada: boolean = true;
-
+  iniciando: boolean = false;
+  municipioDefault = {
+    id: 0,
+    nome: 'Selecione...'
+  }
   formulario = this.construtorFormulario.group({
     instituicao: this.construtorFormulario.group({
       id: [null],
@@ -26,7 +30,6 @@ export class InstituicaoCrudComponent extends BaseCrudComponent {
       descricao: [null, [Validators.required, Validators.maxLength(255)]]
     }),
     endereco: this.construtorFormulario.group({
-      id: [null],
       estado: [null, [Validators.required]],
       municipio: [null, [Validators.required]],
       cep: [null, [Validators.required, requiredMinLength(8, true)]],
@@ -43,11 +46,17 @@ export class InstituicaoCrudComponent extends BaseCrudComponent {
     });
     this.formulario.get('endereco.estado').valueChanges.subscribe(id => {
       if (!isNullOrUndefined(id))
-        this.service.Get('municipio/BuscarPorIdEstado', id).subscribe(object => this.municipioLista = object.data);
+        this.service.Get('municipio/BuscarPorIdEstado', id).subscribe(object => {
+          this.municipioLista = object.data;
+          this.municipioLista.push(this.municipioDefault);
+          if (!this.iniciando) this.formulario.get('endereco.municipio').setValue(0);
+          else this.iniciando = false;
+        });
     });
   }
 
   aposIniciar() {
+    this.iniciando = true;
     this.formulario.controls.instituicao.patchValue(this.objetoRetorno);
     if (!isNullOrUndefined(this.objetoRetorno.endereco) && this.objetoRetorno.endereco.length > 0) {
       this.formulario.controls.endereco.patchValue(this.objetoRetorno.endereco[0]);

@@ -1,0 +1,14 @@
+<div [@routerTransition]>
+  <div class="col-12 col-md-12 col-lg-6">
+    <label><b>Selecione o Evento:</b></label>
+    <select class="form-control form-control-sm" [(ngModel)]="idEvento" (ngModelChange)="BuscarEquipe()">
+      <option *ngFor="let evento of listaEvento" [value]="evento.id">{{evento.nome}}</option>
+    </select>
+  </div>
+  <br />
+  <div class="col-12 col-md-12 col-lg-12">
+    <app-manter-padrao desabilitarAdicionar="{desabilitarAdicionar: true}" [exibirGrid]="abrirEquipe" [listaNomeCampo]="listaNomeCampo"
+      [funcaoEspecifica]="funcaoEspecifica" [dataRoute]="idEvento" rotaPadrao="BuscarEquipePorIdEventoPaginavel"
+      legendaTabela="Equipe" rota="equipe"></app-manter-padrao>
+  </div>
+</div>

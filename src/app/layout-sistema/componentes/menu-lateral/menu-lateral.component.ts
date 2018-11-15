@@ -12,7 +12,11 @@ export class MenuLateralComponent implements OnInit {
   @Input() lista: MenuLateral[];
   @Input() usuario: any;
   isActive: boolean = false;
-  showMenu: boolean = false;
+  expandir = {
+    showMenu: false,
+    rota: ''
+  };
+
   constructor() { }
 
   ngOnInit() { }
@@ -21,11 +25,13 @@ export class MenuLateralComponent implements OnInit {
     this.isActive = !this.isActive;
   }
 
-  expandirMenu(element: any) {
-    if (element === this.showMenu) {
-      this.showMenu = false;
+  expandirMenu(element: any, rota: string) {
+    this.expandir.showMenu = this.expandir.rota == rota;  
+    this.expandir.rota = rota;
+    if (element === this.expandir.showMenu) {
+      this.expandir.showMenu = false;
     } else {
-      this.showMenu = element;
+      this.expandir.showMenu = element;
     }
   }
 }

@@ -1,0 +1,73 @@
+<form [formGroup]="formulario" novalidate>
+  <!-- Evento -->
+  <fieldset formGroupName="equipe">
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-6">
+        <label>Nome Equipe</label>
+        <div class="form-group">
+          <input type="text" class="form-control " formControlName="nome" placeholder="Nome">
+          <app-validator [field]="formulario.get('equipe.nome')"></app-validator>
+        </div>
+      </div>
+      <div class="col-6 col-md-2 col-lg-2">
+        <label>Cor</label>
+        <div class="form-group">
+          <input type="text" [(colorPicker)]="cor" [style.background]="cor" class="form-control" formControlName="cor"
+            (colorPickerChange)="formulario.get('equipe.cor').setValue($event)">
+          <app-validator [field]="formulario.get('equipe.cor')"></app-validator>
+        </div>
+      </div>
+      <div class="col-12 col-md-12 col-lg-12"></div>
+      <app-input-label id="item2" legenda="Código Equipe" [valor]="formulario.value?.equipe?.codigoEquipe"></app-input-label>
+      <div class="col-12 col-md-12 col-lg-12"></div>
+      <div class="col-12 col-md-6 col-lg-6">
+        <div class="form-group">
+          <input type="text" class="form-control " formControlName="matriculaCapitao" placeholder="Matricula do líder da equipe">
+          <app-validator [field]="formulario.get('equipe.matriculaCapitao')"></app-validator>
+        </div>
+      </div>
+      <app-input-label *ngIf="dadosAluno.nome" id="item3" legenda="Nome" [valor]="dadosAluno.nome"></app-input-label>
+      <app-input-label *ngIf="dadosAluno.curso" id="item4" legenda="Curso" [valor]="dadosAluno.curso"></app-input-label>
+    </div>
+  </fieldset>
+
+  <!-- Alunos -->
+  <fieldset formGroupName="aluno">
+    <legend>Aluno</legend>
+    <ngb-alert [type]="alerta.type" (close)="fecharAlerta(alerta)" *ngFor="let alerta of alertas">{{
+      alerta.message }}</ngb-alert>
+    <div class="row">
+      <div class="col-12 col-md-12 col-lg-4">
+        <label><b>Selecione o Curso:</b></label>
+        <select class="form-control form-control-sm" formControlName="curso">
+          <option *ngFor="let curso of listaCurso" [value]="curso.id">{{curso.nome}}</option>
+        </select>
+      </div>
+      <div class="col-12 col-md-12 col-lg-4">
+        <label><b>Selecione a Turma:</b></label>
+        <select class="form-control form-control-sm" formControlName="turma">
+          <option *ngFor="let turma of listaTurma" [value]="turma.id">{{turma.nome}}</option>
+        </select>
+      </div>
+      <div class="col-12 col-md-12 col-lg-4">
+        <label><b>Selecione o Aluno:</b></label>
+        <select class="form-control form-control-sm" formControlName="id">
+          <option *ngFor="let aluno of listaAluno" [value]="aluno.id">{{aluno.nome}}</option>
+        </select>
+      </div>
+      <div class="col-12 col-md-12 col-lg-12">
+        <div class="ui-g-9 ui-md-6 ui-lg-3">
+          <br />
+          <button type="button" class="btn btn-primary" style="float:right" (click)="AdicionarItem(listaAlunoEquipe, formulario.controls.aluno, false)">
+            Adicionar
+          </button>
+        </div>
+      </div>
+      <div class="col-12 col-md-12 col-lg-12">
+        <app-manter-padrao [listaNomeCampo]="listaNomeCampo" legendaTabela="Aluno" [funcaoEspecifica]="funcaoEspecifica"
+          [desabilitarAdicionar]="desabilitar" [listaValorCampo]="listaAlunoEquipe" [useRoute]="!desabilitar"
+          [desabilitarEdicao]="desabilitar" [desabilitarVisualizacao]="desabilitar" (acaoTabela)="DeletarItem(listaAlunoEquipe, $event.index)"></app-manter-padrao>
+      </div>
+    </div>
+  </fieldset>
+</form>

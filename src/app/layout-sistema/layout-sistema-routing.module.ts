@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutSistemaComponent } from './layout-sistema.component';
 import { AuthGuard } from '../shared';
-import { PerfilSistema } from '../enum/sisgesport.enum';
 
 const routes: Routes = [
     {
@@ -17,7 +16,7 @@ const routes: Routes = [
             { path: 'curso', loadChildren: './curso/curso.module#CursoModule' },
             { path: 'turma', loadChildren: './turma/turma.module#TurmaModule' },
             { path: 'esporte', loadChildren: './esporte/esporte.module#EsporteModule' },
-            { path: 'evento', loadChildren: './evento/evento.module#EventoModule' }
+            { path: 'gerenciar-evento', loadChildren: './gerenciar-evento/gerenciar-evento.module#GerenciarEventoModule' }
         ]
     }
 ];

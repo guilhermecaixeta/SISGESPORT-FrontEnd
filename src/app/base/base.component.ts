@@ -1,6 +1,6 @@
 import { Alerta } from './../model/alerta.model';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { Service } from '../service/service.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ObservablePadrao } from '../utils/observable.util.component';
@@ -197,7 +197,7 @@ export class BaseComponent implements OnInit {
    * @param objeto item a ser adicionado a lista.
    * @param msg mensagem a ser exibida caso erro. 
    */
-  public AdicionarItem(lista: any[], objeto: any, msg: string = 'Esse item já foi adicionado!') {
+  public AdicionarItem(lista: any[], objeto: any, resetarForm: boolean = true, msg: string = 'Esse item já foi adicionado!') {
     let form = objeto as FormGroup;
     if (form.valid) {
       if (this.funcaoEspecifica.validar(lista)) {
@@ -206,7 +206,7 @@ export class BaseComponent implements OnInit {
       } else {
         this.alertas.push(new Alerta(this.ObterIdPorTamanhoLista(lista), TipoAlerta[4], msg));
       }
-      objeto.reset();
+      if (resetarForm) objeto.reset();
     } else {
       this.TocarTodos(form)
     }

@@ -1,8 +1,8 @@
-import { DadosTabela } from './../../../../model/tabela';
+import { DadosTabela } from './../../../../../model/tabela';
 import { Component, Input } from '@angular/core';
-import { BaseEtapaComponent } from '../../../../base';
+import { BaseEtapaComponent } from '../../../../../base';
 import { isNullOrUndefined } from 'util';
-import { I18n, CustomLocalePtBR } from '../../../../utils/locale.util.component';
+import { I18n, CustomLocalePtBR } from '../../../../../utils/locale.util.component';
 import { NgbDatepickerI18n, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

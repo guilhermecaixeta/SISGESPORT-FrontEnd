@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { DadosTabela } from '../../model/tabela';
-import { BaseComponent } from '../../base';
-import { routerTransition } from '../../router.animations';
+import { DadosTabela } from '../../../model/tabela';
+import { BaseComponent } from '../../../base';
+import { routerTransition } from '../../../router.animations';
 
 @Component({
   selector: 'app-evento',

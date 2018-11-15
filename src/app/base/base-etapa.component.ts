@@ -5,11 +5,11 @@ import { BaseComponent } from './base.component';
 @Component({ template: '' })
 export class BaseEtapaComponent extends BaseComponent {
     @Input() formulario: FormGroup;
-    @Input() objetoRetorno: any = null;
-    @Input() acao: string = "";
-    @Input() rota: string = "";
-    @Input() validacaoCustomizada = false;
+    @Input() acao: string;
+    @Input() rota: string;
 
-    @Input() multiValidacao: any;
+    @Input() objetoRetorno: any = null;
+    @Input() multiValidacao: any = null;
+    @Input() validacaoCustomizada = false;
     @Output() multiValidacaoEmit: EventEmitter<any> = new EventEmitter<any>(true);
 }
