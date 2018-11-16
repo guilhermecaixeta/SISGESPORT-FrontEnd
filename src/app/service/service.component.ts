@@ -22,8 +22,8 @@ export class Service {
     * @param value valor do parametro de busca
      * @param param valor a ser adicionado no parametro do cabecalho
      */
-    Get(route: string, value?: any, param?: any): Observable<any> {
-        return this.http.get(`${environment.apiEndPoint}${route}${value !== undefined ? '/' + value : ''}`, getHeader(param))
+    Get(route: string, value?: any, param?: any, reponseType: string = 'json'): Observable<any> {
+        return this.http.get(`${environment.apiEndPoint}${route}${value !== undefined ? '/' + value : ''}`, getHeader(param, reponseType))
             .pipe(
                 retry(3),
                 map(response => response),
@@ -101,6 +101,7 @@ export class Service {
 
 
     private handleError(error: HttpErrorResponse) {
+        console.log('erro:', error);
         if (error.status == 401) {
             localStorage.removeItem('token');
             this.router.navigate(['/login'], { relativeTo: this.activatedRoute });

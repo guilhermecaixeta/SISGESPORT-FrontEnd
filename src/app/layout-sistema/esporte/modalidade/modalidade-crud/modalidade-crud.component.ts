@@ -22,8 +22,8 @@ export class ModalidadeCrudComponent extends BaseCrudComponent {
     id: [null],
     nome: [null, [Validators.required, Validators.maxLength(30)]],
     descricao: [null, [Validators.required, Validators.maxLength(60)]],
-    numMaxJogador: [1, [Validators.required]],
-    numMinJogador: [1, [Validators.required]],
+    numMaxJogador: [1, [Validators.required, Validators.min(1)]],
+    numMinJogador: [1, [Validators.required, Validators.min(1)]],
     penalidade: [null, [Validators.required]],
     posicao: [null, [Validators.required]],
     tipoPonto: [null, [Validators.required]]

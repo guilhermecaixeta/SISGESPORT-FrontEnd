@@ -1,4 +1,3 @@
-import { map } from 'rxjs/operators';
 import { isNullOrUndefined } from 'util';
 import { Component, Input } from '@angular/core';
 import { DadosTabela } from '../../../../../model/tabela';
@@ -40,9 +39,15 @@ export class InsercaoComponent extends BaseEtapaComponent {
 
   executar(lista: any[]): any[] {
     lista.map(data => {
-      data.nome = this.ObterItemPorId(this.listaAluno, data.id)['nome'];
-      data.turma = this.ObterItemPorId(this.listaAluno, data.id)['turma'].nome;
-      data.curso = this.ObterItemPorId(this.listaAluno, data.id)['turma'].curso.nome;
+      let retorno = this.ObterItemPorId(this.listaAluno, data.id);
+      if (!isNullOrUndefined(retorno)) {
+        if (!isNullOrUndefined(retorno.nome))
+          data.nome = retorno.nome;
+        if (!isNullOrUndefined(retorno.turma)) {
+          data.curso = retorno.turma.curso.nome;
+          data.turma = retorno.turma.nome;
+        }
+      }
     });
     return lista;
   }

@@ -74,6 +74,8 @@ export class EquipeCrudComponent extends BaseCrudComponent {
      */
     this.formulario.get('aluno.curso').valueChanges.subscribe(data => {
       this.service.Get('turma/BuscarPorCursoId', data).subscribe(object => {
+        this.formulario.get('aluno.turma').reset();
+        this.formulario.get('aluno.id').reset();
         this.listaTurma = object.data;
       });
     });
@@ -99,8 +101,6 @@ export class EquipeCrudComponent extends BaseCrudComponent {
   }
 
   aposIniciar() {
-    this.listaTime = this.objetoRetorno.time;
-    this.idEvento = this.objetoRetorno.evento.id;
     //Equipe
     this.formulario.get('equipe').patchValue(this.objetoRetorno);
     if (this.objetoRetorno.capitao) {
@@ -108,6 +108,7 @@ export class EquipeCrudComponent extends BaseCrudComponent {
       this.dadosAluno.nome = this.objetoRetorno.capitao.nome;
       this.formulario.get('equipe.matriculaCapitao').setValue(this.objetoRetorno.capitao.matricula);
     }
+    this.idEvento = this.objetoRetorno.evento.id;
     this.cor = this.objetoRetorno.cor;
     //Aluno
     this.formulario.get('aluno.instituicao').setValue(this.objetoRetorno.evento.criador.instituicao.id);
@@ -126,7 +127,6 @@ export class EquipeCrudComponent extends BaseCrudComponent {
       this.listaAlunoEquipe.push({ id: this.formulario.get('equipe.idCapitao').value });
     if (this.listaAlunoEquipe.length > 0)
       equipe.AdicionarListaAluno(this.listaAlunoEquipe);
-    console.log(equipe.capitao, equipe.aluno);
     this.Persistir<Equipe>(equipe);
   }
 }

@@ -1,0 +1,23 @@
+<div [@routerTransition]>
+  <div class="row">
+    <div class="col-12 col-md-12 col-lg-6">
+      <label><b>Selecione o Evento:</b></label>
+      <select class="form-control form-control-sm" [(ngModel)]="idEvento" (ngModelChange)="BuscarEquipe()">
+        <option *ngFor="let evento of listaEvento" [value]="evento.id">{{evento.nome}}</option>
+      </select>
+    </div>
+    <div *ngIf="idEvento > 0" class="col-12 col-md-12 col-lg-6">
+      <label><b>Selecione a Equipe:</b></label>
+      <select class="form-control form-control-sm" [(ngModel)]="idEquipe" (ngModelChange)="BuscarTime()">
+        <option *ngFor="let equipe of listaEquipe" [value]="equipe.id">{{equipe.nome}}</option>
+      </select>
+    </div>
+
+    <div class="col-6"></div>
+    <div class="col-12 col-md-12 col-lg-12">
+      <br />
+      <app-manter-padrao [exibirGrid]="abrirTime" [funcaoEspecifica]="funcaoEspecifica" [dataRoute]="idEquipe"
+        [listaNomeCampo]="listaNomeCampo" rotaPadrao="BuscarPorEquipeIdPaginavel" legendaTabela="Time" rota="time"></app-manter-padrao>
+    </div>
+  </div>
+</div>

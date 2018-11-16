@@ -15,15 +15,17 @@
           </div>
         </div>
         <div class="col-12 col-md-12 col-lg-6">
-          <div class="form-group">
-            <input type="number" class="form-control" formControlName="numMaxJogador" placeholder="Número Máximo de Jogadores">
-            <app-validator [field]="formulario.get('numMaxJogador')"></app-validator>
-          </div>
-        </div>
-        <div class="col-12 col-md-12 col-lg-6">
+          <label>Número Minímo de Jogadaores</label>
           <div class="form-group">
             <input type="number" class="form-control " formControlName="numMinJogador" placeholder="Número Minímo de Jogadores">
             <app-validator [field]="formulario.get('numMinJogador')"></app-validator>
+          </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-6">
+          <label>Número Máximo de Jogadaores</label>
+          <div class="form-group">
+            <input type="number" class="form-control" formControlName="numMaxJogador" placeholder="Número Máximo de Jogadores">
+            <app-validator [field]="formulario.get('numMaxJogador')"></app-validator>
           </div>
         </div>
       </div>

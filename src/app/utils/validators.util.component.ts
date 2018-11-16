@@ -69,8 +69,9 @@ export function requiredMaxLength(valueComparer, withSpecialCharacter = false) {
 export function validateDateMoreThen(dateComparer?: FormControl) {
     return function (control: FormControl) {
         if (control.value && control.value.year) {
-            let data = new Date(`${control.value.year}-${control.value.month}-${control.value.day}`);
-            let dataComparacao = dateComparer && dateComparer.value && dateComparer.value.year ? new Date(`${dateComparer.value.year}-${dateComparer.value.month}-${dateComparer.value.day}`)
+            let data = new Date(`${control.value.year}-${control.value.month}-${control.value.day} 06:00 `);
+            let dataComparacao = dateComparer && dateComparer.value && dateComparer.value.year ?
+                new Date(`${dateComparer.value.year}-${dateComparer.value.month}-${dateComparer.value.day}`)
                 : new Date();
             dataComparacao.setHours(0, 0, 0, 0);
             if (data > dataComparacao)
@@ -86,12 +87,12 @@ export function validateDateMoreThen(dateComparer?: FormControl) {
 export function validateDateLessThen(dateComparer?: FormControl) {
     return function (control: FormControl) {
         if (control.value && control.value.year) {
-            let data = new Date(`${control.value.year}-${control.value.month}-${control.value.day}`);
-            let dataComparacao = dateComparer && dateComparer.value && dateComparer.value.year ? new Date(`${dateComparer.value.year}-${dateComparer.value.month}-${dateComparer.value.day}`)
+            let data = new Date(`${control.value.year}-${control.value.month}-${control.value.day} 06:00`);
+            let dataComparacao = dateComparer && dateComparer.value && dateComparer.value.year ? new Date(`${dateComparer.value.year}-${dateComparer.value.month}-${dateComparer.value.day} 00:00`)
                 : new Date();
             dataComparacao.setHours(0, 0, 0, 0);
             if (data < dataComparacao)
-                return { dateLessThen: `O campo não pode possuir valor maior que a data: ${dataComparacao.toLocaleString()}` }
+                return { dateLessThen: `O campo não pode possuir valor menor que a data: ${dataComparacao.toLocaleString()}` }
         }
     }
 }
@@ -109,7 +110,7 @@ export function ComparerBetweenDate(dateComparerMoreThan: FormControl, dateCompa
             let dataComparacaoMaiorQue = new Date(`${dateComparerMoreThan.value.year}-${dateComparerMoreThan.value.month}-${dateComparerMoreThan.value.day}`);
             let dataComparacaoMenorQue = new Date(`${dateComparerLessThan.value.year}-${dateComparerLessThan.value.month}-${dateComparerLessThan.value.day}`);
             if (dataComparacaoMaiorQue < data && data > dataComparacaoMenorQue)
-                return { dateLessThen: `O campo deve está entre as datas: ${dataComparacaoMaiorQue.toLocaleString()} e ${dataComparacaoMenorQue.toLocaleString()}.` }
+                return { dateLessThen: `O campo deve está entre as datas: ${dataComparacaoMaiorQue.toDateString()} e ${dataComparacaoMenorQue.toDateString()}.` }
         }
     }
 }

@@ -14,7 +14,7 @@ const routes: Routes = [
         path: '', component: GerenciarEventoComponent, children: [
           { path: 'evento', loadChildren: './evento/evento.module#EventoModule' },
           { path: 'equipe', loadChildren: './equipe/equipe.module#EquipeModule' },
-          // { path: 'posicao', loadChildren: './posicao/posicao.module#PosicaoModule' }
+          { path: 'time', loadChildren: './time/time.module#TimeModule' }
         ]
       }
     ]
