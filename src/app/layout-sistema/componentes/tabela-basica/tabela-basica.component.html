@@ -9,14 +9,14 @@
           <thead>
             <tr>
               <th *ngFor="let nome of listaNomeCampo">{{nome.nomeColuna}}</th>
-              <th>Ação</th>
+              <th style="text-align:center">Ação</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let valor of listaValorCampo; let nome = listaNomeCampo; index as i">
               <td *ngFor="let nome of listaNomeCampo">{{valor[nome.nomeValorColuna]}}</td>
-              <td>
-                <div style="align-items: center;">
+              <td style="text-align:center">
+                <div>
                   <a *ngIf="!desabilitarEdicao" href="javascript:void(0)" class="in col-1" (click)="AcaoGrid($event, valor, i)"
                     ngbTooltip="Editar" id="editar">
                     <i class="fa fa-edit"></i>
@@ -32,13 +32,13 @@
                 </div>
               </td>
             </tr>
-            <tr *ngIf="listaValorCampo.length == 0">
+            <tr style="text-align:center" *ngIf="listaValorCampo.length == 0">
               <td>Nenhum registro encontrado!</td>
             </tr>
           </tbody>
         </table>
-        <ngb-pagination [collectionSize]="pageConfig.totalElements" [(page)]="pageConfig.page" [maxSize]="pageConfig.size"
-          [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="AtualizarLista($event)"></ngb-pagination>
+        <ngb-pagination class="centralizar" [collectionSize]="pageConfig.totalElements" [(page)]="pageConfig.page"
+          [maxSize]="pageConfig.size" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="AtualizarLista($event)"></ngb-pagination>
       </div>
     </div>
   </div>

@@ -34,6 +34,7 @@
         <select multiple class="form-control form-control" formControlName="posicao">
           <option *ngFor="let posicao of listaPosicao" [value]="posicao.id">{{posicao.nome}}</option>
         </select>
+        <small id="institutoHelp" class="form-text text-muted">Para selecionar mais de um registro é necessário segurar o botão Ctrl e selecionar os registros.</small>
         <app-validator [field]="formulario.controls.posicao"></app-validator>
       </div>
       <div class="form-group">
@@ -41,6 +42,7 @@
         <select multiple class="form-control form-control" formControlName="tipoPonto">
           <option *ngFor="let tipoPonto of listaTipoPonto" [value]="tipoPonto.id">{{tipoPonto.nome}}</option>
         </select>
+        <small id="institutoHelp" class="form-text text-muted">Para selecionar mais de um registro é necessário segurar o botão Ctrl e selecionar os registros.</small>
         <app-validator [field]="formulario.controls.tipoPonto"></app-validator>
       </div>
       <div class="form-group">
@@ -48,6 +50,7 @@
         <select multiple class="form-control form-control" formControlName="penalidade">
           <option *ngFor="let penalidade of listaPenalidade" [value]="penalidade.id">{{penalidade.nome}}</option>
         </select>
+        <small id="institutoHelp" class="form-text text-muted">Para selecionar mais de um registro é necessário segurar o botão Ctrl e selecionar os registros.</small>
         <app-validator [field]="formulario.controls.penalidade"></app-validator>
       </div>
     </fieldset>

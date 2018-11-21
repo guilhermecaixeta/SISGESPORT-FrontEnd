@@ -5,6 +5,7 @@
       <select multiple class="form-control form-control" formControlName="instituicao_cargo">
         <option *ngFor="let instituicao of listaInstituicao" [value]="instituicao.id">{{instituicao.nome}}</option>
       </select>
+      <small id="institutoHelp" class="form-text text-muted">Para selecionar mais de um registro é necessário segurar o botão Ctrl e selecionar os registros.</small>
       <app-validator [field]="formulario.controls.instituicao_cargo"></app-validator>
     </div>
 

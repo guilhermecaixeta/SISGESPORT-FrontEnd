@@ -1,4 +1,3 @@
-import { map } from 'rxjs/operators';
 import { Component } from '@angular/core';
 import { BaseComponent } from '../../../base';
 import { DadosTabela } from '../../../model/tabela';

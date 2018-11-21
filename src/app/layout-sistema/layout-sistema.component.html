@@ -1,5 +1,13 @@
 <app-cabecalho [user]="userData"></app-cabecalho>
 <app-barra-lateral [user]="userData"></app-barra-lateral>
 <section class="main-container" *ngIf="hasToken">
-    <router-outlet></router-outlet>
+    <main>
+        <router-outlet></router-outlet>
+    </main>
 </section>
+<footer style="text-align: right; margin-right: 2%;">
+    <font size="2">
+        Desenvolvido por Guilherme Caixeta.
+        <p>Instituto Federal de Goiás - Luziânia, {{anoAtual}}, Licença MIT.</p>
+    </font>
+</footer>

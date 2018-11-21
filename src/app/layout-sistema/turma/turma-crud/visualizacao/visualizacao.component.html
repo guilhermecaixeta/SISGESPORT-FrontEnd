@@ -4,6 +4,6 @@
     <app-input-label id="item2" legenda="Curso" [valor]="ObterItemPorId(listaCurso, formulario.value?.curso)['nome']"></app-input-label>
     <app-input-label id="item3" legenda="Data Início" [valor]="ConvertObjectToDate(formulario.value?.dataInicial)"></app-input-label>
     <app-input-label id="item4" legenda="Data Fim" [valor]="ConvertObjectToDate(formulario.value?.dataLimite)"></app-input-label>
-    <app-input-label id="item5" legenda="Ativo" valor="{{formulario.value?.flg_ativo == 1? 'Sim' : 'Não'}}"></app-input-label>
+    <app-input-label id="item5" legenda="Ativo" valor="{{formulario.value?.flgAtivo == 1? 'Sim' : 'Não'}}"></app-input-label>
   </div>
 </form>

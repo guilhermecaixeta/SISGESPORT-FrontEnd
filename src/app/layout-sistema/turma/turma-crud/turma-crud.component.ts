@@ -47,6 +47,7 @@ export class TurmaCrudComponent extends BaseCrudComponent {
 
   aposIniciar() {
     this.formulario.get('instituicao').setValue(this.objetoRetorno.curso.instituicao.id);
+    this.formulario.get('flgAtivo').setValue(this.objetoRetorno.flgAtivo? 1 : null);
     this.formulario.get('curso').setValue(this.objetoRetorno.curso.id);
   }
 

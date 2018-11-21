@@ -2,3 +2,11 @@
     display: inline;
     padding: 0.1rem 0.5rem;
 }
+
+.centralizar{
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
