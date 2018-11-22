@@ -8,7 +8,6 @@ import { Component } from '@angular/core';
 })
 export class LayoutSistemaComponent extends BaseComponent {
   hasToken = localStorage.getItem('token') !== null;
-  anoAtual: number = new Date().getFullYear();
   userData: any;
   ngOnInit() {
     this.observablePadrao.getValue.subscribe(x => {

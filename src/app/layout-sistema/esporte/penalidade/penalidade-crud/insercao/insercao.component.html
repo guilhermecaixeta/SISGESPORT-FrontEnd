@@ -1,20 +1,18 @@
-<div class="container">
-  <form [formGroup]="formulario" novalidate>
-    <fieldset>
-      <div class="row">
-        <div class="col-12 col-md-12 col-lg-6">
-          <div class="form-group">
-            <input type="text" class="form-control " formControlName="nome" placeholder="Nome">
-            <app-validator [field]="formulario.get('nome')"></app-validator>
-          </div>
-        </div>
-        <div class="col-12 col-md-12 col-lg-6">
-          <div class="form-group">
-            <input type="text" class="form-control " formControlName="descricao" placeholder="Descrição">
-            <app-validator [field]="formulario.get('descricao')"></app-validator>
-          </div>
+<form [formGroup]="formulario" novalidate>
+  <fieldset>
+    <div class="row">
+      <div class="col-12 col-md-12 col-lg-6">
+        <div class="form-group">
+          <input type="text" class="form-control " formControlName="nome" placeholder="Nome">
+          <app-validator [field]="formulario.get('nome')"></app-validator>
         </div>
       </div>
-    </fieldset>
-  </form>
-</div>
+      <div class="col-12 col-md-12 col-lg-6">
+        <div class="form-group">
+          <input type="text" class="form-control " formControlName="descricao" placeholder="Descrição">
+          <app-validator [field]="formulario.get('descricao')"></app-validator>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</form>

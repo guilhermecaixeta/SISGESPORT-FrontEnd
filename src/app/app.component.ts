@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AppComponent implements OnInit {
     constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     }
+    anoAtual: number = new Date().getFullYear();
 
     ngOnInit() { }
 }
