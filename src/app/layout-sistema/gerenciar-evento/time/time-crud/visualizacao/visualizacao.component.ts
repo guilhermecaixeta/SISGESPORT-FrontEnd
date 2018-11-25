@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BaseEtapaComponent } from '../../../../../base';
 
 @Component({
@@ -7,5 +7,7 @@ import { BaseEtapaComponent } from '../../../../../base';
   styleUrls: ['./visualizacao.component.scss']
 })
 export class VisualizacaoComponent extends BaseEtapaComponent {
-
+  @Input() listaJogador: any[] = [];
+  @Input() listaPosicao: any[] = [];
+  @Input() listaAluno: any[] = [];
 }

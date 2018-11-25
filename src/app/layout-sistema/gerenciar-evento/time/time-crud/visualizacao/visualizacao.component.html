@@ -1,3 +1,18 @@
-<p>
-  visualizacao works!
-</p>
+<form [formGroup]="formulario" novalidate>
+  <div class="row">
+    <app-input-label id="item1" legenda="Nº Vitória" [valor]="formulario.value?.time?.numVitoria"></app-input-label>
+    <app-input-label id="item2" legenda="Nº Derrota" [valor]="formulario.value?.time?.numDerrota"></app-input-label>
+    <app-input-label id="item3" legenda="Nº Empate" [valor]="formulario.value?.time?.numEmpate"></app-input-label>
+    <app-input-label id="item4" legenda="Pontuação" [valor]="formulario.value?.time?.pontuacao"></app-input-label>
+  </div>
+  <br />
+  <h4>Jogadores</h4>
+  <div class="row">
+    <div *ngFor="let aluno of listaJogador">
+      <app-input-label id="item16" legenda="Nome" [valor]="aluno?.nome"></app-input-label>
+      <app-input-label id="item17" legenda="Sexo" [valor]="aluno?.sexo"></app-input-label>
+      <app-input-label id="item18" legenda="Nº Camisa" [valor]="aluno?.numCamisa"></app-input-label>
+      <app-input-label id="item19" legenda="Posição" [valor]="aluno?.posicao"></app-input-label>
+    </div>
+  </div>
+</form>

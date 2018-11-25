@@ -1,7 +1,5 @@
-import { usuario } from './../../../model/iusuario.model';
 import { MenuLateral } from '../../../model/menu-lateral';
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-menu-lateral',
@@ -26,10 +24,11 @@ export class MenuLateralComponent implements OnInit {
   }
 
   expandirMenu(element: any, rota: string) {
-    this.expandir.showMenu = this.expandir.rota == rota;  
+    this.expandir.showMenu = this.expandir.rota == rota;
     this.expandir.rota = rota;
     if (element === this.expandir.showMenu) {
       this.expandir.showMenu = false;
+      this.expandir.rota = '';
     } else {
       this.expandir.showMenu = element;
     }

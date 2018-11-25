@@ -20,7 +20,10 @@ export class BaseComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     public observablePadrao: ObservablePadrao
   ) { }
-
+  /**
+   * Objeto Alerta, usado para emitir mensagem na tela
+   */
+  alerta: Alerta;
   /**
    * Emite a lista dos metodos AdicionarItem e DeletarItem
    */
@@ -199,12 +202,13 @@ export class BaseComponent implements OnInit {
    */
   public AdicionarItem(lista: any[], objeto: any, resetarForm: boolean = true, msg: string = 'Esse item já foi adicionado!') {
     let form = objeto as FormGroup;
+    this.alerta = new Alerta(this.ObterIdPorTamanhoLista(lista), TipoAlerta[4], msg);
     if (form.valid) {
       if (this.funcaoEspecifica.validar(lista)) {
         lista.push(form.value);
         lista = this.funcaoEspecifica.executar(lista);
       } else {
-        this.alertas.push(new Alerta(this.ObterIdPorTamanhoLista(lista), TipoAlerta[4], msg));
+        this.alertas.push(this.alerta);
       }
       if (resetarForm) objeto.reset();
     } else {

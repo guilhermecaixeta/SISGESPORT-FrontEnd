@@ -29,7 +29,7 @@
     </div>
   </fieldset>
 
-  <!-- Jogadores 
+  <!-- Jogadores -->
   <fieldset formGroupName="jogador">
     <legend>Jogador</legend>
 
@@ -37,19 +37,18 @@
       alerta.message }}</ngb-alert>
 
     <div class="row">
-      <div class="col-12 col-md-12 col-lg-4">
-        <label><b>Selecione o Curso:</b></label>
-        <select class="form-control form-control-sm" formControlName="curso">
-          <option *ngFor="let curso of listaCurso" [value]="curso.id">{{curso.nome}}</option>
+      <div class="form-group col-12 col-md-6 col-lg-4">
+        <label></label>
+        <input type="number" class="form-control " formControlName="numCamisa" placeholder="Número Camisa">
+        <app-validator [field]="formulario.get('jogador.numCamisa')"></app-validator>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <label><b>Selecione a Posição:</b></label>
+        <select class="form-control form-control-sm" formControlName="id_posicao">
+          <option *ngFor="let posicao of listaPosicao" [value]="posicao.id">{{posicao.nome}}</option>
         </select>
       </div>
-      <div class="col-12 col-md-12 col-lg-4">
-        <label><b>Selecione a Turma:</b></label>
-        <select class="form-control form-control-sm" formControlName="turma">
-          <option *ngFor="let turma of listaTurma" [value]="turma.id">{{turma.nome}}</option>
-        </select>
-      </div>
-      <div class="col-12 col-md-12 col-lg-4">
+      <div class="col-12 col-md-6 col-lg-4">
         <label><b>Selecione o Aluno:</b></label>
         <select class="form-control form-control-sm" formControlName="id">
           <option *ngFor="let aluno of listaAluno" [value]="aluno.id">{{aluno.nome}}</option>
@@ -58,16 +57,17 @@
       <div class="col-12 col-md-12 col-lg-12">
         <div class="ui-g-9 ui-md-6 ui-lg-3">
           <br />
-          <button type="button" class="btn btn-primary" style="float:right" (click)="AdicionarItem(listaAlunoEquipe, formulario.controls.aluno, false)">
+          <button type="button" class="btn btn-primary" style="float:right" (click)="AdicionarItem(listaJogador, 
+          formulario.controls.jogador, false)">
             Adicionar
           </button>
         </div>
       </div>
       <div class="col-12 col-md-12 col-lg-12">
-        <app-manter-padrao [listaNomeCampo]="listaNomeCampo" legendaTabela="Aluno" [funcaoEspecifica]="funcaoEspecifica"
-          [desabilitarAdicionar]="desabilitar" [listaValorCampo]="listaAlunoEquipe" [useRoute]="!desabilitar"
-          [desabilitarEdicao]="desabilitar" [desabilitarVisualizacao]="desabilitar" (acaoTabela)="DeletarItem(listaAlunoEquipe, $event.index)"></app-manter-padrao>
+        <app-manter-padrao [listaNomeCampo]="listaNomeCampo" legendaTabela="Jogadores" [funcaoEspecifica]="funcaoEspecifica"
+          [desabilitarAdicionar]="desabilitar" [listaValorCampo]="listaJogador" [useRoute]="!desabilitar"
+          [desabilitarEdicao]="desabilitar" [desabilitarVisualizacao]="desabilitar" (acaoTabela)="DeletarItem(listaJogador, $event.index)"></app-manter-padrao>
       </div>
     </div>
-  </fieldset> -->
+  </fieldset>
 </form>
