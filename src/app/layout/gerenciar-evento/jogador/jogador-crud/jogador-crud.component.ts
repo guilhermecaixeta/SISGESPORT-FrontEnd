@@ -56,4 +56,6 @@ export class JogadorCrudComponent extends BaseCrudComponent {
     this.formulario.get('jogador.idPosicao').setValue(this.objetoRetorno.posicao.id);
     this.aluno = this.objetoRetorno.jogador;
   }
+  
+  finalizar(){}
 }
