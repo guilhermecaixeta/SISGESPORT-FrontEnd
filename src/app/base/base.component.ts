@@ -7,6 +7,9 @@ import { ObservablePadrao } from '../utils/observable.util.component';
 import { isNullOrUndefined } from 'util';
 import { TipoAlerta } from '../enum/sisgesport.enum';
 
+/**
+ * Componente base para a aplicaçao.
+ */
 @Component({
   selector: 'app-base',
   template: ''
@@ -32,19 +35,21 @@ export class BaseComponent implements OnInit {
    * Objeto usado para realizar ações específicas em determinados métodos ou classes.
    */
   funcaoEspecifica = {
-    executar: (lista: any[]) => this.executar(lista),
-    validar: (lista: any[]) => this.validar(lista)
+    executar: (lista: any[]): any[] => this.executar(lista),
+    validar: (lista: any[]): boolean => this.validar(lista)
   }
 
   /**
-   * Método a se implementado na classe filha
+   * Metodo que compõem o objeto funcaoEspecifica.
+   * Deve ser implementado na classe filha.
    * @param lista lista de entrada
    */
   executar(lista: any[]): any[] {
     return lista;
   }
   /**
-   * Método a se implementado na classe filha
+   * Metodo que compõem o objeto funcaoEspecifica.
+   * Deve ser implementado na classe filha.
    * @param lista lista de entrada
    */
   validar(lista: any[]): boolean {
@@ -73,6 +78,7 @@ export class BaseComponent implements OnInit {
   public iniciar() { }
   /**
    * Método a ser executado após iniciar. Deve ser implementado nas classes filhas.
+   * Em metodos que extendem o BASECRUD esse metodo só é executado após o objeto de edição ser carregado do back-end.
    */
   public aposIniciar() { }
   /**
@@ -91,7 +97,7 @@ export class BaseComponent implements OnInit {
    * Verifica se uma variável é nula ou vazia.
    * @param value Variável a ser verificada
    */
-  public IsNullOrEmpty(value: string): any {
+  public IsNullOrEmpty(value: any): boolean {
     if (value === null || value === undefined || value === '') {
       return true;
     } else {

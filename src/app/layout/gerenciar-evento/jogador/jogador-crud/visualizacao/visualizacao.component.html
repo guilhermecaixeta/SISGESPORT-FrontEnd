@@ -1,0 +1,25 @@
+<form [formGroup]="formulario" novalidate>
+  <div class="row">
+    <app-input-label id="item1" legenda="Nome" [valor]="aluno?.nome"></app-input-label>
+    <app-input-label id="item2" legenda="Matrícula" [valor]="aluno?.matricula"></app-input-label>
+    <app-input-label id="item2" legenda="Sexo" [valor]="aluno?.sexo"></app-input-label>
+    <app-input-label id="item2" legenda="Nº Camisa" [valor]="formulario.value?.jogador?.numCamisa"></app-input-label>
+    <app-input-label id="item2" legenda="Posição" valor="{{ObterItemPorId(listaPosicao, formulario.value?.jogador?.idPosicao)['nome']}}"></app-input-label>
+  </div>
+
+  <br />
+  <h4>Penalidade por Partida</h4>
+  <div class="row">
+    <div *ngFor="let penalidade of listaPartidaPenalidade">
+      <app-input-label id="item16" legenda="Nome" [valor]="penalidade?.penalidade"></app-input-label>
+    </div>
+  </div>
+
+  <br />
+  <h4>Pontos por Partida</h4>
+  <div class="row">
+    <div *ngFor="let ponto of listaPartidaPonto">
+      <app-input-label id="item16" legenda="Nome" [valor]="ponto?.ponto"></app-input-label>
+    </div>
+  </div>
+</form>

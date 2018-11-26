@@ -1,0 +1,101 @@
+<form [formGroup]="formulario" novalidate>
+  <!-- Jogador -->
+  <fieldset formGroupName="jogador">
+    <div class="row">
+      <app-input-label id="item1" legenda="Nome" [valor]="aluno?.nome"></app-input-label>
+      <app-input-label id="item2" legenda="Matrícula" [valor]="aluno?.matricula"></app-input-label>
+      <app-input-label id="item2" legenda="Sexo" [valor]="aluno?.sexo"></app-input-label>
+      <div class="col-12 col-md-12 col-lg-12"></div>
+      <div class="form-group col-12 col-md-4 col-lg-2">
+        <label><b>Nº Camisa</b></label>
+        <input type="number" class="form-control " formControlName="numCamisa" placeholder="Nº Camisa">
+        <app-validator [field]="formulario.get('jogador.numCamisa')"></app-validator>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <label><b>Selecione a Posição:</b></label>
+        <select class="form-control form-control-sm" formControlName="idPosicao">
+          <option *ngFor="let posicao of listaPosicao" [value]="posicao.id">{{posicao.nome}}</option>
+        </select>
+        <app-validator [field]="formulario.get('jogador.idPosicao')"></app-validator>
+      </div>
+    </div>
+  </fieldset>
+
+  <!-- Partida -->
+  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+    <ngb-panel title="Penalidade">
+      <ng-template ngbPanelContent>
+        <fieldset formGroupName="penalidade">
+          <ngb-alert [type]="alerta.type" (close)="fecharAlerta(alerta)" *ngFor="let alerta of alertas">{{
+            alerta.message }}</ngb-alert>
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-4">
+              <label><b>Selecione a Partida:</b></label>
+              <select class="form-control form-control-sm" formControlName="idPartida">
+                <option *ngFor="let partida of listaPartida" [value]="partida.id">{{partida.nome}}</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+              <label><b>Selecione a Penalidade:</b></label>
+              <select class="form-control form-control-sm" formControlName="idPenalidade">
+                <option *ngFor="let penalidade of listaPenalidade" [value]="penalidade.id">{{penalidade.nome}}</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12">
+              <br />
+              <div class="ui-g-9 ui-md-6 ui-lg-3">
+                <button type="button" class="btn btn-primary" style="float:right" (click)="AdicionarItem(listaPartidaPenalidade, 
+                    formulario.controls.penalidade, false)">
+                  Adicionar
+                </button>
+              </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12">
+              <app-manter-padrao [listaNomeCampo]="listaPenalidadeCampo" legendaTabela="Penalidade Partida"
+                [funcaoEspecifica]="funcaoEspecifica" [desabilitarAdicionar]="desabilitar" [listaValorCampo]="listaPartidaPenalidade"
+                [useRoute]="!desabilitar" [desabilitarEdicao]="desabilitar" [desabilitarVisualizacao]="desabilitar"
+                (acaoTabela)="DeletarItem(listaPartidaPenalidade, $event.index)"></app-manter-padrao>
+            </div>
+          </div>
+        </fieldset>
+      </ng-template>
+    </ngb-panel>
+    <ngb-panel title="Pontuação">
+      <ng-template ngbPanelContent>
+        <fieldset formGroupName="ponto">
+          <ngb-alert [type]="alerta.type" (close)="fecharAlerta(alerta)" *ngFor="let alerta of alertas">{{
+            alerta.message }}</ngb-alert>
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-4">
+              <label><b>Selecione a Partida:</b></label>
+              <select class="form-control form-control-sm" formControlName="idPartida">
+                <option *ngFor="let partida of listaPartida" [value]="partida.id">{{partida.nome}}</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+              <label><b>Selecione a Pontuação:</b></label>
+              <select class="form-control form-control-sm" formControlName="idPonto">
+                <option *ngFor="let ponto of listaPonto" [value]="ponto.id">{{ponto.nome}}</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12">
+              <br />
+              <div class="ui-g-9 ui-md-6 ui-lg-3">
+                <button type="button" class="btn btn-primary" style="float:right" (click)="AdicionarItem(listaPartidaPenalidade, 
+                        formulario.controls.penalidade, false)">
+                  Adicionar
+                </button>
+              </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12">
+              <app-manter-padrao [listaNomeCampo]="listaPontoCampo" legendaTabela="Penalidade Partida"
+                [funcaoEspecifica]="funcaoEspecificaII" [desabilitarAdicionar]="desabilitar" [listaValorCampo]="listaPartidaPonto"
+                [useRoute]="!desabilitar" [desabilitarEdicao]="desabilitar" [desabilitarVisualizacao]="desabilitar"
+                (acaoTabela)="DeletarItem(listaPartidaPenalidade, $event.index)"></app-manter-padrao>
+            </div>
+          </div>
+        </fieldset>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+</form>

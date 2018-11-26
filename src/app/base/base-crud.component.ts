@@ -3,7 +3,11 @@ import { FormGroup } from '@angular/forms';
 import { BaseComponent } from './base.component';
 import { Alerta } from '../model/alerta.model';
 import { TipoAlerta } from '../enum/sisgesport.enum';
+import { isNullOrUndefined } from 'util';
 
+/**
+ * Componente base para realização do CRUD.
+ */
 @Component({
     selector: 'app-base-crud',
     template: ''
@@ -46,7 +50,7 @@ export class BaseCrudComponent extends BaseComponent {
         this.activatedRoute.params.subscribe(param => {
             this.id = param['id'];
             let linkLista = location.href.split('/');
-            this.acao = (param['acao'] !== undefined ? param['acao'] : "cadastrar").toLowerCase();
+            this.acao = (!isNullOrUndefined(param['acao']) ? param['acao'] : "cadastrar").toLowerCase();
         });
         this.iniciar();
         switch (this.acao) {
