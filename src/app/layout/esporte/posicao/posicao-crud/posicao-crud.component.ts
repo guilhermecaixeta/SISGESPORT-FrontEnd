@@ -22,7 +22,7 @@ export class PosicaoCrudComponent extends BaseCrudComponent {
     numMinJogador: [1, [Validators.required]]
   });
 
-  finalizar() {
+  Finalizar() {
     this.Persistir<Posicao>(new Posicao(this.formulario.value));
   }
 }

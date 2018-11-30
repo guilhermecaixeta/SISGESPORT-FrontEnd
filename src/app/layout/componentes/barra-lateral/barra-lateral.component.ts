@@ -87,6 +87,13 @@ export class BarraLateralComponent implements OnInit {
           router: '/gerenciar-evento/jogador',
           perfil: PerfilSistema.ROLE_ADMIN,
           nestedsMenus: null
+        },
+        {
+          IClass: 'fa fa-users',
+          legend: 'Partida',
+          router: '/gerenciar-evento/partida',
+          perfil: PerfilSistema.ROLE_ADMIN,
+          nestedsMenus: null
         }
       ]
     },

@@ -57,5 +57,5 @@ export class JogadorCrudComponent extends BaseCrudComponent {
     this.aluno = this.objetoRetorno.jogador;
   }
   
-  finalizar(){}
+  Finalizar(){}
 }

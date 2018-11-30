@@ -1,0 +1,15 @@
+<div class="container-fluid" [@routerTransition]>
+  <fieldset>
+    <legend>Partida</legend>
+    <app-insercao [exibirTimeCasa]="exibirTimeCasa" [exibirTimeVisita]="exibirTimeVisita" [exibirModalidade]="exibirModalidade"
+      [listaModalidade]="listaModalidade" [listaTimeVisita]="listaTimeVisita" [listaTimeCasa]="listaTimeCasa"
+      [listaServidor]="listaServidor" [listaEvento]="listaEvento" [formulario]="formulario" [acao]="acao" *ngIf="etapa == 0"></app-insercao>
+    <app-visualizacao [listaModalidade]="listaModalidade" [listaTimeCasa]="listaTimeCasa" [listaServidor]="listaServidor"
+      [listaEvento]="listaEvento" [formulario]="formulario" [acao]="acao" *ngIf="etapa == 1"></app-visualizacao>
+  </fieldset>
+  <ngb-alert [type]="alerta.type" (close)="fecharAlerta(alerta)" *ngFor="let alerta of alertas">{{
+    alerta.message }}</ngb-alert>
+  <hr />
+  <base-crud-navegacao [UseStyleHome]="value" [usarEtapa]="value" [formulario]="formulario" [(etapa)]="etapa"
+    [etapasTotal]="etapasTotal" [acao]="acao" (finalizar)="Finalizar()"></base-crud-navegacao>
+</div>

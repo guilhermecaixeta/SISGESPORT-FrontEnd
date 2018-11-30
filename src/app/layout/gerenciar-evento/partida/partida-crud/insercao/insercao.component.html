@@ -1,0 +1,78 @@
+<form [formGroup]="formulario" novalidate>
+  <fieldset>
+    <div class="row">
+      <div class="form-group col-12 col-md-12 col-lg-3">
+        <label></label>
+        <div class="input-group datepicker-input">
+          <input class="form-control " formControlName="dataPartida" placeholder="Data Início Evento" name="dpI"
+            ngbDatepicker #d="ngbDatepicker" [minDate]="{year: dataMinima.getFullYear(), month: dataMinima.getMonth(), day: dataMinima.getDay()}">
+          <button class="input-group-addon" (click)="d.toggle()" type="button">
+            <span class="fa fa-calendar"></span>
+          </button>
+        </div>
+        <app-validator [field]="formulario.get('dataPartida')"></app-validator>
+      </div>
+      <div class="form-group col-12 col-md-12 col-lg-3">
+        <label></label>
+        <input type="number" class="form-control " formControlName="duracaoPartida" placeholder="Duração Partida em minutos">
+        <app-validator [field]="formulario.controls.duracaoPartida"></app-validator>
+      </div>
+      <div class="form-group col-12 col-md-12 col-lg-3">
+        <label></label>
+        <input type="text" class="form-control " formControlName="acrescimo" placeholder="Acréscimos">
+        <app-validator [field]="formulario.controls.acrescimo"></app-validator>
+      </div>
+      <div class="col-12 col-md-3 col-lg-3">
+        <div class="form-group">
+          <label>Juíz</label>
+          <select class="form-control form-control-sm" formControlName="juiz">
+            <option *ngFor="let servidor of listaServidor" [value]="servidor.id">{{servidor.nome}}</option>
+          </select>
+          <app-validator [field]="formulario.get('juiz')"></app-validator>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-12 col-lg-12"></div>
+
+      <div class="col-12 col-md-3 col-lg-3">
+        <div class="form-group">
+          <label>Evento</label>
+          <select class="form-control form-control-sm" formControlName="evento">
+            <option *ngFor="let evento of listaEvento" [value]="evento.id">{{evento.nome}}</option>
+          </select>
+          <app-validator [field]="formulario.get('evento')"></app-validator>
+        </div>
+      </div>
+
+      <div *ngIf="exibirModalidade" class="col-12 col-md-3 col-lg-3">
+        <div class="form-group">
+          <label>Modalidade</label>
+          <select class="form-control form-control-sm" formControlName="modalidade">
+            <option *ngFor="let modalidade of listaModalidade" [value]="modalidade.id">{{modalidade.nome}}</option>
+          </select>
+          <app-validator [field]="formulario.get('modalidade')"></app-validator>
+        </div>
+      </div>
+
+      <div *ngIf="exibirTimeCasa" class="col-12 col-md-3 col-lg-3">
+        <div class="form-group">
+          <label>Time 1</label>
+          <select class="form-control form-control-sm" formControlName="timeCasa">
+            <option *ngFor="let time of listaTimeCasa" [value]="time.id">{{time.equipe.nome}}</option>
+          </select>
+          <app-validator [field]="formulario.get('timeCasa')"></app-validator>
+        </div>
+      </div>
+
+      <div *ngIf="exibirTimeVisita" class="col-12 col-md-3 col-lg-3">
+        <div class="form-group">
+          <label>Time 2</label>
+          <select class="form-control form-control-sm" formControlName="timeVisita">
+            <option *ngFor="let time of listaTimeVisita" [value]="time.id">{{time.equipe.nome}}</option>
+          </select>
+          <app-validator [field]="formulario.get('timeVisita')"></app-validator>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</form>

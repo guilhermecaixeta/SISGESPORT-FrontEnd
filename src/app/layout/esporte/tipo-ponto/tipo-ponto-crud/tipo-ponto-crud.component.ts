@@ -20,7 +20,7 @@ export class TipoPontoCrudComponent extends BaseCrudComponent {
     valor: [null, [Validators.required, Validators.min(1)]],
   });
 
-  finalizar() {
+  Finalizar() {
     let ponto = new TipoPonto(this.formulario.value);
     this.Persistir<TipoPonto>(ponto);
   }

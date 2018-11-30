@@ -39,5 +39,5 @@ export class CadastroCrudComponent extends BaseCrudComponent {
     else this.multiValidacao.eValido = false;
   }
 
-  finalizar() { }
+  Finalizar() { }
 }

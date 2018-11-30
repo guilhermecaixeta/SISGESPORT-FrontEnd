@@ -2,7 +2,7 @@ import { Evento } from './../../../../model/evento.model';
 import { Component } from '@angular/core';
 import { BaseCrudComponent } from '../../../../base';
 import { Validators, FormControl, FormGroup } from '@angular/forms';
-import { requiredMinLength, validateDateLessThen, validateDateMoreThen, ComparerBetweenDate } from '../../../../utils/validators.util.component';
+import { RequiredMinLength, ValidateDateLessThen, ValidateDateMoreThen, ComparerBetweenDate } from '../../../../utils/validators.util.component';
 import { routerTransition } from '../../../../router.animations';
 import { isNullOrUndefined } from 'util';
 import { Alerta } from '../../../../model/alerta.model';
@@ -33,13 +33,13 @@ export class EventoCrudComponent extends BaseCrudComponent {
     evento: this.construtorFormulario.group({
       nome: [null, [Validators.required, Validators.maxLength(255)]],
       descricao: [null, [Validators.required, Validators.maxLength(400)]],
-      dataInicioInscricao: [null, [Validators.required, validateDateLessThen()]],
+      dataInicioInscricao: [null, [Validators.required, ValidateDateLessThen()]],
       dataFimInscricao: [null, [Validators.required]],
-      dataInicio: [null, [Validators.required, validateDateLessThen()]],
+      dataInicio: [null, [Validators.required, ValidateDateLessThen()]],
       dataFim: [null, [Validators.required]],
-      horaInicioInscricao: [null, [Validators.required, validateDateLessThen()]],
+      horaInicioInscricao: [null, [Validators.required, ValidateDateLessThen()]],
       horaFimInscricao: [null, [Validators.required]],
-      horaInicio: [null, [Validators.required, validateDateLessThen()]],
+      horaInicio: [null, [Validators.required, ValidateDateLessThen()]],
       horaFim: [null, [Validators.required]],
       qntEquipes: [null, [Validators.required, Validators.min(2)]],
       codigoEvento: [null, { readonly: true }],
@@ -57,7 +57,7 @@ export class EventoCrudComponent extends BaseCrudComponent {
       id: [null],
       estado: [null, [Validators.required]],
       municipio: [null, [Validators.required]],
-      cep: [null, [Validators.required, requiredMinLength(8, true)]],
+      cep: [null, [Validators.required, RequiredMinLength(8, true)]],
       complemento: [null, [Validators.required, Validators.maxLength(255)]],
       logradouro: [null, [Validators.required, Validators.maxLength(255)]],
       bairro: [null, [Validators.required, Validators.maxLength(255)]]
@@ -81,10 +81,10 @@ export class EventoCrudComponent extends BaseCrudComponent {
 
   iniciar() {
     this.multiValidacao.formulario = this.formulario;
-    this.formulario.get('evento.dataInicioInscricao').setValidators(validateDateMoreThen(this.formulario.get('evento.dataInicio') as FormControl));
+    this.formulario.get('evento.dataInicioInscricao').setValidators(ValidateDateMoreThen(this.formulario.get('evento.dataInicio') as FormControl));
     this.formulario.get('evento.dataFimInscricao').setValidators(ComparerBetweenDate(this.formulario.get('evento.dataInicio') as FormControl,
       this.formulario.get('evento.dataInicioInscricao') as FormControl));
-    this.formulario.get('evento.dataFim').setValidators(validateDateLessThen(this.formulario.get('evento.dataInicio') as FormControl));
+    this.formulario.get('evento.dataFim').setValidators(ValidateDateLessThen(this.formulario.get('evento.dataInicio') as FormControl));
 
     this.service.Get('estado/BuscarTodos').subscribe(object => {
       this.estadosLista = object.data;
@@ -130,7 +130,7 @@ export class EventoCrudComponent extends BaseCrudComponent {
     });;
   }
 
-  finalizar() {
+  Finalizar() {
     let evento = new Evento(this.formulario.get('evento').value);
     evento.adicionarEndereco(this.formulario.get('endereco').value);
     evento.AdicionarListaEventoModalidade(this.listaEventoModalidade);

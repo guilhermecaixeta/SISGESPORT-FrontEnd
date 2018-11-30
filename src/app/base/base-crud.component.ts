@@ -89,4 +89,9 @@ export class BaseCrudComponent extends BaseComponent {
                 err => this.alertas.push(new Alerta(this.alertas.length + 1, TipoAlerta[4], err))
             );
     }
+    /**
+     * Método utilizado para realizar o preenchimento do objeto.
+     * Invoca o método Persistir para realizar a persistencia do objeto no banco.
+     */
+    Finalizar() { }
 }

@@ -15,7 +15,8 @@ const routes: Routes = [
           { path: 'evento', loadChildren: './evento/evento.module#EventoModule' },
           { path: 'equipe', loadChildren: './equipe/equipe.module#EquipeModule' },
           { path: 'time', loadChildren: './time/time.module#TimeModule' },
-          { path: 'jogador', loadChildren: './jogador/jogador.module#JogadorModule' }
+          { path: 'jogador', loadChildren: './jogador/jogador.module#JogadorModule' },
+          { path: 'partida', loadChildren: './partida/partida.module#PartidaModule' }
         ]
       }
     ]

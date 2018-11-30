@@ -121,7 +121,7 @@ export class EquipeCrudComponent extends BaseCrudComponent {
     }
   }
 
-  finalizar() {
+  Finalizar() {
     let equipe = new Equipe(Object.assign({}, this.formulario.get('equipe').value, { idEvento: this.idEvento }));
     if (isNullOrUndefined(this.listaAlunoEquipe.find(x => x.id == this.formulario.get('equipe.idCapitao').value)))
       this.listaAlunoEquipe.push({ id: this.formulario.get('equipe.idCapitao').value });

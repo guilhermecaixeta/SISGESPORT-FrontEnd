@@ -54,7 +54,7 @@ export class ModalidadeCrudComponent extends BaseCrudComponent {
     this.formulario.get('tipoPonto').setValue(listaTipoPontoRetorno);
     this.formulario.get('posicao').setValue(listaPosicaoRetorno);
   }
-  finalizar() {
+  Finalizar() {
     let modalidade = new Modalidade(this.formulario.value);
     modalidade.AdicionarPenalidade(this.formulario.get('penalidade').value);
     modalidade.AdicionarTipoPonto(this.formulario.get('tipoPonto').value);

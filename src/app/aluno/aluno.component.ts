@@ -1,7 +1,7 @@
 import { CadastroCrudComponent } from '../cadastrar/cadastro-crud/cadastro-crud.component';
 import { Aluno } from '../model/aluno.model';
 import { Validators } from '@angular/forms';
-import { SomenteNumeros, requiredMinLength } from '../utils/validators.util.component';
+import { SomenteNumeros, RequiredMinLength } from '../utils/validators.util.component';
 import { Component } from '../../../node_modules/@angular/core';
 import { routerTransition } from '../router.animations';
 
@@ -32,14 +32,14 @@ export class AlunoComponent extends CadastroCrudComponent {
       id: [null],
       estado: [null, [Validators.required]],
       municipio: [null, [Validators.required]],
-      cep: [null, [Validators.required, requiredMinLength(8, true)]],
+      cep: [null, [Validators.required, RequiredMinLength(8, true)]],
       complemento: [null, [Validators.required, Validators.maxLength(255)]],
       logradouro: [null, [Validators.required, Validators.maxLength(255)]],
       bairro: [null, [Validators.required, Validators.maxLength(255)]]
     })
   });
 
-  finalizar() {
+  Finalizar() {
     let aluno = new Aluno(this.formulario.value.cadastro);
     aluno.adicionarEndereco(Object.assign({},
       this.formulario.controls.endereco.value,

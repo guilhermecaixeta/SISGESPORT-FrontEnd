@@ -15,7 +15,7 @@ export function SomenteNumeros(form: FormControl) {
  * Verifica se a UF inserida é válida.
  * @param control UF a ser validada
  */
-export function validateUF(control: FormControl) {
+export function ValidateUF(control: FormControl) {
     const regUFIsValid: RegExp = /(A|a)(C|c|L|l|M|m|P|p)|(B|b)(A|a)|(C|c)(E|e)|(D|d)(F|f)|(E|e)(S|s)|(G|g)(O|o)|(M|m)(A|a|G|g|S|s|T|t)|(P|p)(A|a|B|b|E|e|I|i|R|r)|(R|r)(J|j|N|n|O|o|R|r|S|s)|(S|s)(C|c|E|e|P|p)|(T|t)(O|o)/;
     const uf = control.value ? String(control.value).replace(/[^0-9A-Za-z]/g, '') : '';
     if (uf.search(regUFIsValid) && uf.length >= 2) {
@@ -28,7 +28,7 @@ export function validateUF(control: FormControl) {
  * @param valueComparer Valor a ser comparado com o tamanho da string do FormControl
  * @param withSpecialCharacter Variavel usada para verificar se o valor a ser comparado irá validar caracteres especiais
  */
-export function requiredMinLength(valueComparer, withSpecialCharacter = false) {
+export function RequiredMinLength(valueComparer, withSpecialCharacter = false) {
     return function (control: FormControl) {
         let value;
         if (!withSpecialCharacter) {
@@ -49,7 +49,7 @@ export function requiredMinLength(valueComparer, withSpecialCharacter = false) {
  * @param valueComparer Valor a ser comparado com o tamanho da string do FormControl
  * @param withSpecialCharacter Variavel usada para verificar se o valor a ser comparado irá validar caracteres especiais
  */
-export function requiredMaxLength(valueComparer, withSpecialCharacter = false) {
+export function RequiredMaxLength(valueComparer, withSpecialCharacter = false) {
     return function (control: FormControl) {
         let value;
         if (!withSpecialCharacter) {
@@ -66,7 +66,7 @@ export function requiredMaxLength(valueComparer, withSpecialCharacter = false) {
  * Verifica se o valor é maior do que a data passada, retornando mensagem de erro caso verdadeiro.
  * @param dateComparer Data a ser comparada, caso nenhum valor seja passado essa data pega a data atual.
  */
-export function validateDateMoreThen(dateComparer?: FormControl) {
+export function ValidateDateMoreThen(dateComparer?: FormControl) {
     return function (control: FormControl) {
         if (control.value && control.value.year) {
             let data = new Date(`${control.value.year}-${control.value.month}-${control.value.day} 06:00 `);
@@ -84,7 +84,7 @@ export function validateDateMoreThen(dateComparer?: FormControl) {
  * Verifica se o valor é menor do que a data passada, retornando mensagem de erro caso verdadeiro.
  * @param dateComparer Campo do formulario a ser comparado ao valor selecionado, caso não seja passado nenhum dado será usado a data atual.
  */
-export function validateDateLessThen(dateComparer?: FormControl) {
+export function ValidateDateLessThen(dateComparer?: FormControl) {
     return function (control: FormControl) {
         if (control.value && control.value.year) {
             let data = new Date(`${control.value.year}-${control.value.month}-${control.value.day} 06:00`);

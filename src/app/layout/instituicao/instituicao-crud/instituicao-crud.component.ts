@@ -3,7 +3,7 @@ import { Validators } from '@angular/forms';
 import { BaseCrudComponent } from './../../../base/base-crud.component';
 import { Component } from '@angular/core';
 import { routerTransition } from '../../../router.animations';
-import { requiredMinLength } from '../../../utils/validators.util.component';
+import { RequiredMinLength } from '../../../utils/validators.util.component';
 import { isNullOrUndefined } from 'util';
 
 @Component({
@@ -32,7 +32,7 @@ export class InstituicaoCrudComponent extends BaseCrudComponent {
     endereco: this.construtorFormulario.group({
       estado: [null, [Validators.required]],
       municipio: [null, [Validators.required]],
-      cep: [null, [Validators.required, requiredMinLength(8, true)]],
+      cep: [null, [Validators.required, RequiredMinLength(8, true)]],
       complemento: [null, [Validators.required, Validators.maxLength(255)]],
       logradouro: [null, [Validators.required, Validators.maxLength(255)]],
       bairro: [null, [Validators.required, Validators.maxLength(255)]]
@@ -73,7 +73,7 @@ export class InstituicaoCrudComponent extends BaseCrudComponent {
     else this.multiValidacao.eValido = false;
   }
 
-  finalizar() {
+  Finalizar() {
     let instituicao = new Instituicao(this.formulario.value.instituicao);
     instituicao.adicionarEndereco(Object.assign({},
       this.formulario.controls.endereco.value,

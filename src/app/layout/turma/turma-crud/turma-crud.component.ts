@@ -2,7 +2,7 @@ import { Validators, FormControl } from '@angular/forms';
 import { Component } from '@angular/core';
 import { BaseCrudComponent } from '../../../base';
 import { routerTransition } from '../../../router.animations';
-import { validateDateMoreThen, validateDateLessThen, } from '../../../utils/validators.util.component';
+import { ValidateDateMoreThen, ValidateDateLessThen } from '../../../utils/validators.util.component';
 import { Turma } from '../../../model/turma.model';
 
 @Component({
@@ -19,7 +19,7 @@ export class TurmaCrudComponent extends BaseCrudComponent {
 
   formulario = this.construtorFormulario.group({
     instituicao: [null, [Validators.required]],
-    dataInicial: [null, [Validators.required, validateDateMoreThen()]],
+    dataInicial: [null, [Validators.required, ValidateDateMoreThen()]],
     dataLimite: [null, [Validators.required]],
     flgAtivo: [null],
     curso: [null, [Validators.required]],
@@ -28,7 +28,7 @@ export class TurmaCrudComponent extends BaseCrudComponent {
   });
 
   iniciar() {
-    this.formulario.get('dataLimite').setValidators(validateDateLessThen(this.formulario.get('dataInicial') as FormControl));
+    this.formulario.get('dataLimite').setValidators(ValidateDateLessThen(this.formulario.get('dataInicial') as FormControl));
     this.formulario.get('dataInicial').valueChanges.subscribe(x => {
       if (x)
         this.formulario.get('dataLimite').setValue({ year: x.year + 4, month: x.month, day: x.day })
@@ -51,7 +51,7 @@ export class TurmaCrudComponent extends BaseCrudComponent {
     this.formulario.get('curso').setValue(this.objetoRetorno.curso.id);
   }
 
-  finalizar() {
+  Finalizar() {
     let turma = new Turma(this.formulario.value);
     this.Persistir<Turma>(turma);
   }

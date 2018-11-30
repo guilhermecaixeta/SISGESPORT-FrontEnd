@@ -32,7 +32,7 @@ export class CursoCrudComponent extends BaseCrudComponent {
     this.formulario.get('flg_ativo').setValue(this.objetoRetorno.flg_ativo ? 1 : null);
   }
 
-  finalizar() {
+  Finalizar() {
     let curso = new Curso(this.formulario.value);
     this.Persistir<Curso>(curso);
   }

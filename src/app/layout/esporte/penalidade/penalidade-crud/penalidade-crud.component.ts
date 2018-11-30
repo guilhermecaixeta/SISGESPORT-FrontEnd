@@ -20,7 +20,7 @@ export class PenalidadeCrudComponent extends BaseCrudComponent {
     descricao: [null, [Validators.required, Validators.maxLength(60)]],
   });
 
-  finalizar() {
+  Finalizar() {
     let penalidade = new Penalidade(this.formulario.value);
     this.Persistir<Penalidade>(penalidade);
   }
