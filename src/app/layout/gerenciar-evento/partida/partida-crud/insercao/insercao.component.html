@@ -68,6 +68,7 @@
         <div class="form-group">
           <label>Time 2</label>
           <select class="form-control form-control-sm" formControlName="timeVisita">
+            <option [value]="0"></option>
             <option *ngFor="let time of listaTimeVisita" [value]="time.id">{{time.equipe.nome}}</option>
           </select>
           <app-validator [field]="formulario.get('timeVisita')"></app-validator>

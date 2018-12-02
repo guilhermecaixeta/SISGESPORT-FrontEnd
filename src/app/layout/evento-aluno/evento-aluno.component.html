@@ -1,0 +1,74 @@
+<div [@routerTransition]>
+  <h2><b>Inscrição do Evento</b></h2>
+  <form [formGroup]="formulario" novalidate>
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-6">
+        <input type="text" class="form-control" formControlName="codigo" placeholder="Código da Equipe">
+        <app-validator [field]="formulario.controls.codigo"></app-validator>
+      </div>
+      <div class="col-12 col-md-12 col-lg-12">
+        <button type="button" class="btn btn-info" style="float:right" (click)="Cadastrar()" [disabled]="bloquear">
+          Cadastrar
+        </button>
+      </div>
+      <div *ngIf="evento">
+        <app-input-label id="item1" legenda="Nome do Evento" [valor]="evento?.nome"></app-input-label>
+        <div class="col-12 col-md-12 col-lg-12">
+          <label><b>Inscrição</b></label>
+          <app-input-label id="item2" legenda="Data de início da inscrição" [valor]="evento?.dataInicioInscricao"></app-input-label>
+          <app-input-label id="item3" legenda="Data final da inscrição" [valor]="evento?.dataFimInscricao"></app-input-label>
+        </div>
+        <div class="col-12 col-md-12 col-lg-12">
+          <label><b>Evento</b></label>
+          <app-input-label id="item4" legenda="Data início do evento" [valor]="evento?.dataInicio"></app-input-label>
+          <app-input-label id="item5" legenda="Data fim do evento" [valor]="evento?.dataFim"></app-input-label>
+        </div>
+        <div class="col-12 col-md-12 col-lg-12">
+          <label><b>Modalidades</b></label>
+          <div *ngFor="let modalidade of evento.eventoModalidade">
+            <app-input-label id="item4" legenda="Modalidade" [valor]="modalidade?.modalidade?.nome"></app-input-label>
+            <app-input-label id="item5" legenda="Idade Máx." [valor]="modalidade?.idadeMaximaPermitida"></app-input-label>
+            <app-input-label id="item6" legenda="Sexo" [valor]="modalidade?.sexo"></app-input-label>
+          </div>
+        </div>
+        <app-manter-padrao desabilitarAdicionar="{desabilitarAdicionar: true}" [exibirGrid]="abrirTime"
+          [funcaoEspecifica]="funcaoEspecifica" [dataRoute]="idEquipe" [listaNomeCampo]="listaNomeCampo" rotaPadrao="BuscarPorEquipeIdPaginavel"
+          legendaTabela="Time" rota="time"></app-manter-padrao>
+      </div>
+    </div>
+  </form>
+  <br />
+  <div *ngIf="listaEquipe.length > 0">
+    <h4><b>Evento(s) Inscrito(s)</b></h4>
+    <ngb-accordion *ngFor="let equipe of listaEquipe" #acc="ngbAccordion" activeIds="ngb-panel-0">
+      <ngb-panel [title]="equipe?.evento?.nome">
+        <ng-template ngbPanelContent>
+          <div>
+            <app-input-label id="item1" legenda="Nome do Evento" [valor]="equipe?.evento?.nome"></app-input-label>
+            <div class="col-12 col-md-12 col-lg-12">
+              <label><b>Inscrição</b></label>
+              <app-input-label id="item2" legenda="Data de início da inscrição" [valor]="equipe?.evento?.dataInicioInscricao"></app-input-label>
+              <app-input-label id="item3" legenda="Data final da inscrição" [valor]="equipe?.evento?.dataFimInscricao"></app-input-label>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12">
+              <label><b>Evento</b></label>
+              <app-input-label id="item4" legenda="Data início do evento" [valor]="equipe?.evento?.dataInicio"></app-input-label>
+              <app-input-label id="item5" legenda="Data fim do evento" [valor]="equipe?.evento?.dataFim"></app-input-label>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12">
+              <label><b>Modalidades</b></label>
+              <div *ngFor="let modalidade of equipe?.evento.eventoModalidade">
+                <app-input-label id="item4" legenda="Modalidade" [valor]="modalidade?.modalidade?.nome"></app-input-label>
+                <app-input-label id="item5" legenda="Idade Máx." [valor]="modalidade?.idadeMaximaPermitida"></app-input-label>
+                <app-input-label id="item6" legenda="Sexo" [valor]="modalidade?.sexo"></app-input-label>
+              </div>
+            </div>
+            <app-manter-padrao desabilitarAdicionar="{desabilitarAdicionar: true}" [exibirGrid]="abrirTime"
+              [funcaoEspecifica]="funcaoEspecifica" [dataRoute]="idEquipe" [listaNomeCampo]="listaNomeCampo" rotaPadrao="BuscarPorEquipeIdPaginavel"
+              legendaTabela="Time" rota="time"></app-manter-padrao>
+          </div>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+</div>

@@ -26,7 +26,7 @@ export class PartidaCrudComponent extends BaseCrudComponent {
   listaTimeCasa: any[] = [];
   listaServidor: any[] = [];
   listaEvento: any[] = [];
-
+  editar: boolean = false;
 
   formulario = this.construtorFormulario.group({
     id: [],
@@ -53,29 +53,33 @@ export class PartidaCrudComponent extends BaseCrudComponent {
         this.service.Get('time/BuscarPorEventoIdEModalidadeId', `${idEvento}/${data}`).subscribe(lista => {
           this.exibirTimeCasa = true;
           this.listaTimeCasa = lista.data;
-          if (this.acao == 'editar') {
-            let id = this.formulario.get('timeCasa').value;
-            setTimeout(() => {this.formulario.get('timeCasa').setValue(id)}, 10);
-          }
+          lista.data.forEach(element => this.listaTimeVisita.push(element));
         });
       }
     });
+
     this.formulario.get('timeCasa').valueChanges.subscribe(data => {
       if (this.carregarLista || this.acao == 'cadastrar') {
+        if (this.acao == 'editar' && !this.editar)
+          this.formulario.get('timeVisita').setValue(null);
         this.exibirTimeVisita = true;
-        let index = this.listaTimeCasa.findIndex(x => x.id == data);
-        this.listaTimeVisita = this.listaTimeCasa.splice(index, 1);
+        this.listaTimeVisita = [];
+        this.listaTimeCasa.forEach(element => this.listaTimeVisita.push(element));
+        let index = this.listaTimeVisita.findIndex(x => x.id == data);
+        this.listaTimeVisita.splice(index, 1);
       }
     });
   }
 
   aposIniciar() {
     this.carregarLista = true;
+    this.editar = true;
     this.formulario.get('evento').setValue(this.objetoRetorno.evento.id);
     this.formulario.get('modalidade').setValue(this.objetoRetorno.modalidade.id);
     this.formulario.get('timeVisita').setValue(this.objetoRetorno.timeVisita.id);
     this.formulario.get('timeCasa').setValue(this.objetoRetorno.timeCasa.id);
     this.formulario.get('juiz').setValue(this.objetoRetorno.juiz.id);
+    this.editar = false;
   }
 
   Finalizar() {

@@ -89,7 +89,11 @@ export class Service {
             .pipe(
                 retry(3),
                 map(response => {
-                    this.observablePadrao.setValue(response['data'])
+                    this.observablePadrao.setValue({
+                        id: response['data'].id, 
+                        name: response['data'].name,
+                        authorities: response['data'].authorities
+                    })
                 }),
                 catchError(err => this.handleError(err)));
     }

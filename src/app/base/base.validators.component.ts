@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-validator',
-  template: `
+    selector: 'app-validator',
+    template: `
 <div *ngIf="field.invalid && (field.dirty || field.touched)" class="alert alert-danger">
     <div *ngIf="field.errors.required">
         Campo obrigatório.
@@ -43,12 +43,18 @@ import { FormControl } from '@angular/forms';
     </div>  
     <div *ngIf="field.errors.ComparerDate">
         {{field.errors.ComparerDate}}
-    </div>                            
+    </div>
+   <div *ngIf="field.errors.eventoDataInscricaoInicioInvalida">
+        Não é possível realizar a inscrição do evento: Data de início de inscrição é maior que a data atual.
+    </div>
+    <div *ngIf="field.errors.eventoDataInscricaoFinalInvalida">
+        Não é possível realizar a inscrição do evento: Data de inscrição encerrada.
+    </div>                                    
 </div>
   `
 })
-export class BaseValidatorsComponent implements OnInit{
-    @Input() field : FormControl;
+export class BaseValidatorsComponent implements OnInit {
+    @Input() field: FormControl;
 
-    ngOnInit(){      }
+    ngOnInit() { }
 }
