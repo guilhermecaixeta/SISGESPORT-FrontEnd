@@ -6,7 +6,7 @@ export class Jogador {
     public id: number;
     public numCamisa: number;
     public jogador: Aluno;
-    public time: Time;
+    public time: any;
     public posicao: Posicao;
     /**
      *
@@ -16,6 +16,6 @@ export class Jogador {
         this.numCamisa = obj.numCamisa;
         this.jogador = new Aluno({ id: obj.id });
         this.posicao = new Posicao({ id: obj.id_posicao });
-        if(obj.id_time)this.time = new Time({ id: obj.id_time });
+        if (obj.id_time) this.time = ({ id: obj.id_time });
     }
 }
