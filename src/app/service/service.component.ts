@@ -90,7 +90,7 @@ export class Service {
                 retry(3),
                 map(response => {
                     this.observablePadrao.setValue({
-                        id: response['data'].id, 
+                        id: response['data'].id,
                         name: response['data'].name,
                         authorities: response['data'].authorities
                     })
@@ -124,6 +124,8 @@ export class Service {
             }
         // return an observable with a user-facing error message
         return throwError(
-            `Algo ruim aconteceu. Por favor entre em contato com o suporte técnico.`);
+            `Algo ruim aconteceu. ${error.status == 400 ?
+                error.error['errors'] instanceof Array ? error.error['errors'][error.error['errors'].length - 1] : error.error.message
+                : 'Por favor entre em contato com o suporte técnico.'}`);
     };
 }

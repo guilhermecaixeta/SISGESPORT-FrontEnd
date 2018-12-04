@@ -34,6 +34,13 @@ export class BarraLateralComponent implements OnInit {
       nestedsMenus: null
     },
     {
+      IClass: '	fa fa-soccer-ball-o',
+      legend: 'Time',
+      router: '/time',
+      perfil: PerfilSistema.ROLE_USER,
+      nestedsMenus: null
+    },
+    {
       IClass: 'fa fa-fw fa-bank',
       legend: 'Instituição',
       router: '/instituicao',
@@ -82,14 +89,14 @@ export class BarraLateralComponent implements OnInit {
           nestedsMenus: null
         },
         {
-          IClass: 'fa fa-users',
+          IClass: '	fa fa-soccer-ball-o',
           legend: 'Time',
           router: '/gerenciar-evento/time',
           perfil: PerfilSistema.ROLE_ADMIN,
           nestedsMenus: null
         },
         {
-          IClass: 'fa fa-users',
+          IClass: 'fa fa-user',
           legend: 'Jogador',
           router: '/gerenciar-evento/jogador',
           perfil: PerfilSistema.ROLE_ADMIN,

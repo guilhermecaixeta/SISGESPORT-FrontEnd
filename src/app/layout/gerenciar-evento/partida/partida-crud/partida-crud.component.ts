@@ -4,7 +4,6 @@ import { routerTransition } from '../../../../router.animations';
 import { Validators } from '@angular/forms';
 import { ValidateDateLessThen } from '../../../../utils/validators.util.component';
 import { Partida } from '../../../../model/partida.model';
-import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-partida-crud',
@@ -47,13 +46,14 @@ export class PartidaCrudComponent extends BaseCrudComponent {
     this.service.Get('evento/BuscarTodos').subscribe(object => this.listaEvento = object.data);
 
     this.formulario.get('evento').valueChanges.subscribe(() => this.exibirModalidade = true);
+    
     this.formulario.get('modalidade').valueChanges.subscribe(data => {
       let idEvento = this.formulario.get('evento').value;
       if (this.carregarLista || this.acao == 'cadastrar') {
         this.service.Get('time/BuscarPorEventoIdEModalidadeId', `${idEvento}/${data}`).subscribe(lista => {
           this.exibirTimeCasa = true;
           this.listaTimeCasa = lista.data;
-          lista.data.forEach(element => this.listaTimeVisita.push(element));
+          this.listaTimeVisita = this.PreencherListaTimeVisita(this.listaTimeCasa);
         });
       }
     });
@@ -63,12 +63,19 @@ export class PartidaCrudComponent extends BaseCrudComponent {
         if (this.acao == 'editar' && !this.editar)
           this.formulario.get('timeVisita').setValue(null);
         this.exibirTimeVisita = true;
-        this.listaTimeVisita = [];
-        this.listaTimeCasa.forEach(element => this.listaTimeVisita.push(element));
-        let index = this.listaTimeVisita.findIndex(x => x.id == data);
-        this.listaTimeVisita.splice(index, 1);
+        this.listaTimeVisita = this.PreencherListaTimeVisita(this.listaTimeCasa, data);
       }
     });
+  }
+
+  PreencherListaTimeVisita(listaEntrada: any[], id: number = 0): any[] {
+    let listaSaida: any[] = [];
+    listaEntrada.forEach(x => listaSaida.push(x));
+    if (id > 0) {
+      let index = listaEntrada.findIndex(x => x.id == id);
+      listaSaida.splice(index, 1);
+    }
+    return listaSaida;
   }
 
   aposIniciar() {

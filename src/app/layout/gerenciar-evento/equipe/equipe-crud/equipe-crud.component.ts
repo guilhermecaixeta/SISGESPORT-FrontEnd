@@ -83,9 +83,10 @@ export class EquipeCrudComponent extends BaseCrudComponent {
      * Obtem todos os alunos da turma
      */
     this.formulario.get('aluno.turma').valueChanges.subscribe(data => {
-      this.service.Get('aluno/BuscarPorIdTurmaEEvento', `${data}/${this.idEvento}`).subscribe(object => {
-        this.listaAluno = object.data;
-      });
+      if (!isNullOrUndefined(data) && !isNullOrUndefined(this.idEvento))
+        this.service.Get('aluno/BuscarPorIdTurmaEEvento', `${data}/${this.idEvento}`).subscribe(object => {
+          this.listaAluno = object.data;
+        });
     });
 
     this.formulario.get('equipe.matriculaCapitao').valueChanges.subscribe(data => {

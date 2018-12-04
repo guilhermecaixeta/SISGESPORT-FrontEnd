@@ -137,7 +137,7 @@ export class BaseComponent implements OnInit {
   }
 
   /**
-   * Converte um objeto para o formato de string: dd/mm/aaaa  ou para uma data no tio Date
+   * Converte um objeto para o formato de string: dd/mm/aaaa  ou para uma data no tipo Date
    * @param obj objeto a ser convertido
    * @param date verifica para qual formato vai ser convertido
    */

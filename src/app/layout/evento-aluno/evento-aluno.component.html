@@ -11,17 +11,21 @@
           Cadastrar
         </button>
       </div>
+      <hr />
+      <ngb-alert [type]="alerta.type" (close)="fecharAlerta(alerta)" *ngFor="let alerta of alertas">{{
+        alerta.message }}</ngb-alert>
+      <hr />
       <div *ngIf="evento">
         <app-input-label id="item1" legenda="Nome do Evento" [valor]="evento?.nome"></app-input-label>
         <div class="col-12 col-md-12 col-lg-12">
           <label><b>Inscrição</b></label>
-          <app-input-label id="item2" legenda="Data de início da inscrição" [valor]="evento?.dataInicioInscricao"></app-input-label>
-          <app-input-label id="item3" legenda="Data final da inscrição" [valor]="evento?.dataFimInscricao"></app-input-label>
+          <app-input-label id="item2" legenda="Data de início da inscrição" [valor]="this.ConvertObjectToDate(evento?.dataInicioInscricao)"></app-input-label>
+          <app-input-label id="item3" legenda="Data final da inscrição" [valor]="this.ConvertObjectToDate(evento?.dataFimInscricao)"></app-input-label>
         </div>
         <div class="col-12 col-md-12 col-lg-12">
           <label><b>Evento</b></label>
-          <app-input-label id="item4" legenda="Data início do evento" [valor]="evento?.dataInicio"></app-input-label>
-          <app-input-label id="item5" legenda="Data fim do evento" [valor]="evento?.dataFim"></app-input-label>
+          <app-input-label id="item4" legenda="Data início do evento" [valor]="this.ConvertObjectToDate(evento?.dataInicio)"></app-input-label>
+          <app-input-label id="item5" legenda="Data fim do evento" [valor]="this.ConvertObjectToDate(evento?.dataFim)"></app-input-label>
         </div>
         <div class="col-12 col-md-12 col-lg-12">
           <label><b>Modalidades</b></label>
@@ -31,9 +35,6 @@
             <app-input-label id="item6" legenda="Sexo" [valor]="modalidade?.sexo"></app-input-label>
           </div>
         </div>
-        <app-manter-padrao desabilitarAdicionar="{desabilitarAdicionar: true}" [exibirGrid]="abrirTime"
-          [funcaoEspecifica]="funcaoEspecifica" [dataRoute]="idEquipe" [listaNomeCampo]="listaNomeCampo" rotaPadrao="BuscarPorEquipeIdPaginavel"
-          legendaTabela="Time" rota="time"></app-manter-padrao>
       </div>
     </div>
   </form>
@@ -43,29 +44,28 @@
     <ngb-accordion *ngFor="let equipe of listaEquipe" #acc="ngbAccordion" activeIds="ngb-panel-0">
       <ngb-panel [title]="equipe?.evento?.nome">
         <ng-template ngbPanelContent>
-          <div>
-            <app-input-label id="item1" legenda="Nome do Evento" [valor]="equipe?.evento?.nome"></app-input-label>
-            <div class="col-12 col-md-12 col-lg-12">
-              <label><b>Inscrição</b></label>
-              <app-input-label id="item2" legenda="Data de início da inscrição" [valor]="equipe?.evento?.dataInicioInscricao"></app-input-label>
-              <app-input-label id="item3" legenda="Data final da inscrição" [valor]="equipe?.evento?.dataFimInscricao"></app-input-label>
+          <div *ngIf="equipe?.capitao?.id == idAluno" class="col-12 col-md-12 col-lg-12">
+            <label><b>Capitão Equipe</b></label>
+            <app-input-label id="item2" legenda="Código da Equipe" [valor]="equipe?.codigoEquipe"></app-input-label>
+            <app-input-label id="item3" legenda="Nome da Equipe" [valor]="equipe?.nome"></app-input-label>
+          </div>
+          <div class="col-12 col-md-12 col-lg-12">
+            <label><b>Inscrição</b></label>
+            <app-input-label id="item2" legenda="Data de início da inscrição" [valor]="equipe?.evento?.dataInicioInscricao"></app-input-label>
+            <app-input-label id="item3" legenda="Data final da inscrição" [valor]="equipe?.evento?.dataFimInscricao"></app-input-label>
+          </div>
+          <div class="col-12 col-md-12 col-lg-12">
+            <label><b>Evento</b></label>
+            <app-input-label id="item4" legenda="Data início do evento" [valor]="equipe?.evento?.dataInicio"></app-input-label>
+            <app-input-label id="item5" legenda="Data fim do evento" [valor]="equipe?.evento?.dataFim"></app-input-label>
+          </div>
+          <div class="col-12 col-md-12 col-lg-12">
+            <label><b>Modalidades</b></label>
+            <div *ngFor="let modalidade of equipe?.evento.eventoModalidade">
+              <app-input-label id="item4" legenda="Modalidade" [valor]="modalidade?.modalidade?.nome"></app-input-label>
+              <app-input-label id="item5" legenda="Idade Máx." [valor]="modalidade?.idadeMaximaPermitida"></app-input-label>
+              <app-input-label id="item6" legenda="Sexo" [valor]="modalidade?.sexo"></app-input-label>
             </div>
-            <div class="col-12 col-md-12 col-lg-12">
-              <label><b>Evento</b></label>
-              <app-input-label id="item4" legenda="Data início do evento" [valor]="equipe?.evento?.dataInicio"></app-input-label>
-              <app-input-label id="item5" legenda="Data fim do evento" [valor]="equipe?.evento?.dataFim"></app-input-label>
-            </div>
-            <div class="col-12 col-md-12 col-lg-12">
-              <label><b>Modalidades</b></label>
-              <div *ngFor="let modalidade of equipe?.evento.eventoModalidade">
-                <app-input-label id="item4" legenda="Modalidade" [valor]="modalidade?.modalidade?.nome"></app-input-label>
-                <app-input-label id="item5" legenda="Idade Máx." [valor]="modalidade?.idadeMaximaPermitida"></app-input-label>
-                <app-input-label id="item6" legenda="Sexo" [valor]="modalidade?.sexo"></app-input-label>
-              </div>
-            </div>
-            <app-manter-padrao desabilitarAdicionar="{desabilitarAdicionar: true}" [exibirGrid]="abrirTime"
-              [funcaoEspecifica]="funcaoEspecifica" [dataRoute]="idEquipe" [listaNomeCampo]="listaNomeCampo" rotaPadrao="BuscarPorEquipeIdPaginavel"
-              legendaTabela="Time" rota="time"></app-manter-padrao>
           </div>
         </ng-template>
       </ngb-panel>

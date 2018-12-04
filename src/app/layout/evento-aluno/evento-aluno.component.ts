@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { BaseCrudComponent } from '../../base';
 import { routerTransition } from '../../router.animations';
 import { DadosTabela } from '../../model/tabela';
+import { TipoAlerta } from '../../enum/sisgesport.enum';
+import { Alerta } from '../../model/alerta.model';
 
 @Component({
   selector: 'app-evento-aluno',
@@ -38,24 +40,26 @@ export class EventoAlunoComponent extends BaseCrudComponent {
       }
     });
     this.formulario.get('codigo').valueChanges.subscribe(code => {
-      if (String(code).length > 14)
+      if (String(code).length > 19)
         this.service.Get('equipe/BuscarPorCodigoEquipe', code)
           .subscribe(result => {
             this.idEquipe = result.data.id;
             this.evento = result.data.evento;
             let dataAtual = new Date();
-            let dataInicioInscricao = new Date(result.data.evento.dataInicioInscricao);
-            let dataFinalIncricao = new Date(result.data.evento.dataFimInscricao);
+            let t = this.DateConvert(result.data.evento);
+            let dataInicioInscricao = this.ConvertObjectToDate(t.dataInicioInscricao, true);
+            let dataFinalIncricao = this.ConvertObjectToDate(t.dataFimInscricao, true);
             if (dataInicioInscricao > dataAtual) {
               this.bloquear = true;
               this.formulario.get('codigo').setErrors({ eventoDataInscricaoInicioInvalida: true });
-            } else if (dataFinalIncricao > dataAtual) {
+            } else if (dataFinalIncricao < dataAtual) {
               this.bloquear = true;
               this.formulario.get('codigo').setErrors({ eventoDataInscricaoFinalInvalida: true });
             } else if (dataInicioInscricao <= dataAtual && dataFinalIncricao <= dataAtual) {
               this.bloquear = false;
             }
-          });
+          },
+          error => this.alertas.push(new Alerta(0, TipoAlerta[4], error)));
     });
   }
 
@@ -63,7 +67,9 @@ export class EventoAlunoComponent extends BaseCrudComponent {
     this.service.Get('/aluno/AdicionarEquipe', `${this.idAluno}/${this.idEquipe}`).subscribe(
       () => {
         this.abrirTime = false;
+        this.evento = null;
         setTimeout(() => { this.abrirTime = true }, 5);
+        this.ObterEquipeCadastrada();
       });
   }
 

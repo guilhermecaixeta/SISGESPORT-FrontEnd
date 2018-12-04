@@ -1,0 +1,10 @@
+<form [formGroup]="formulario" novalidate>
+  <div class="row">
+    <div *ngFor="let aluno of listaJogador">
+      <app-input-label id="item16" legenda="Nome" [valor]="aluno?.nome"></app-input-label>
+      <app-input-label id="item17" legenda="Sexo" [valor]="aluno?.sexo"></app-input-label>
+      <app-input-label id="item18" legenda="Nº Camisa" [valor]="aluno?.numCamisa"></app-input-label>
+      <app-input-label id="item19" legenda="Posição" [valor]="aluno?.posicao"></app-input-label>
+    </div>
+  </div>
+</form>

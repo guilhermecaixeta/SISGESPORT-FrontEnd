@@ -18,6 +18,7 @@ const routes: Routes = [
             { path: 'esporte', loadChildren: './esporte/esporte.module#EsporteModule' },
             { path: 'gerenciar-evento', loadChildren: './gerenciar-evento/gerenciar-evento.module#GerenciarEventoModule' },
             { path: 'evento', loadChildren: './evento-aluno/evento-aluno.module#EventoAlunoModule' },
+            { path: 'time', loadChildren: './time-aluno/time-aluno.module#TimeAlunoModule' }
         ]
     }
 ];

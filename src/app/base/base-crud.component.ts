@@ -79,12 +79,13 @@ export class BaseCrudComponent extends BaseComponent {
      * Metodo de persistencia do sistema. A variaval ação diz qual deve ser a ação realizada pelo método.
      * @param obj Objeto a ser persisitido
      */
-    Persistir<T>(obj: any) {
+    Persistir<T>(obj: any, rota?: string, acao?: string) {
+        this.acao = !isNullOrUndefined(acao)? acao : this.acao;
         this.acao == 'cadastrar' ?
-            this.service.Post<T>(this.rota, obj).subscribe(
+            this.service.Post<T>(!isNullOrUndefined(rota) ? rota : this.rota, obj).subscribe(
                 () => this.router.navigate(['../'], { relativeTo: this.activatedRoute }),
                 err => this.alertas.push(new Alerta(this.alertas.length + 1, TipoAlerta[4], err))
-            ) : this.service.Put<T>(this.rota, obj.id, obj).subscribe(
+            ) : this.service.Put<T>(!isNullOrUndefined(rota) ? rota : this.rota, obj.id, obj).subscribe(
                 () => this.router.navigate(['../../'], { relativeTo: this.activatedRoute }),
                 err => this.alertas.push(new Alerta(this.alertas.length + 1, TipoAlerta[4], err))
             );
