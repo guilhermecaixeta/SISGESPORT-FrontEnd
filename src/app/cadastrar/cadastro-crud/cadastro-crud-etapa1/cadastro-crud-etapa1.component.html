@@ -33,6 +33,7 @@
         <div class="form-group" *ngIf="rota == 'aluno'">
             <label>Curso</label>
             <select class="form-control select-underline input-lg" formControlName="curso">
+                <option value="0"></option>
                 <option *ngFor="let curso of cursoLista" [value]="curso.id">{{curso.nome}}</option>
             </select>
             <app-validator [field]="formulario.controls.curso"></app-validator>
@@ -40,6 +41,7 @@
         <div class="form-group" *ngIf="rota == 'aluno'">
             <label>Turma</label>
             <select class="form-control select-underline input-lg" formControlName="turma">
+                <option value="0"></option>
                 <option *ngFor="let turma of turmaLista" [value]="turma.id">{{turma.nome}}</option>
             </select>
             <app-validator [field]="formulario.controls.turma"></app-validator>
