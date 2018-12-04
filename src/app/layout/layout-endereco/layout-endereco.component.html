@@ -1,6 +1,12 @@
 <form [formGroup]="formulario" novalidate>
     <div class="form-content">
         <div class="row">
+            <div class="form-group col-12 col-md-6 col-lg-3">
+              <label></label>
+                <input type="text" clearIfNotMatch="true" mask="00000-000" class="form-control" formControlName="cep"
+                    placeholder="CEP">
+                <app-validator [field]="formulario.controls.cep"></app-validator>
+            </div>          
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="form-group">
                     <label>Estado</label>
@@ -18,15 +24,7 @@
                     </select>
                     <app-validator [field]="formulario.controls.municipio"></app-validator>
                 </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-3">
-                <label></label>
-                <div class="form-group">
-                    <input type="text" clearIfNotMatch="true" mask="00000-000" class="form-control" formControlName="cep"
-                        placeholder="CEP">
-                    <app-validator [field]="formulario.controls.cep"></app-validator>
-                </div>
-            </div>
+            </div>            
             <div class="col-12 col-md-12 col-lg-12">
                 <div class="form-group">
                     <input type="text" class="form-control " formControlName="logradouro" placeholder="Logradouro">
