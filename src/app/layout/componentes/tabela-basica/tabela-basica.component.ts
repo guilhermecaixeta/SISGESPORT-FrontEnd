@@ -11,16 +11,61 @@ import { Alerta } from '../../../model/alerta.model';
 })
 export class TabelaBasicaComponent extends BaseComponent {
 
+  /**
+   * Desabilita todas as ações.
+   */
+  @Input() desabilitarAcao: boolean = false;
+  /**
+   * Tipo de ordenação a ser usada
+   */
+  @Input() sort: string = "DESC";
+  /**
+   * Atributo usado para a ordenação
+   */
+  @Input() order: string = "id";
+  /**
+   * Rota a ser usada para obter os dados da lista
+   */
   @Input() route: string = "";
+  /**
+   * Variavel usada para identificar se os dados serão obtidos através da rota
+   */
   @Input() useRoute: boolean = true;
+  /**
+   * Dado usado para obter os registros 
+   */
   @Input() dataRoute: any;
+  /**
+   * Nome do atributo do objeto que será utilizado para as ações de editar e visualizar
+   */
   @Input() field: string = "id";
+  /**
+   * Legenda a ser exibida
+   */
   @Input() legenda: string = '';
+  /**
+   * Lista com os registros a serem exibidos na grid
+   */
   @Input() listaValorCampo: any[] = [];
+  /**
+   * Lista contando o cabeçalho e o nome do atributo a ser exibido na grid
+   */
   @Input() listaNomeCampo: DadosTabela[] = [];
+  /**
+   * Objeto que contém funções especificas de cada componente que utiliza a grid para exibição de registro
+   */
   @Input() funcaoEspecifica: any = null;
+  /**
+   * Desabilita o botão de edição
+   */
   @Input() desabilitarEdicao: boolean = false;
+  /**
+   * Desabilita o botão de visualização
+   */
   @Input() desabilitarVisualizacao: boolean = false;
+  /**
+   * Desabilita o bot]ao de deleção
+   */
   @Input() desabilitarDelecao: boolean = false;
   /**
    * Retorna os dados para realizar uma deleção customizada.
@@ -32,8 +77,8 @@ export class TabelaBasicaComponent extends BaseComponent {
     totalElements: 0,
     page: 0,
     size: 10,
-    order: "id",
-    sort: "DESC",
+    order: this.order,
+    sort: this.sort,
   };
 
   ngOnInit() {
@@ -51,8 +96,8 @@ export class TabelaBasicaComponent extends BaseComponent {
         totalElements: 0,
         page: this.paginaAnterior,
         size: 10,
-        order: "id",
-        sort: "DESC",
+        order: this.order,
+        sort: this.sort,
       });
     }
   }
@@ -100,8 +145,8 @@ export class TabelaBasicaComponent extends BaseComponent {
                 totalElements: 0,
                 page: this.paginaAnterior,
                 size: 10,
-                order: "id",
-                sort: "DESC",
+                order: this.order,
+                sort: this.sort,
               })
             },
             err => this.alertas.push(new Alerta(this.ObterIdPorTamanhoLista(this.alertas), TipoAlerta[4], err)));

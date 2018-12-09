@@ -48,6 +48,13 @@ export class BarraLateralComponent implements OnInit {
       nestedsMenus: null
     },
     {
+      IClass: 'fa fa-trophy',
+      legend: 'Classificação',
+      router: '/classificacao',
+      perfil: PerfilSistema.ROLE_USER,
+      nestedsMenus: null
+    },
+    {
       IClass: 'fa fa-fw fa-bank',
       legend: 'Instituição',
       router: '/instituicao',
@@ -117,7 +124,14 @@ export class BarraLateralComponent implements OnInit {
           nestedsMenus: null
         },
         {
-          IClass: 'fa fa-sitemap',
+          IClass: 'fa fa-trophy',
+          legend: 'Classificação',
+          router: '/gerenciar-evento/classificacao',
+          perfil: PerfilSistema.ROLE_ADMIN,
+          nestedsMenus: null
+        },
+        {
+          IClass: 'fa fa-newspaper-o',
           legend: 'Informação Evento',
           router: '/gerenciar-evento/informacao-evento',
           perfil: PerfilSistema.ROLE_ADMIN,

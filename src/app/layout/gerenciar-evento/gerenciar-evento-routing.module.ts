@@ -17,6 +17,7 @@ const routes: Routes = [
           { path: 'time', loadChildren: './time/time.module#TimeModule' },
           { path: 'jogador', loadChildren: './jogador/jogador.module#JogadorModule' },
           { path: 'partida', loadChildren: './partida/partida.module#PartidaModule' },
+          { path: 'classificacao', loadChildren: './classificacao/classificacao.module#ClassificacaoModule' },
           { path: 'informacao-evento', loadChildren: './informacao-evento/informacao-evento.module#InformacaoEventoModule' }
         ]
       }

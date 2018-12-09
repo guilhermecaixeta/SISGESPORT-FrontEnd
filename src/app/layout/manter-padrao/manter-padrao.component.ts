@@ -9,6 +9,18 @@ import { DadosTabela } from '../../model/tabela';
 })
 export class ManterPadraoComponent extends BaseComponent {
 
+  /**
+   * Desabilita todas as ações.
+   */
+  @Input() desabilitarAcao: boolean = false;
+  /**
+  * Tipo de ordenação a ser usada
+  */
+  @Input() sort: string = "DESC";
+  /**
+   * Atributo usado para a ordenação
+   */
+  @Input() order: string = "id";
   @Output() acaoTabela: EventEmitter<any> = new EventEmitter<any>();
   @Input() desabilitarEdicao: boolean = false;
   @Input() desabilitarVisualizacao: boolean = false;

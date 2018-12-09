@@ -19,6 +19,7 @@ const routes: Routes = [
             { path: 'gerenciar-evento', loadChildren: './gerenciar-evento/gerenciar-evento.module#GerenciarEventoModule' },
             { path: 'evento', loadChildren: './evento-aluno/evento-aluno.module#EventoAlunoModule' },
             { path: 'time', loadChildren: './time-aluno/time-aluno.module#TimeAlunoModule' },
+            { path: 'classificacao', loadChildren: './classificacao-aluno/classificacao-aluno.module#ClassificacaoAlunoModule' },
             { path: 'partida', loadChildren: './partida-aluno/partida-aluno.module#PartidaAlunoModule' }
         ]
     }

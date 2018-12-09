@@ -9,13 +9,13 @@
           <thead>
             <tr>
               <th *ngFor="let nome of listaNomeCampo">{{nome.nomeColuna}}</th>
-              <th style="text-align:center">Ação</th>
+              <th *ngIf="!desabilitarAcao" style="text-align:center">Ação</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let valor of listaValorCampo; let nome = listaNomeCampo; index as i">
               <td *ngFor="let nome of listaNomeCampo">{{valor[nome.nomeValorColuna]}}</td>
-              <td style="text-align:center">
+              <td *ngIf="!desabilitarAcao" style="text-align:center">
                 <div>
                   <a *ngIf="!desabilitarEdicao" href="javascript:void(0)" class="in col-1" (click)="AcaoGrid($event, valor, i)"
                     ngbTooltip="Editar" id="editar">

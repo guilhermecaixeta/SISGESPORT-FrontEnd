@@ -6,7 +6,8 @@
       </div>
       <div class="col-12">
         <br />
-        <app-tabela-basica *ngIf="exibirGrid" [desabilitarEdicao]="desabilitarEdicao" [desabilitarVisualizacao]="desabilitarVisualizacao"
+        <app-tabela-basica *ngIf="exibirGrid" [order]="order" [sort]="sort" [desabilitarAcao]="desabilitarAcao"
+          [desabilitarEdicao]="desabilitarEdicao" [desabilitarVisualizacao]="desabilitarVisualizacao"
           [desabilitarDelecao]="desabilitarDelecao" (acaoTabela)="emitirAcao($event)" [useRoute]="useRoute"
           [funcaoEspecifica]="funcaoEspecifica" [listaNomeCampo]="listaNomeCampo" [listaValorCampo]="listaValorCampo"
           [dataRoute]="dataRoute" [field]="field" [legenda]="legendaTabela" [route]="rotaGrid" legenda="Instituição"></app-tabela-basica>

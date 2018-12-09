@@ -1,0 +1,22 @@
+<div [@routerTransition]>
+  <div class="row">
+    <div class="col-12 col-md-12 col-lg-6">
+      <label><b>Selecione o Evento:</b></label>
+      <select class="form-control form-control-sm" [(ngModel)]="idEvento" (ngModelChange)="BuscarModalidade()">
+        <option *ngFor="let evento of listaEvento" [value]="evento.id">{{evento.nome}}</option>
+      </select>
+    </div>
+    <div *ngIf="idEvento > 0" class="col-12 col-md-12 col-lg-6">
+      <label><b>Selecione a Modalidade:</b></label>
+      <select class="form-control form-control-sm" [(ngModel)]="idModalidade" (ngModelChange)="BuscarTime()">
+        <option *ngFor="let modal of listaModalidade" [value]="modal.id">{{modal.nome}}</option>
+      </select>
+    </div>
+    <br />
+    <div class="col-12 col-md-12 col-lg-12">
+      <app-manter-padrao order="pontuacao" desabilitarAdicionar="{desabilitarAdicionar: true}" desabilitarAcao="{desabilitarAcao: true}"
+        [exibirGrid]="abrirTime" [listaNomeCampo]="listaNomeCampo" [funcaoEspecifica]="funcaoEspecifica" [dataRoute]="data"
+        rotaPadrao="BuscarPorEventoIdPaginavel" legendaTabela="Classificação" rota="time"></app-manter-padrao>
+    </div>
+  </div>
+</div>
