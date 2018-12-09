@@ -41,6 +41,13 @@ export class BarraLateralComponent implements OnInit {
       nestedsMenus: null
     },
     {
+      IClass: 'fa fa-users',
+      legend: 'Partida',
+      router: '/partida',
+      perfil: PerfilSistema.ROLE_USER,
+      nestedsMenus: null
+    },
+    {
       IClass: 'fa fa-fw fa-bank',
       legend: 'Instituição',
       router: '/instituicao',
@@ -69,13 +76,13 @@ export class BarraLateralComponent implements OnInit {
       nestedsMenus: null
     },
     {
-      IClass: 'fa fa-users',
+      IClass: 'fa fa-cogs',
       legend: 'Gerenciar Evento',
       router: '/gerenciar-evento',
       perfil: PerfilSistema.ROLE_ADMIN,
       nestedsMenus: [
         {
-          IClass: 'fa fa-users',
+          IClass: 'fa fa-bank',
           legend: 'Evento',
           router: '/gerenciar-evento/evento',
           perfil: PerfilSistema.ROLE_ADMIN,
@@ -89,23 +96,30 @@ export class BarraLateralComponent implements OnInit {
           nestedsMenus: null
         },
         {
-          IClass: '	fa fa-soccer-ball-o',
+          IClass: 'fa fa-user',
           legend: 'Time',
           router: '/gerenciar-evento/time',
           perfil: PerfilSistema.ROLE_ADMIN,
           nestedsMenus: null
         },
         {
-          IClass: 'fa fa-user',
+          IClass: 'fa fa-user-plus',
           legend: 'Jogador',
           router: '/gerenciar-evento/jogador',
           perfil: PerfilSistema.ROLE_ADMIN,
           nestedsMenus: null
         },
         {
-          IClass: 'fa fa-users',
+          IClass: 'fa fa-sitemap',
           legend: 'Partida',
           router: '/gerenciar-evento/partida',
+          perfil: PerfilSistema.ROLE_ADMIN,
+          nestedsMenus: null
+        },
+        {
+          IClass: 'fa fa-sitemap',
+          legend: 'Informação Evento',
+          router: '/gerenciar-evento/informacao-evento',
           perfil: PerfilSistema.ROLE_ADMIN,
           nestedsMenus: null
         }

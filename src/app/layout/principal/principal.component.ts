@@ -21,17 +21,16 @@ export class PrincipalComponent implements OnInit {
                 html: 'http://ifg.edu.br/luziania/'
             },
             {
-                imagePath: 'assets/images/slider2.jpg',
-                label: 'Second slide label',
+                imagePath: 'assets/images/esporte-1.jpg',
+                label: 'Saiba mais sobre os eventos',
                 text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                html: '#'
+                html: 'http://localhost:4200/gerenciar-evento/evento'
             },
             {
-                imagePath: 'assets/images/slider3.jpg',
-                label: 'Third slide label',
-                text:
-                    'Praesent commodo cursus magna, vel scelerisque nisl consectetur.',
-                html: '#'
+                imagePath: 'assets/images/esporte-2.jpg',
+                label: 'Saiba mais sobre as modalidade',
+                text:'Praesent commodo cursus magna, vel scelerisque nisl consectetur.',
+                html: 'http://localhost:4200/esporte/modalidade'
             }
         );
 

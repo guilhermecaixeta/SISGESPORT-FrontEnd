@@ -1,5 +1,5 @@
 import { Jogador } from './../../../model/jogador.model';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BaseCrudComponent } from '../../../base';
 import { Validators } from '@angular/forms';
 import { routerTransition } from '../../../router.animations';
@@ -26,15 +26,8 @@ export class TimeAlunoCrudComponent extends BaseCrudComponent {
     id: [null]
   });
 
-  iniciar() {
-    this.observablePadrao.getValue.subscribe(x => {
-      if (x)
-        this.formulario.get('id').setValue(x.data.id);
-      this.formulario.get('id_time').setValue(this.id);
-    });
-  }
   aposIniciar() {
-    this.service.Get('posicao/BuscarPorModalidadeId', this.objetoRetorno.modalidade.id).subscribe(object => {
+    this.service.Get('posicao/BuscarPorModalidadeId', this.objetoRetorno.eventoModalidade.modalidade.id).subscribe(object => {
       this.listaPosicao = object.data;
     });
     this.service.Get('aluno/BuscarPorIdEquipe', this.objetoRetorno.equipe.id).subscribe(object => {
@@ -48,6 +41,13 @@ export class TimeAlunoCrudComponent extends BaseCrudComponent {
         jogador.posicao = jogador.posicao.nome;
       });
     }
+
+    this.observablePadrao.getValue.subscribe(x => {
+      if (x) {
+        this.formulario.get('id').setValue(x.data.id);
+      }
+    });
+    this.formulario.get('id_time').setValue(+this.id);
   }
 
   Finalizar() {

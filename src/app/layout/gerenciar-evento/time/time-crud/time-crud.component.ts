@@ -46,7 +46,7 @@ export class TimeCrudComponent extends BaseCrudComponent {
   }
 
   aposIniciar() {
-    this.service.Get('posicao/BuscarPorModalidadeId', this.objetoRetorno.modalidade.id).subscribe(object => {
+    this.service.Get('posicao/BuscarPorModalidadeId', this.objetoRetorno.eventoModalidade.modalidade.id).subscribe(object => {
       this.listaPosicao = object.data;
     });
     this.service.Get('aluno/BuscarPorIdEquipe', this.objetoRetorno.equipe.id).subscribe(object => {

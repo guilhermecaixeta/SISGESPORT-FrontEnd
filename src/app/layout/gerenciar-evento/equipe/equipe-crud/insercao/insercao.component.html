@@ -2,20 +2,16 @@
   <!-- Evento -->
   <fieldset formGroupName="equipe">
     <div class="row">
-      <div class="col-12 col-md-6 col-lg-6">
+      <div class="form-group col-12 col-md-6 col-lg-6">
         <label>Nome Equipe</label>
-        <div class="form-group">
-          <input type="text" class="form-control " formControlName="nome" placeholder="Nome">
-          <app-validator [field]="formulario.get('equipe.nome')"></app-validator>
-        </div>
+        <input type="text" class="form-control " formControlName="nome" placeholder="Nome">
+        <app-validator [field]="formulario.get('equipe.nome')"></app-validator>
       </div>
-      <div class="col-6 col-md-2 col-lg-2">
+      <div class="form-group col-6 col-md-2 col-lg-2">
         <label>Cor</label>
-        <div class="form-group">
-          <input type="text" [(colorPicker)]="cor" [style.background]="cor" class="form-control" formControlName="cor"
-            (colorPickerChange)="formulario.get('equipe.cor').setValue($event)">
-          <app-validator [field]="formulario.get('equipe.cor')"></app-validator>
-        </div>
+        <input type="text" [(colorPicker)]="cor" [style.background]="cor" class="form-control" formControlName="cor"
+          (colorPickerChange)="formulario.get('equipe.cor').setValue($event)">
+        <app-validator [field]="formulario.get('equipe.cor')"></app-validator>
       </div>
       <div class="col-12 col-md-12 col-lg-12"></div>
       <app-input-label id="item2" legenda="Código Equipe" [valor]="formulario.value?.equipe?.codigoEquipe"></app-input-label>

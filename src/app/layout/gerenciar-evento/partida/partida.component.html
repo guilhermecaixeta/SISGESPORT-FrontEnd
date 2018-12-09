@@ -8,8 +8,9 @@
     </div>
     <div class="col-12 col-md-12 col-lg-12">
       <br />
-      <app-manter-padrao [exibirGrid]="abrirPartida" [funcaoEspecifica]="funcaoEspecifica" [dataRoute]="idEvento"
-        [listaNomeCampo]="listaNomeCampo" rotaPadrao="BuscarPorEventoIdPaginavel" legendaTabela="Partida" rota="partida"></app-manter-padrao>
+      <app-manter-padrao [exibirGrid]="abrirPartida" [desabilitarAdicionar]="!isAdmin" [desabilitarEdicao]="!isAdmin"
+        [desabilitarDelecao]="!isAdmin" [funcaoEspecifica]="funcaoEspecifica" [dataRoute]="idEvento" [listaNomeCampo]="listaNomeCampo"
+        rotaPadrao="BuscarPorEventoIdPaginavel" legendaTabela="Partida" rota="partida"></app-manter-padrao>
     </div>
   </div>
 </div>

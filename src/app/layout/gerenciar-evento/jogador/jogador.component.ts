@@ -37,7 +37,7 @@ export class JogadorComponent extends BaseComponent {
     lista.forEach(x => {
       x.jogador = x.jogador.nome;
       x.posicao = x.posicao.nome;
-      x.modalidade = x.time.modalidade.nome;
+      x.modalidade = x.time.eventoModalidade.modalidade.nome;
     });
     return lista;
   }

@@ -14,7 +14,7 @@ export class Pessoa extends EntidadeComum {
 
     constructor(obj: any) {
         super();
-        this.id = obj.id;
+        this.id = +obj.id;
         this.nome = obj.nome;
         this.sexo = obj.sexo;
         this.dataNascimento =  this.ConverterDateParaString(obj, 'dataNascimento');

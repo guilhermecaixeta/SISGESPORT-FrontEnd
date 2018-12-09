@@ -1,3 +1,4 @@
+import { Jogador } from './../../../../model/jogador.model';
 import { Aluno } from './../../../../model/aluno.model';
 import { BaseCrudComponent } from './../../../../base/base-crud.component';
 import { Component } from '@angular/core';
@@ -42,7 +43,7 @@ export class JogadorCrudComponent extends BaseCrudComponent {
   }
 
   aposIniciar() {
-    let idModalidade = this.objetoRetorno.time.modalidade.id;
+    let idModalidade = this.objetoRetorno.time.eventoModalidade.modalidade.id;
     let idEvento = this.objetoRetorno.time.equipe.evento.id;
     this.service.Get('posicao/BuscarPorModalidadeId', idModalidade)
       .subscribe(object => this.listaPosicao = object.data);
@@ -56,6 +57,9 @@ export class JogadorCrudComponent extends BaseCrudComponent {
     this.formulario.get('jogador.idPosicao').setValue(this.objetoRetorno.posicao.id);
     this.aluno = this.objetoRetorno.jogador;
   }
-  
-  Finalizar(){}
+
+  Finalizar() {
+    let jogador = new Jogador(this.formulario.value);
+    this.Persistir<Jogador>(jogador);
+  }
 }

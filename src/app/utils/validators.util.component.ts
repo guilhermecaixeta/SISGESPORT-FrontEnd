@@ -106,11 +106,34 @@ export function ComparerBetweenDate(dateComparerMoreThan: FormControl, dateCompa
     return function (control: FormControl) {
         if (control.value && control.value.year && dateComparerMoreThan.value && dateComparerMoreThan.value.year
             && dateComparerLessThan.value && dateComparerLessThan.value.year) {
-            let data = new Date(`${control.value.year}-${control.value.month}-${control.value.day}`);
+            let data = new Date(`${control.value.year}-${control.value.month}-${control.value.day} 00:00`);
             let dataComparacaoMaiorQue = new Date(`${dateComparerMoreThan.value.year}-${dateComparerMoreThan.value.month}-${dateComparerMoreThan.value.day}`);
             let dataComparacaoMenorQue = new Date(`${dateComparerLessThan.value.year}-${dateComparerLessThan.value.month}-${dateComparerLessThan.value.day}`);
-            if (dataComparacaoMaiorQue < data && data > dataComparacaoMenorQue)
-                return { dateLessThen: `O campo deve está entre as datas: ${dataComparacaoMaiorQue.toDateString()} e ${dataComparacaoMenorQue.toDateString()}.` }
+            if (dataComparacaoMaiorQue > data || data > dataComparacaoMenorQue)
+                return {
+                    dateLessThen: `O campo deve está entre as datas: ${dataComparacaoMaiorQue.toLocaleString()}
+                 e ${dataComparacaoMenorQue.toLocaleString()}.`
+                }
+        }
+    }
+}
+
+/**
+ * Compara se o valor está entre duas datas passadas.
+ * @param dateComparerMoreThan Data maior que..
+ * @param dateComparerLessThan Data menor que..
+ */
+export function ComparerBetweenDateII(dateComparerMoreThan: Date, dateComparerLessThan: Date) {
+    return function (control: FormControl) {
+        if (control.value && control.value.year) {
+            let data = new Date(`${control.value.year}-${control.value.month}-${control.value.day} 00:00`);
+            let dataComparacaoMaiorQue = new Date(dateComparerMoreThan.getFullYear(), dateComparerMoreThan.getMonth(), dateComparerMoreThan.getDate());
+            let dataComparacaoMenorQue = dateComparerLessThan;
+            if (dataComparacaoMaiorQue > data || data > dataComparacaoMenorQue)
+                return {
+                    dateLessThen: `O campo deve está entre as datas: ${dateComparerMoreThan.toLocaleString()} 
+                e ${dataComparacaoMenorQue.toLocaleString()}.`
+                }
         }
     }
 }

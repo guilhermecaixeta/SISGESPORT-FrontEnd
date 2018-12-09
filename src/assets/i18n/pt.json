@@ -21,5 +21,13 @@
     "Turma": "Turma",
     "Esporte": "Esporte",
     "Tipo-Ponto": "Tipo-Ponto",
-    "Penalidade": "Penalidade"
+    "Penalidade": "Penalidade",
+    "Posição": "Posição",
+    "Modalidade":"Modalidade",
+    "Evento": "Evento",
+    "Time": "Time",
+    "Partida":"Partida",
+    "Gerenciar Evento":"Gerenciar Evento",
+    "Equipe":"Equipe",
+    "Jogador":"Jogador"
 }

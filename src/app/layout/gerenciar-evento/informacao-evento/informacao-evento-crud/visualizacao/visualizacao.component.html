@@ -1,0 +1,8 @@
+<form [formGroup]="formulario">
+  <div class="row">
+    <app-input-label legenda="Evento" valor="{{ObterItemPorId(listaEvento, formulario.value?.evento)['nome']}}"></app-input-label>
+    <app-input-label legenda="Tipo Informação" valor="{{formulario.value?.tipoInformacao == 'P'? 'Principal':'Secundária'}}"></app-input-label>
+    <app-input-label legenda="Título" [valor]="formulario.value?.titulo"></app-input-label>
+    <app-input-label legenda="Descrição" [valor]="formulario.value?.descricao"></app-input-label>
+  </div>
+</form>

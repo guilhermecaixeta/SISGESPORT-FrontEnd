@@ -25,6 +25,7 @@ import { ManterPadraoModule } from '../../manter-padrao/manter-padrao.module';
     NgxMaskModule.forRoot(),
     ComponentesFormularioModule
   ],
-  declarations: [PartidaComponent, PartidaCrudComponent, InsercaoComponent, VisualizacaoComponent]
+  declarations: [PartidaComponent, PartidaCrudComponent, InsercaoComponent, VisualizacaoComponent],
+  exports: [PartidaComponent, PartidaCrudComponent, InsercaoComponent, VisualizacaoComponent]
 })
 export class PartidaModule { }

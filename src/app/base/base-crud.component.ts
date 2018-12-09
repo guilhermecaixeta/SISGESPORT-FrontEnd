@@ -80,7 +80,7 @@ export class BaseCrudComponent extends BaseComponent {
      * @param obj Objeto a ser persisitido
      */
     Persistir<T>(obj: any, rota?: string, acao?: string) {
-        this.acao = !isNullOrUndefined(acao)? acao : this.acao;
+        this.acao = !isNullOrUndefined(acao) ? acao : this.acao;
         this.acao == 'cadastrar' ?
             this.service.Post<T>(!isNullOrUndefined(rota) ? rota : this.rota, obj).subscribe(
                 () => this.router.navigate(['../'], { relativeTo: this.activatedRoute }),

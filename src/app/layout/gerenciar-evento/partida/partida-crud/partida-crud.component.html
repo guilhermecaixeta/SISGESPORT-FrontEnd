@@ -1,9 +1,10 @@
 <div class="container-fluid" [@routerTransition]>
   <fieldset>
     <legend>Partida</legend>
-    <app-insercao [exibirTimeCasa]="exibirTimeCasa" [exibirTimeVisita]="exibirTimeVisita" [exibirModalidade]="exibirModalidade"
-      [listaModalidade]="listaModalidade" [listaTimeVisita]="listaTimeVisita" [listaTimeCasa]="listaTimeCasa"
-      [listaServidor]="listaServidor" [listaEvento]="listaEvento" [formulario]="formulario" [acao]="acao" *ngIf="etapa == 0"></app-insercao>
+    <app-insercao [exibirTimeCasa]="exibirTimeCasa" [exibirTimeVisita]="exibirTimeVisita"
+      [exibirModalidade]="exibirModalidade" [listaModalidade]="listaModalidade" [listaTimeVisita]="listaTimeVisita"
+      [listaTimeCasa]="listaTimeCasa" [listaServidor]="listaServidor" [listaEvento]="listaEvento" [formulario]="formulario"
+      [acao]="acao" *ngIf="etapa == 0"></app-insercao>
     <app-visualizacao [listaModalidade]="listaModalidade" [listaTimeCasa]="listaTimeCasa" [listaServidor]="listaServidor"
       [listaEvento]="listaEvento" [formulario]="formulario" [acao]="acao" *ngIf="etapa == 1"></app-visualizacao>
   </fieldset>

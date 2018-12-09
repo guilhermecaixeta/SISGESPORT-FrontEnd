@@ -11,9 +11,10 @@ import { TipoAlerta } from '../../../../../enum/sisgesport.enum';
   styleUrls: ['./insercao.component.scss']
 })
 export class InsercaoComponent extends BaseEtapaComponent {
-  @Input() listaJogador: any[] = [];
-  @Input() listaPosicao: any[] = [];
-  @Input() listaAluno: any[] = [];
+  @Input() listaJogador: any[];
+  @Input() listaPosicao: any[];
+  @Input() listaAluno: any[];
+  @Input() sexo: string;
   mesmoSexo: boolean;
   desabilitar: boolean = true;
   listaNomeCampo: DadosTabela[] = [
@@ -23,14 +24,14 @@ export class InsercaoComponent extends BaseEtapaComponent {
     { nomeColuna: 'Sexo', nomeValorColuna: 'sexo' }
   ];
 
-  iniciar() { }
+  iniciar() {   }
 
   validar(lista: any[]): boolean {
     let retorno: boolean = true;
     if (lista.length > 0) {
       let aluno = this.ObterItemPorId(this.listaAluno, this.formulario.get('jogador.id').value);
-      if (isNullOrUndefined(lista.find(x => x.sexo == aluno.sexo))) {
-        this.alerta = new Alerta(1, TipoAlerta[4], 'Todos os alunos desse time devem ter o mesmo sexo!');
+      if (this.sexo !== aluno.sexo ) {
+        this.alerta = new Alerta(1, TipoAlerta[4], 'Sexo do jogador diferente do permitido para o time!');
         return false;
       }
       let objetoVerificacao = lista.find(x => x.id == aluno.id);

@@ -8,8 +8,8 @@ import { PartidaComponent } from './partida.component';
 const routes: Routes = [
   {
     path: '',
-    data: { perfil: PerfilSistema.ROLE_ADMIN },
     canActivateChild: [AuthGuard],
+    data: { perfil: PerfilSistema.ROLE_ADMIN },
     children: [
       { path: '', component: PartidaComponent },
       { path: ':acao', component: PartidaCrudComponent },

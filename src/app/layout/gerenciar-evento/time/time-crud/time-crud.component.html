@@ -1,7 +1,7 @@
 <div class="container-fluid" [@routerTransition]>
   <fieldset>
     <legend>Time</legend>
-    <app-insercao [listaJogador]="listaJogador" [listaPosicao]="listaPosicao" [listaAluno]="listaAluno" [formulario]="formulario"
+    <app-insercao [sexo]="objetoRetorno?.eventoModalidade?.sexo"[listaJogador]="listaJogador" [listaPosicao]="listaPosicao" [listaAluno]="listaAluno" [formulario]="formulario"
       [acao]="acao" *ngIf="etapa == 0"></app-insercao>
     <app-visualizacao [listaJogador]="listaJogador" [formulario]="formulario" [acao]="acao" *ngIf="etapa == 1"></app-visualizacao>
   </fieldset>

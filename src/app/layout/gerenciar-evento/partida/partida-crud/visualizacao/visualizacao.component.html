@@ -1,16 +1,17 @@
 <form [formGroup]="formulario" novalidate>
   <div class="row">
-    <app-input-label id="item3" legenda="Data Partida" valor="{{ConvertObjectToDate(formulario.value?.dataPartida)}} "></app-input-label>
-    <app-input-label id="item1" legenda="Duração" [valor]="formulario.value?.duracaoPartida"></app-input-label>
+    <app-input-label *ngIf="formulario.value.dataPartida" legenda="Data Partida" valor="{{ConvertObjectToDate(formulario.value?.dataPartida)}} ás {{ConvertObjectToTime(formulario.value?.dataPartida)}}"></app-input-label>
+    <app-input-label legenda="Duração" [valor]="formulario.value?.duracaoPartida"></app-input-label>
     <small id="1" class="form-text text-muted">Em minutos.</small>
-    <app-input-label id="item2" legenda="Acréscimo" [valor]="formulario.value?.acrescimo"></app-input-label>
+    <app-input-label legenda="Acréscimo" [valor]="formulario.value?.acrescimo"></app-input-label>
     <small id="2" class="form-text text-muted">Em minutos.</small>
-    <app-input-label id="item11" legenda="Juíz" [valor]="ObterItemPorId(listaServidor, formulario.value?.juiz)['nome']"></app-input-label>
+    <app-input-label *ngIf="listaServidor.length > 0" legenda="Juíz" [valor]="ObterItemPorId(listaServidor, formulario.value?.juiz)['nome']"></app-input-label>
     <div class="col-12 col-md-12 col-lg-12"></div>
-    <app-input-label id="item11" legenda="Evento" [valor]="ObterItemPorId(listaEvento, formulario.value?.evento)['nome']"></app-input-label>
-    <app-input-label id="item11" legenda="Modalidade" [valor]="ObterItemPorId(listaModalidade, formulario.value?.modalidade)['nome']"></app-input-label>
-    <app-input-label *ngIf="listaTimeCasa.length > 0" id="item11" legenda="Time" [valor]="ObterItemPorId(listaTimeCasa, formulario.value?.timeCasa)['equipe'].nome"></app-input-label>
-    <app-input-label id="item11" legenda="Vs"></app-input-label>
-    <app-input-label *ngIf="listaTimeCasa.length > 0" id="item11" legenda="Time" [valor]="ObterItemPorId(listaTimeCasa, formulario.value?.timeVisita)['equipe'].nome"></app-input-label>
+    <app-input-label *ngIf="listaEvento.length > 0" legenda="Evento" [valor]="ObterItemPorId(listaEvento, formulario.value?.evento)['nome']"></app-input-label>
+    <app-input-label *ngIf="listaModalidade.length > 0 && formulario.value.modalidade > 0" legenda="Modalidade" [valor]="ObterItemPorId(listaModalidade, formulario.value?.modalidade, 'idModalidadeEvento')['nome']"></app-input-label>
+    <app-input-label *ngIf="listaTimeCasa.length > 0" legenda="Time" [valor]="ObterItemPorId(listaTimeCasa, formulario.value?.timeCasa)['equipe'].nome"></app-input-label>
+    <app-input-label legenda="Vs"></app-input-label>
+    <app-input-label *ngIf="listaTimeCasa.length > 0 && formulario.value.timeVisita > 0" id="item11" legenda="Time"
+      [valor]="ObterItemPorId(listaTimeCasa, formulario.value.timeVisita)['equipe'].nome"></app-input-label>
   </div>
 </form>

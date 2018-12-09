@@ -21,5 +21,13 @@
     "Turma": "Class",
     "Esporte": "Sport",
     "Tipo-Ponto": "Type-Point",
-    "Penalidade": "Penalty"
+    "Penalidade": "Penalty",
+    "Posição": "Position",
+    "Modalidade":"Modality",
+    "Evento": "Event",
+    "Time": "Team",
+    "Partida":"Match",
+    "Gerenciar Evento":"Manage Event",
+    "Equipe":"Group",
+    "Jogador":"Player"
 }

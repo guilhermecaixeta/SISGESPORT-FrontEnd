@@ -21,7 +21,8 @@ export class TimeComponent extends BaseComponent {
     { nomeColuna: 'Vitória', nomeValorColuna: 'numVitoria' },
     { nomeColuna: 'Derrota', nomeValorColuna: 'numDerrota' },
     { nomeColuna: 'Empate', nomeValorColuna: 'numEmpate' },
-    { nomeColuna: 'Pontuação', nomeValorColuna: 'pontuacao' }
+    { nomeColuna: 'Pontuação', nomeValorColuna: 'pontuacao' },
+    { nomeColuna: 'Sexo', nomeValorColuna: 'sexo' }    
   ];
 
   iniciar() {
@@ -36,7 +37,8 @@ export class TimeComponent extends BaseComponent {
 
   executar(lista: any[]): any[] {
     lista.forEach(x => {
-      x.modalidade = x.modalidade.nome;
+      x.modalidade = x.eventoModalidade.modalidade.nome;
+      x.sexo = x.eventoModalidade.sexo;
     });
     return lista;
   }

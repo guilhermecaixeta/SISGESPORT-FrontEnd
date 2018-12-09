@@ -21,5 +21,13 @@
     "Turma": "Cuadrilla",
     "Esporte": "Deporte",
     "Tipo-Ponto": "Tipo-Punto",
-    "Penalidade": "Pena"
+    "Penalidade": "Pena",
+    "Posição": "Posición",
+    "Modalidade":"Modalidad",
+    "Evento": "Evento",
+    "Time": "Equipo",
+    "Partida":"Partida",
+    "Gerenciar Evento":"Gestión de Eventos",
+    "Equipe":"Grupo",
+    "Jogador":"Jugador"
 }

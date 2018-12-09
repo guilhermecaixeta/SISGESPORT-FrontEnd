@@ -238,4 +238,4 @@ export class BaseComponent implements OnInit {
     }
     this.emiteLista.emit(lista);
   }
-}
+ }
