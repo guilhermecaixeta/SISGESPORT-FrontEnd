@@ -117,7 +117,7 @@ export class BarraLateralComponent implements OnInit {
           nestedsMenus: null
         },
         {
-          IClass: 'fa fa-sitemap',
+          IClass: 'fa fa-newspaper-o',
           legend: 'Informação Evento',
           router: '/gerenciar-evento/informacao-evento',
           perfil: PerfilSistema.ROLE_ADMIN,
