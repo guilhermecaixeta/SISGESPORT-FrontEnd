@@ -7,7 +7,7 @@ export class Penalidade {
      *
      */
     constructor(obj: any) {
-        this.id = obj.id,
+        this.id = +obj.id,
         this.nome = obj.nome;
         this.descricao = obj.descricao;
     }

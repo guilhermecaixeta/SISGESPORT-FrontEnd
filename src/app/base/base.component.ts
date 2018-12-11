@@ -206,13 +206,14 @@ export class BaseComponent implements OnInit {
    * @param objeto item a ser adicionado a lista.
    * @param msg mensagem a ser exibida caso erro. 
    */
-  public AdicionarItem(lista: any[], objeto: any, resetarForm: boolean = true, msg: string = 'Esse item já foi adicionado!') {
+  public AdicionarItem(lista: any[], objeto: any, resetarForm: boolean = true, msg: string = 'Esse item já foi adicionado!'
+    , funcaoEspecifica: any = this.funcaoEspecifica) {
     let form = objeto as FormGroup;
     this.alerta = new Alerta(this.ObterIdPorTamanhoLista(lista), TipoAlerta[4], msg);
     if (form.valid) {
-      if (this.funcaoEspecifica.validar(lista)) {
+      if (funcaoEspecifica.validar(lista)) {
         lista.push(form.value);
-        lista = this.funcaoEspecifica.executar(lista);
+        lista = funcaoEspecifica.executar(lista);
       } else {
         this.alertas.push(this.alerta);
       }
@@ -229,13 +230,13 @@ export class BaseComponent implements OnInit {
    * @param index indice do item a ser deletado.
    * @param msg Mensagem a ser exibida caso erro.
    */
-  public DeletarItem(lista: any[], index: number, msg: string = 'Erro ao excluir o item!') {
+  public DeletarItem(lista: any[], index: number, msg: string = 'Erro ao excluir o item!', funcaoEspecifica: any = this.funcaoEspecifica) {
     if (lista.length > 0) {
-      if (this.funcaoEspecifica.validar(lista))
+      if (isNullOrUndefined(funcaoEspecifica) || funcaoEspecifica.validar(lista))
         lista.splice(index, 1);
     } else {
       this.alertas.push(new Alerta(this.ObterIdPorTamanhoLista(lista), TipoAlerta[4], msg));
     }
     this.emiteLista.emit(lista);
   }
- }
+}

@@ -7,7 +7,7 @@ export class TipoPonto {
      *
      */
     constructor(obj: any) {
-        this.id = obj.id;
+        this.id = +obj.id;
         this.nome = obj.nome;
         this.valor = obj.valor;
     }

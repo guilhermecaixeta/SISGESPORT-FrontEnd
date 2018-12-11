@@ -8,17 +8,17 @@
         <app-validator [field]="formulario.get('time.numVitoria')"></app-validator>
       </div>
       <div class="form-group col-12 col-md-6 col-lg-6">
-          <label>Nº de Derrota</label>
+        <label>Nº de Derrota</label>
         <input type="number" class="form-control " formControlName="numDerrota" placeholder="Quantidade de Derrotas">
         <app-validator [field]="formulario.get('time.numDerrota')"></app-validator>
       </div>
       <div class="form-group col-12 col-md-6 col-lg-6">
-          <label>Nº de Empate</label>
+        <label>Nº de Empate</label>
         <input type="number" class="form-control " formControlName="numEmpate" placeholder="Quantidade de Empates">
         <app-validator [field]="formulario.get('time.numEmpate')"></app-validator>
       </div>
       <div class="form-group col-12 col-md-6 col-lg-6">
-          <label>Pontuação</label>
+        <label>Pontuação</label>
         <input type="number" class="form-control " formControlName="pontuacao" placeholder="Pontuação">
         <app-validator [field]="formulario.get('time.pontuacao')"></app-validator>
       </div>
@@ -62,7 +62,7 @@
       <div class="col-12 col-md-12 col-lg-12">
         <app-manter-padrao [listaNomeCampo]="listaNomeCampo" legendaTabela="Jogadores" [funcaoEspecifica]="funcaoEspecifica"
           [desabilitarAdicionar]="desabilitar" [listaValorCampo]="listaJogador" [useRoute]="!desabilitar"
-          [desabilitarEdicao]="desabilitar" [desabilitarVisualizacao]="desabilitar" (acaoTabela)="DeletarItem(listaJogador, $event.index)"></app-manter-padrao>
+          [desabilitarEdicao]="desabilitar" [desabilitarVisualizacao]="desabilitar" (acaoTabela)="DeletarItem(listaJogador, $event.index, 'Erro ao excluir o item!', null)"></app-manter-padrao>
       </div>
     </div>
   </fieldset>

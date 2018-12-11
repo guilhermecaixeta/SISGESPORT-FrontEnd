@@ -56,8 +56,10 @@ export class TimeCrudComponent extends BaseCrudComponent {
     if (this.objetoRetorno.jogador.length > 0) {
       this.listaJogador = this.objetoRetorno.jogador;
       this.listaJogador.map(jogador => {
+        jogador.idAluno = jogador.jogador.id; 
         jogador.nome = jogador.jogador.nome;
         jogador.sexo = jogador.jogador.sexo;
+        jogador.id_posicao = jogador.posicao.id;  
         jogador.posicao = jogador.posicao.nome;
       });
     }
@@ -66,6 +68,7 @@ export class TimeCrudComponent extends BaseCrudComponent {
   Finalizar() {
     let time = new Time(this.formulario.get('time').value);
     time.AdicionarListaJogador(this.listaJogador);
+    // console.log(time);
     this.Persistir<Time>(time);
   }
 }

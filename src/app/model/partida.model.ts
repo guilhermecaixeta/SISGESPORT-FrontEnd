@@ -20,7 +20,7 @@ export class Partida extends DateTimeConversor {
      */
     constructor(obj: any) {
         super();
-        this.id = obj.id;
+        this.id = +obj.id;
         this.dataPartida = this.ConverterDateParaString(obj, 'dataPartida', true, 'dataPartidaHorario');
         this.duracaoPartida = obj.duracaoPartida;
         this.acrescimo = obj.acrescimo;

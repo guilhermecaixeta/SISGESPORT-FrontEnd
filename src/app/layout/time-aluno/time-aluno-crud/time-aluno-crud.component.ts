@@ -22,6 +22,7 @@ export class TimeAlunoCrudComponent extends BaseCrudComponent {
   formulario = this.construtorFormulario.group({
     id_posicao: [null, [Validators.required]],
     numCamisa: [null, [Validators.required]],
+    idAluno: [null],
     id_time: [null],
     id: [null]
   });
@@ -44,7 +45,7 @@ export class TimeAlunoCrudComponent extends BaseCrudComponent {
 
     this.observablePadrao.getValue.subscribe(x => {
       if (x) {
-        this.formulario.get('id').setValue(x.data.id);
+        this.formulario.get('idAluno').setValue(x.data.id);
       }
     });
     this.formulario.get('id_time').setValue(+this.id);

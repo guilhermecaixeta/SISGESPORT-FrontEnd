@@ -13,10 +13,10 @@
       </div>
       <div class="col-12 col-md-6 col-lg-4">
         <label><b>Selecione a Posição:</b></label>
-        <select class="form-control form-control-sm" formControlName="idPosicao">
+        <select class="form-control form-control-sm" formControlName="id_posicao">
           <option *ngFor="let posicao of listaPosicao" [value]="posicao.id">{{posicao.nome}}</option>
         </select>
-        <app-validator [field]="formulario.get('jogador.idPosicao')"></app-validator>
+        <app-validator [field]="formulario.get('jogador.id_posicao')"></app-validator>
       </div>
     </div>
   </fieldset>
@@ -32,7 +32,8 @@
             <div class="col-12 col-md-6 col-lg-4">
               <label><b>Selecione a Partida:</b></label>
               <select class="form-control form-control-sm" formControlName="idPartida">
-                <option *ngFor="let partida of listaPartida" [value]="partida.id">{{partida.nome}}</option>
+                <option *ngFor="let partida of listaPartida" [value]="partida.id">{{partida.timeCasa.equipe.nome +' x
+                  '+ partida.timeVisita.equipe.nome}}</option>
               </select>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
@@ -69,7 +70,8 @@
             <div class="col-12 col-md-6 col-lg-4">
               <label><b>Selecione a Partida:</b></label>
               <select class="form-control form-control-sm" formControlName="idPartida">
-                <option *ngFor="let partida of listaPartida" [value]="partida.id">{{partida.nome}}</option>
+                <option *ngFor="let partida of listaPartida" [value]="partida.id">{{partida.timeCasa.equipe.nome +' x
+                  '+ partida.timeVisita.equipe.nome}}</option>
               </select>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
@@ -81,17 +83,17 @@
             <div class="col-12 col-md-12 col-lg-12">
               <br />
               <div class="ui-g-9 ui-md-6 ui-lg-3">
-                <button type="button" class="btn btn-primary" style="float:right" (click)="AdicionarItem(listaPartidaPenalidade, 
-                        formulario.controls.penalidade, false)">
+                <button type="button" class="btn btn-primary" style="float:right" (click)="AdicionarItem(listaPartidaPonto, 
+                        formulario.controls.ponto, false, 'Esse item já foi adicionado!', funcaoPartidaPonto)">
                   Adicionar
                 </button>
               </div>
             </div>
             <div class="col-12 col-md-12 col-lg-12">
-              <app-manter-padrao [listaNomeCampo]="listaPontoCampo" legendaTabela="Penalidade Partida"
-                [funcaoEspecifica]="funcaoEspecificaII" [desabilitarAdicionar]="desabilitar" [listaValorCampo]="listaPartidaPonto"
+              <app-manter-padrao [listaNomeCampo]="listaPontoCampo" legendaTabela="Ponto Partida"
+                [funcaoEspecifica]="funcaoPartidaPonto" [desabilitarAdicionar]="desabilitar" [listaValorCampo]="listaPartidaPonto"
                 [useRoute]="!desabilitar" [desabilitarEdicao]="desabilitar" [desabilitarVisualizacao]="desabilitar"
-                (acaoTabela)="DeletarItem(listaPartidaPenalidade, $event.index)"></app-manter-padrao>
+                (acaoTabela)="DeletarItem(listaPartidaPonto, $event.index)"></app-manter-padrao>
             </div>
           </div>
         </fieldset>
