@@ -107,8 +107,8 @@ export function ComparerBetweenDate(dateComparerMoreThan: FormControl, dateCompa
         if (control.value && control.value.year && dateComparerMoreThan.value && dateComparerMoreThan.value.year
             && dateComparerLessThan.value && dateComparerLessThan.value.year) {
             let data = new Date(`${control.value.year}-${control.value.month}-${control.value.day} 00:00`);
-            let dataComparacaoMaiorQue = new Date(`${dateComparerMoreThan.value.year}-${dateComparerMoreThan.value.month}-${dateComparerMoreThan.value.day}`);
-            let dataComparacaoMenorQue = new Date(`${dateComparerLessThan.value.year}-${dateComparerLessThan.value.month}-${dateComparerLessThan.value.day}`);
+            let dataComparacaoMaiorQue = new Date(`${dateComparerMoreThan.value.year}-${dateComparerMoreThan.value.month}-${dateComparerMoreThan.value.day} 00:00`);
+            let dataComparacaoMenorQue = new Date(`${dateComparerLessThan.value.year}-${dateComparerLessThan.value.month}-${dateComparerLessThan.value.day} 00:00`);
             if (dataComparacaoMaiorQue > data || data > dataComparacaoMenorQue)
                 return {
                     dateLessThen: `O campo deve está entre as datas: ${dataComparacaoMaiorQue.toLocaleString()}

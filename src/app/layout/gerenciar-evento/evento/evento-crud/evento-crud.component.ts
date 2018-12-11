@@ -82,8 +82,8 @@ export class EventoCrudComponent extends BaseCrudComponent {
   iniciar() {
     this.multiValidacao.formulario = this.formulario;
     this.formulario.get('evento.dataInicioInscricao').setValidators(ValidateDateMoreThen(this.formulario.get('evento.dataInicio') as FormControl));
-    this.formulario.get('evento.dataFimInscricao').setValidators(ComparerBetweenDate(this.formulario.get('evento.dataInicio') as FormControl,
-      this.formulario.get('evento.dataInicioInscricao') as FormControl));
+    this.formulario.get('evento.dataFimInscricao').setValidators(ComparerBetweenDate(this.formulario.get('evento.dataInicioInscricao') as FormControl,
+                                                                                    this.formulario.get('evento.dataInicio') as FormControl));
     this.formulario.get('evento.dataFim').setValidators(ValidateDateLessThen(this.formulario.get('evento.dataInicio') as FormControl));
 
     this.service.Get('estado/BuscarTodos').subscribe(object => {
