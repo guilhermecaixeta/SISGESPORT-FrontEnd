@@ -11,6 +11,21 @@ export function SomenteNumeros(form: FormControl) {
     }
 }
 
+
+/**
+ * Valida se o control em questão possui valor menor que o formComparer
+ * @param formComparer valor de comparação
+ */
+export function MenorQue(formComparer: FormControl) {
+    return function (form: FormControl) {
+        let valueComparer: number = +formComparer.value;
+        let value: number = +form.value;
+        if (value < valueComparer) {
+            return { MenorQue: `O valor ${value} deve ser maior que ${valueComparer}.` }
+        }
+    }
+}
+
 /**
  * Verifica se a UF inserida é válida.
  * @param control UF a ser validada

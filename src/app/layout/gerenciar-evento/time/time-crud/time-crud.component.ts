@@ -68,7 +68,6 @@ export class TimeCrudComponent extends BaseCrudComponent {
   Finalizar() {
     let time = new Time(this.formulario.get('time').value);
     time.AdicionarListaJogador(this.listaJogador);
-    // console.log(time);
     this.Persistir<Time>(time);
   }
 }

@@ -1,9 +1,9 @@
-import { element } from 'protractor';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BaseCrudComponent } from '../../../../base';
-import { Validators } from '@angular/forms';
+import { Validators, FormControl } from '@angular/forms';
 import { routerTransition } from '../../../../router.animations';
 import { Modalidade } from '../../../../model/modalidade.model';
+import { MenorQue } from '../../../../utils/validators.util.component';
 
 @Component({
   selector: 'app-modalidade-crud',
@@ -30,6 +30,7 @@ export class ModalidadeCrudComponent extends BaseCrudComponent {
   });
 
   iniciar() {
+    this.formulario.get('numMaxJogador').setValidators(MenorQue(this.formulario.controls.numMinJogador as FormControl));
     this.service.Get('penalidade/BuscarTodos').subscribe(data => this.listaPenalidade = data.data);
     this.service.Get('tipoPonto/BuscarTodos').subscribe(data => this.listaTipoPonto = data.data);
     this.service.Get('posicao/BuscarTodos').subscribe(data => this.listaPosicao = data.data);

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { BaseCrudComponent } from '../../../../base';
-import { Validators } from '@angular/forms';
+import { Validators, FormControl } from '@angular/forms';
 import { routerTransition } from '../../../../router.animations';
 import { Posicao } from '../../../../model/posicao.model';
+import { MenorQue } from '../../../../utils/validators.util.component';
 
 @Component({
   selector: 'app-posicao-crud',
@@ -22,6 +23,9 @@ export class PosicaoCrudComponent extends BaseCrudComponent {
     numMinJogador: [1, [Validators.required]]
   });
 
+  iniciar(){
+    this.formulario.get('numMaxJogador').setValidators(MenorQue(this.formulario.controls.numMinJogador as FormControl));
+  }
   Finalizar() {
     this.Persistir<Posicao>(new Posicao(this.formulario.value));
   }

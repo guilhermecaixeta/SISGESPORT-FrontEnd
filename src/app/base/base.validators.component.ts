@@ -44,6 +44,9 @@ import { FormControl } from '@angular/forms';
     <div *ngIf="field.errors.ComparerDate">
         {{field.errors.ComparerDate}}
     </div>
+    <div *ngIf="field.errors.MenorQue">
+        {{field.errors.MenorQue}}
+    </div>    
    <div *ngIf="field.errors.eventoDataInscricaoInicioInvalida">
         Não é possível realizar a inscrição do evento: Data de início de inscrição é maior que a data atual.
     </div>
