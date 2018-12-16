@@ -52,7 +52,7 @@ export class JogadorCrudComponent extends BaseCrudComponent {
         x.partida = nome;
         this.listaPartidaPenalidade.push(x);
       });
-debugger
+
       if (!isNullOrUndefined(this.objetoRetorno) && this.objetoRetorno.partidaPonto.length > 0)
       this.objetoRetorno.partidaPonto.forEach(x => {
         x.idPonto = x.tipoPonto.id;

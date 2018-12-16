@@ -18,6 +18,7 @@ const routes: Routes = [
           { path: 'jogador', loadChildren: './jogador/jogador.module#JogadorModule' },
           { path: 'partida', loadChildren: './partida/partida.module#PartidaModule' },
           { path: 'classificacao', loadChildren: './classificacao/classificacao.module#ClassificacaoModule' },
+          { path: 'classificacao-jogador', loadChildren: './classificacao-jogador/classificacao-jogador.module#ClassificacaoJogadorModule' },
           { path: 'informacao-evento', loadChildren: './informacao-evento/informacao-evento.module#InformacaoEventoModule' }
         ]
       }

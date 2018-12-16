@@ -1,0 +1,23 @@
+<div [@routerTransition]>
+  <div class="row">
+    <div class="col-12 col-md-12 col-lg-6">
+      <label><b>Selecione o Evento:</b></label>
+      <select class="form-control form-control-sm" [(ngModel)]="idEvento">
+        <option *ngFor="let evento of listaEvento" [value]="evento.id">{{evento.nome}}</option>
+      </select>
+    </div>
+    <div *ngIf="idEvento > 0" class="col-12 col-md-12 col-lg-6">
+      <label><b>Selecione a Classificação:</b></label>
+      <select class="form-control form-control-sm" [(ngModel)]="idTipoClassificacao" (ngModelChange)="BuscarJogador()">
+        <option value="1">Pontuação</option>
+        <option value="2">Penalidade</option>
+      </select>
+    </div>
+    <br />
+    <div class="col-12 col-md-12 col-lg-12">
+      <app-manter-padrao desabilitarAdicionar="{desabilitarAdicionar: true}" desabilitarAcao="{desabilitarAcao: true}"
+        [exibirGrid]="abrirGrid" [listaNomeCampo]="listaNomeCampo" [funcaoEspecifica]="funcaoEspecifica" [dataRoute]="data"
+        rotaPadrao="BuscarPorIdEventoPaginavel" legendaTabela="Classificação Jogador" rota="jogador"></app-manter-padrao>
+    </div>
+  </div>
+</div>
