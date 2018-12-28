@@ -6,9 +6,9 @@ import { routerTransition } from '../../../router.animations';
 @Component({
   selector: 'app-penalidade',
   templateUrl: './penalidade.component.html',
-  styleUrls: ['./penalidade.component.scss'],
   animations: [routerTransition()]
 })
+
 export class PenalidadeComponent extends BaseComponent {
   listaNomeCampo: DadosTabela[] = [
     { nomeColuna: 'Nome', nomeValorColuna: 'nome' },

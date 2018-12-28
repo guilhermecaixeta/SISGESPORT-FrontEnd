@@ -1,3 +1,4 @@
+import { Evento } from './evento.model';
 import { Aluno } from "./aluno.model";
 
 export class Equipe {
@@ -6,6 +7,7 @@ export class Equipe {
     public codigoEquipe: string;
     public cor: string;
     public capitao: Aluno;
+    public evento: Evento;
     public aluno: Aluno[];
     /**
      *

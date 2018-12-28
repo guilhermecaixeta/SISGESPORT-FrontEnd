@@ -12,7 +12,7 @@ import {
   declarations:
     [
       BaseComponent,
-      BaseCrudComponent,
+      BaseCrudComponent ,
       BaseValidatorsComponent,
       BaseCrudNavegacaoComponent,
       BaseEtapaComponent

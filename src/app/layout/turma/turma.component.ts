@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Curso } from './../../model/curso.model';
+import { Component } from '@angular/core';
 import { BaseComponent } from '../../base';
 import { DadosTabela } from '../../model/tabela';
 import { routerTransition } from '../../router.animations';
+import { Instituicao } from '../../model/instituicao.model';
 
 @Component({
   selector: 'app-turma',
   templateUrl: './turma.component.html',
-  styleUrls: ['./turma.component.scss'],
   animations: [routerTransition()]
 })
 export class TurmaComponent extends BaseComponent {
-  listaInstituicao: any[] = [];
+  listaInstituicao: Instituicao[] = [];
   listaCurso: any[] = [];
 
   idInstituicao: number;
@@ -26,8 +27,8 @@ export class TurmaComponent extends BaseComponent {
   ];
 
   iniciar() {
-    this.service.Get('instituicao/BuscarTodos').subscribe(object => {
-      this.listaInstituicao = object.data;
+    this.service.Get<Instituicao[]>('instituicao/BuscarTodos').subscribe(object => {
+      this.listaInstituicao = object;
     });
   }
 
@@ -44,8 +45,8 @@ export class TurmaComponent extends BaseComponent {
 
   BuscarCurso() {
     if (this.idInstituicao)
-      this.service.Get('curso/BuscarCursoPorIdInstituicao', this.idInstituicao).subscribe(object => {
-        this.listaCurso = object.data;
+      this.service.Get<Curso[]>('curso/BuscarCursoPorIdInstituicao', this.idInstituicao).subscribe(object => {
+        this.listaCurso = object;
         this.idCurso = 0;
         this.abrirTurma = false;
       });

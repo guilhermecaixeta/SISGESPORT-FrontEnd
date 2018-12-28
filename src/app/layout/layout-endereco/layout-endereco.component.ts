@@ -1,16 +1,17 @@
+import { Municipio } from './../../model/municipio.model';
 import { Component, Input } from '@angular/core';
 import { BaseEtapaComponent } from '../../base';
 import { Alerta } from '../../model/alerta.model';
 import { TipoAlerta } from '../../enum/sisgesport.enum';
+import { Endereco } from '../../model/endereco.model';
 
 @Component({
   selector: 'app-layout-endereco',
-  templateUrl: './layout-endereco.component.html',
-  styleUrls: ['./layout-endereco.component.scss']
+  templateUrl: './layout-endereco.component.html'
 })
-export class LayoutEnderecoComponent extends BaseEtapaComponent {
+export class LayoutEnderecoComponent extends BaseEtapaComponent<Endereco> {
   @Input() estadosLista: any[];
-  @Input() municipioLista: any[];
+  @Input() municipioLista: Municipio[];
   @Input() iniciando: boolean = true;
   iniciar() {
     if (this.acao == 'cadastrar') this.iniciando = false;

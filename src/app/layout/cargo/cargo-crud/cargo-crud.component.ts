@@ -3,17 +3,17 @@ import { Component } from '@angular/core';
 import { BaseCrudComponent } from '../../../base';
 import { routerTransition } from '../../../router.animations';
 import { Cargo } from './../../../model/cargo.model';
+import { Instituicao } from '../../../model/instituicao.model';
 
 @Component({
   selector: 'app-cargo-crud',
   templateUrl: './cargo-crud.component.html',
-  styleUrls: ['./cargo-crud.component.scss'],
   animations: [routerTransition()]
 })
-export class CargoCrudComponent extends BaseCrudComponent {
+export class CargoCrudComponent extends BaseCrudComponent<Cargo> {
   rota = 'cargo';
   value: boolean = false;
-  listaInstituicao: any[];
+  listaInstituicao: Instituicao[];
   
   formulario = this.construtorFormulario.group({
     id:[null],
@@ -23,8 +23,8 @@ export class CargoCrudComponent extends BaseCrudComponent {
   })
 
   iniciar() {
-    this.service.Get('instituicao/BuscarTodos').subscribe(object => {
-      this.listaInstituicao = object.data;
+    this.service.Get<Instituicao[]>('instituicao/BuscarTodos').subscribe(object => {
+      this.listaInstituicao = object;
     });
   }
 

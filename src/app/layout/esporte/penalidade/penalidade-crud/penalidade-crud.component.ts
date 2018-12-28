@@ -7,10 +7,9 @@ import { routerTransition } from '../../../../router.animations';
 @Component({
   selector: 'app-penalidade-crud',
   templateUrl: './penalidade-crud.component.html',
-  styleUrls: ['./penalidade-crud.component.scss'],
   animations: [routerTransition()]
 })
-export class PenalidadeCrudComponent extends BaseCrudComponent {
+export class PenalidadeCrudComponent extends BaseCrudComponent<Penalidade> {
   value: boolean = false;
   rota = 'penalidade';
 

@@ -5,7 +5,7 @@ import { BaseComponent } from './base.component';
  * Componente base para os elementos de etapas, vide: insercao.component e visualizacao.component. 
  */
 @Component({ template: '' })
-export class BaseEtapaComponent extends BaseComponent {
+export class BaseEtapaComponent<T> extends BaseComponent {
     /**
      * Formulario de entrada a ser usado no BaseEtapa
      */
@@ -22,7 +22,7 @@ export class BaseEtapaComponent extends BaseComponent {
     /**
      * Opcional, objeto carregado do back-end.
      */
-    @Input() objetoRetorno: any = null;
+    @Input() objetoRetorno: T = null;
     /**
      * Opcional, objeto usado para multivalidação das etapas.
      */

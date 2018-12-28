@@ -1,3 +1,4 @@
+import { usuario } from './../model/iusuario.model';
 import { Validators } from '@angular/forms';
 import { TipoAlerta } from './../enum/sisgesport.enum';
 import { Component } from '@angular/core';
@@ -11,7 +12,7 @@ import { BaseCrudComponent } from '../base';
     styleUrls: ['./login.component.scss'],
     animations: [routerTransition()]
 })
-export class LoginComponent extends BaseCrudComponent {
+export class LoginComponent extends BaseCrudComponent<usuario> {
 
     formulario = this.construtorFormulario.group({
         matricula: [null, [Validators.required]],

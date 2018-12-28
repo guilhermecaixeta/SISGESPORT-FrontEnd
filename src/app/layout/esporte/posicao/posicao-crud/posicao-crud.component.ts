@@ -8,10 +8,9 @@ import { MenorQue } from '../../../../utils/validators.util.component';
 @Component({
   selector: 'app-posicao-crud',
   templateUrl: './posicao-crud.component.html',
-  styleUrls: ['./posicao-crud.component.scss'],
   animations: [routerTransition()]
 })
-export class PosicaoCrudComponent extends BaseCrudComponent {
+export class PosicaoCrudComponent extends BaseCrudComponent<Posicao> {
   value: boolean = false;
   rota = 'posicao';
 

@@ -5,7 +5,6 @@ import { routerTransition } from '../../router.animations';
 @Component({
   selector: 'app-instituicao',
   templateUrl: './instituicao.component.html',
-  styleUrls: ['./instituicao.component.scss'],
   animations: [routerTransition()]
 })
 export class InstituicaoComponent implements OnInit {

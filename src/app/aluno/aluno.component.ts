@@ -11,7 +11,7 @@ import { routerTransition } from '../router.animations';
   styleUrls: ['../cadastrar/cadastro-crud/cadastro-crud.component.scss'],
   animations: [routerTransition()]
 })
-export class AlunoComponent extends CadastroCrudComponent {
+export class AlunoComponent extends CadastroCrudComponent<Aluno> {
   validacaoCustomizada: any = true;
   rota = 'aluno';
   formulario = this.construtorFormulario.group({
@@ -44,6 +44,6 @@ export class AlunoComponent extends CadastroCrudComponent {
     aluno.adicionarEndereco(Object.assign({},
       this.formulario.controls.endereco.value,
       { cep: this.LimparCaracterEspecial(this.formulario.controls.endereco.value.cep) }));
-    this.Persistir(aluno);
+    this.Persistir<Aluno>(aluno);
   }
 }

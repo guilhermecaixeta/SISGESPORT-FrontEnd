@@ -2,13 +2,13 @@ import { isNullOrUndefined } from 'util';
 import { Component, Input } from '@angular/core';
 import { DadosTabela } from '../../../../../model/tabela';
 import { BaseEtapaComponent } from '../../../../../base';
+import { Equipe } from '../../../../../model/equipe.model';
 
 @Component({
   selector: 'app-insercao',
-  templateUrl: './insercao.component.html',
-  styleUrls: ['./insercao.component.scss']
+  templateUrl: './insercao.component.html'
 })
-export class InsercaoComponent extends BaseEtapaComponent {
+export class InsercaoComponent extends BaseEtapaComponent<Equipe> {
   @Input() cor: string;
   @Input() listaTurma: any[];
   @Input() listaCurso: any[];

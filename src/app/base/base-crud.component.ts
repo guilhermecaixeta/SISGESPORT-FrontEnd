@@ -9,10 +9,9 @@ import { isNullOrUndefined } from 'util';
  * Componente base para realização do CRUD.
  */
 @Component({
-    selector: 'app-base-crud',
     template: ''
 })
-export class BaseCrudComponent extends BaseComponent {
+export class BaseCrudComponent<T> extends BaseComponent {
     id: any;
     /**
      * Formulário padrão para a persistencia de dados da aplicação.
@@ -21,7 +20,7 @@ export class BaseCrudComponent extends BaseComponent {
     /**
      * Objeto de retorno do back end.
      */
-    objetoRetorno: any;
+    objetoRetorno: T;
     /**
      * Variavel usada para identificar a etapa na qual o usuário se encontra em um crud que é necessário mais de uma etapa.
      */
@@ -49,18 +48,17 @@ export class BaseCrudComponent extends BaseComponent {
     ngOnInit() {
         this.activatedRoute.params.subscribe(param => {
             this.id = param['id'];
-            let linkLista = location.href.split('/');
             this.acao = (!isNullOrUndefined(param['acao']) ? param['acao'] : "cadastrar").toLowerCase();
         });
         this.iniciar();
         switch (this.acao) {
             case 'visualizar':
                 this.etapa = (this.etapasTotal - 1);
-                this.carregarDados();
+                this.carregarDados<T>();
                 this.formulario.disable();
                 break;
             case 'editar':
-                this.carregarDados();
+                this.carregarDados<T>();
                 break;
         }
     }
@@ -68,9 +66,9 @@ export class BaseCrudComponent extends BaseComponent {
     /**
      * Carrega os dados usados para editar um dado.
      */
-    carregarDados() {
-        this.service.Get(`${this.rota}/BuscarPorId`, this.id).subscribe(obj => {
-            this.objetoRetorno = this.DateConvert(obj.data);
+    carregarDados<T>() {
+        this.service.Get<T>(`${this.rota}/BuscarPorId`, this.id).subscribe(obj => {
+            this.objetoRetorno = this.DateConvert(obj['data'] ? obj['data'] : obj);
             this.formulario.patchValue(this.objetoRetorno);
             this.aposIniciar();
         });
@@ -84,15 +82,16 @@ export class BaseCrudComponent extends BaseComponent {
         this.acao == 'cadastrar' ?
             this.service.Post<T>(!isNullOrUndefined(rota) ? rota : this.rota, obj).subscribe(
                 () => this.router.navigate(['../'], { relativeTo: this.activatedRoute }),
-                err => this.alertas.push(new Alerta(this.alertas.length + 1, TipoAlerta[4], err))
+                err => this.alertas.push(new Alerta(this.ObterIdPorTamanhoLista(this.alertas), TipoAlerta[4], err))
             ) : this.service.Put<T>(!isNullOrUndefined(rota) ? rota : this.rota, obj.id, obj).subscribe(
                 () => this.router.navigate(['../../'], { relativeTo: this.activatedRoute }),
-                err => this.alertas.push(new Alerta(this.alertas.length + 1, TipoAlerta[4], err))
+                err => this.alertas.push(new Alerta(this.ObterIdPorTamanhoLista(this.alertas), TipoAlerta[4], err))
             );
     }
     /**
      * Método utilizado para realizar o preenchimento do objeto.
      * Invoca o método Persistir para realizar a persistencia do objeto no banco.
+     * Deve ser implementado nas classes filhas.
      */
     Finalizar() { }
 }

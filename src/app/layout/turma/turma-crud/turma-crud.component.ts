@@ -4,18 +4,19 @@ import { BaseCrudComponent } from '../../../base';
 import { routerTransition } from '../../../router.animations';
 import { ValidateDateMoreThen, ValidateDateLessThen } from '../../../utils/validators.util.component';
 import { Turma } from '../../../model/turma.model';
+import { Instituicao } from '../../../model/instituicao.model';
+import { Curso } from '../../../model/curso.model';
 
 @Component({
   selector: 'app-turma-crud',
   templateUrl: './turma-crud.component.html',
-  styleUrls: ['./turma-crud.component.scss'],
   animations: [routerTransition()]
 })
-export class TurmaCrudComponent extends BaseCrudComponent {
+export class TurmaCrudComponent extends BaseCrudComponent<Turma> {
   rota: string = 'turma';
   value: boolean = false;
-  listaCurso: any[] = [];
-  listaInstituicao: any[] = [];
+  listaCurso: Curso[] = [];
+  listaInstituicao: Instituicao[] = [];
 
   formulario = this.construtorFormulario.group({
     instituicao: [null, [Validators.required]],
@@ -34,13 +35,13 @@ export class TurmaCrudComponent extends BaseCrudComponent {
         this.formulario.get('dataLimite').setValue({ year: x.year + 4, month: x.month, day: x.day })
     });
 
-    this.service.Get('instituicao/BuscarTodos').subscribe(object => {
-      this.listaInstituicao = object.data;
+    this.service.Get<Instituicao[]>('instituicao/BuscarTodos').subscribe(object => {
+      this.listaInstituicao = object;
     });
 
     this.formulario.get('instituicao').valueChanges.subscribe(idInstituicao => {
-      this.service.Get('curso/BuscarCursoPorIdInstituicao', idInstituicao).subscribe(object => {
-        this.listaCurso = object.data;
+      this.service.Get<Curso[]>('curso/BuscarCursoPorIdInstituicao', idInstituicao).subscribe(object => {
+        this.listaCurso = object;
       });
     });
   }

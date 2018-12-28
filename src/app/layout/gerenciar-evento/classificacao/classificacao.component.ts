@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../../router.animations';
 import { BaseComponent } from '../../../base';
 import { DadosTabela } from '../../../model/tabela';
+import { Evento } from '../../../model/evento.model';
 
 @Component({
   selector: 'app-classificacao',
   templateUrl: './classificacao.component.html',
-  styleUrls: ['./classificacao.component.scss'],
   animations: [routerTransition()]
 })
 export class ClassificacaoComponent extends BaseComponent {
 
   abrirTime: boolean = false;
-  listaEvento: any[] = [];
+  listaEvento: Evento[] = [];
   listaModalidade: any[] =[];
 
   idEvento: number;
@@ -28,8 +28,8 @@ export class ClassificacaoComponent extends BaseComponent {
   ];
 
   iniciar() {
-    this.service.Get('evento/BuscarTodos').subscribe(object => {
-      this.listaEvento = object.data;
+    this.service.Get<Evento[]>('evento/BuscarTodos').subscribe(object => {
+      this.listaEvento = object;
     });
   }
   

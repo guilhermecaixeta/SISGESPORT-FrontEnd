@@ -5,7 +5,6 @@ import { routerTransition } from '../../router.animations';
 @Component({
   selector: 'app-cargo',
   templateUrl: './cargo.component.html',
-  styleUrls: ['./cargo.component.scss'],
   animations: [routerTransition()]
 })
 export class CargoComponent implements OnInit {

@@ -7,10 +7,9 @@ import { Validators } from '@angular/forms';
 @Component({
   selector: 'app-tipo-ponto-crud',
   templateUrl: './tipo-ponto-crud.component.html',
-  styleUrls: ['./tipo-ponto-crud.component.scss'],
   animations: [routerTransition()]
 })
-export class TipoPontoCrudComponent extends BaseCrudComponent {
+export class TipoPontoCrudComponent extends BaseCrudComponent<TipoPonto> {
   value: boolean = false;
   rota = 'tipoPonto';
 

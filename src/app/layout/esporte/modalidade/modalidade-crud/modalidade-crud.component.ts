@@ -1,22 +1,24 @@
+import { Posicao } from './../../../../model/posicao.model';
+import { Penalidade } from './../../../../model/penalidade.model';
 import { Component } from '@angular/core';
 import { BaseCrudComponent } from '../../../../base';
 import { Validators, FormControl } from '@angular/forms';
 import { routerTransition } from '../../../../router.animations';
 import { Modalidade } from '../../../../model/modalidade.model';
 import { MenorQue } from '../../../../utils/validators.util.component';
+import { TipoPonto } from '../../../../model/tipo-ponto.model';
 
 @Component({
   selector: 'app-modalidade-crud',
   templateUrl: './modalidade-crud.component.html',
-  styleUrls: ['./modalidade-crud.component.scss'],
   animations: [routerTransition()]
 })
-export class ModalidadeCrudComponent extends BaseCrudComponent {
+export class ModalidadeCrudComponent extends BaseCrudComponent<Modalidade> {
   value: boolean = false;
   rota = 'modalidade';
-  listaPosicao: any[];
-  listaPenalidade: any[];
-  listaTipoPonto: any[];
+  listaPenalidade: Penalidade[];
+  listaTipoPonto: TipoPonto[];
+  listaPosicao: Posicao[];
 
   formulario = this.construtorFormulario.group({
     id: [null],
@@ -31,9 +33,9 @@ export class ModalidadeCrudComponent extends BaseCrudComponent {
 
   iniciar() {
     this.formulario.get('numMaxJogador').setValidators(MenorQue(this.formulario.controls.numMinJogador as FormControl));
-    this.service.Get('penalidade/BuscarTodos').subscribe(data => this.listaPenalidade = data.data);
-    this.service.Get('tipoPonto/BuscarTodos').subscribe(data => this.listaTipoPonto = data.data);
-    this.service.Get('posicao/BuscarTodos').subscribe(data => this.listaPosicao = data.data);
+    this.service.Get<Penalidade[]>('penalidade/BuscarTodos').subscribe(data => this.listaPenalidade = data);
+    this.service.Get<TipoPonto[]>('tipoPonto/BuscarTodos').subscribe(data => this.listaTipoPonto = data);
+    this.service.Get<Posicao[]>('posicao/BuscarTodos').subscribe(data => this.listaPosicao = data);
   }
 
   aposIniciar() {

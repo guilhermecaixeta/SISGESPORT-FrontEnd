@@ -11,7 +11,7 @@ import { routerTransition } from '../router.animations';
   styleUrls: ['../cadastrar/cadastro-crud/cadastro-crud.component.scss'],
   animations: [routerTransition()]
 })
-export class ServidorComponent extends CadastroCrudComponent {
+export class ServidorComponent extends CadastroCrudComponent<Servidor> {
   validacaoCustomizada: any = true;
   rota = 'servidor';
   formulario = this.construtorFormulario.group({

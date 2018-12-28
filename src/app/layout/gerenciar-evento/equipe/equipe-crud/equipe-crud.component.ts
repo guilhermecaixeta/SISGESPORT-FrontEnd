@@ -1,19 +1,22 @@
+import { Time } from './../../../../model/time.model';
 import { TipoAlerta } from './../../../../enum/sisgesport.enum';
 import { Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BaseCrudComponent } from '../../../../base';
 import { routerTransition } from '../../../../router.animations';
 import { Equipe } from '../../../../model/equipe.model';
 import { isNullOrUndefined } from 'util';
 import { Alerta } from '../../../../model/alerta.model';
+import { Aluno } from '../../../../model/aluno.model';
+import { Turma } from '../../../../model/turma.model';
+import { Curso } from '../../../../model/curso.model';
 
 @Component({
   selector: 'app-equipe-crud',
   templateUrl: './equipe-crud.component.html',
-  styleUrls: ['./equipe-crud.component.scss'],
   animations: [routerTransition()]
 })
-export class EquipeCrudComponent extends BaseCrudComponent {
+export class EquipeCrudComponent extends BaseCrudComponent<Equipe> {
 
   cor: string = '';
   idEvento: number = 0;
@@ -26,10 +29,10 @@ export class EquipeCrudComponent extends BaseCrudComponent {
   value: boolean = false;
   rota: string = 'equipe';
   validacaoCustomizada = true;
-  listaTime: any[] = [];
-  listaTurma: any[] = [];
-  listaCurso: any[] = [];
-  listaAluno: any[] = [];
+  listaTime: Time[] = [];
+  listaTurma: Turma[] = [];
+  listaCurso: Curso[] = [];
+  listaAluno: Aluno[] = [];
   listaAlunoEquipe: any[] = [];
 
   formulario = this.construtorFormulario.group({
@@ -65,18 +68,18 @@ export class EquipeCrudComponent extends BaseCrudComponent {
      * Carrega os cursos relacionados ao instituto selecionado
      */
     this.formulario.get('aluno.instituicao').valueChanges.subscribe(data => {
-      this.service.Get('curso/BuscarCursoPorIdInstituicao', data).subscribe(object => {
-        this.listaCurso = object.data;
+      this.service.Get<Curso[]>('curso/BuscarCursoPorIdInstituicao', data).subscribe(object => {
+        this.listaCurso = object;
       });
     });
     /**
      * Carrega as turmas relacionadas ao curso escolhido
      */
     this.formulario.get('aluno.curso').valueChanges.subscribe(data => {
-      this.service.Get('turma/BuscarPorCursoId', data).subscribe(object => {
+      this.service.Get<Turma[]>('turma/BuscarPorCursoId', data).subscribe(object => {
         this.formulario.get('aluno.turma').reset();
         this.formulario.get('aluno.id').reset();
-        this.listaTurma = object.data;
+        this.listaTurma = object;
       });
     });
     /**
@@ -84,17 +87,17 @@ export class EquipeCrudComponent extends BaseCrudComponent {
      */
     this.formulario.get('aluno.turma').valueChanges.subscribe(data => {
       if (!isNullOrUndefined(data) && !isNullOrUndefined(this.idEvento))
-        this.service.Get('aluno/BuscarPorIdTurmaEEvento', `${data}/${this.idEvento}`).subscribe(object => {
-          this.listaAluno = object.data;
+        this.service.Get<Aluno[]>('aluno/BuscarPorIdTurmaEEvento', `${data}/${this.idEvento}`).subscribe(object => {
+          this.listaAluno = object;
         });
     });
 
     this.formulario.get('equipe.matriculaCapitao').valueChanges.subscribe(data => {
       if (String(data).length > 13) {
-        this.service.Get('aluno/BuscarPorMatricula', data).subscribe(valor => {
-          this.dadosAluno.nome = valor.data.nome;
-          this.dadosAluno.curso = valor.data.turma.curso.nome;
-          this.formulario.get('equipe.idCapitao').setValue(valor.data.id);
+        this.service.Get<Aluno>('aluno/BuscarPorMatricula', data).subscribe(valor => {
+          this.dadosAluno.nome = valor.nome;
+          this.dadosAluno.curso = valor.turma.curso.nome;
+          this.formulario.get('equipe.idCapitao').setValue(valor.id);
         },
           () => this.alertas.push(new Alerta(0, TipoAlerta[4], 'Erro ao obter usuário!')));
       }

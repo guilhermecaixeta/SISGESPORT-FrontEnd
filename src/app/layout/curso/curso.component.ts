@@ -1,3 +1,4 @@
+import { Instituicao } from './../../model/instituicao.model';
 import { BaseComponent } from './../../base/base.component';
 import { Component } from '@angular/core';
 import { routerTransition } from '../../router.animations';
@@ -6,11 +7,10 @@ import { DadosTabela } from '../../model/tabela';
 @Component({
   selector: 'app-curso',
   templateUrl: './curso.component.html',
-  styleUrls: ['./curso.component.scss'],
   animations: [routerTransition()]
 })
 export class CursoComponent extends BaseComponent {
-  listaInstituicao: any[] = [];
+  listaInstituicao: Instituicao[] = [];
   idInstituicao: number;
   abrirCurso: boolean = false;
   listaNomeCampo: DadosTabela[] = [
@@ -20,8 +20,8 @@ export class CursoComponent extends BaseComponent {
   ];
 
   iniciar() {
-    this.service.Get('instituicao/BuscarTodos').subscribe(object => {
-      this.listaInstituicao = object.data;
+    this.service.Get<Instituicao[]>('instituicao/BuscarTodos').subscribe(object => {
+      this.listaInstituicao = object;
     });
   }
 

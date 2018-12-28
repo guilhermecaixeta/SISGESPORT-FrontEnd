@@ -5,24 +5,21 @@ import { Component } from '@angular/core';
 import { routerTransition } from '../../../router.animations';
 import { RequiredMinLength } from '../../../utils/validators.util.component';
 import { isNullOrUndefined } from 'util';
+import { Municipio } from '../../../model/municipio.model';
 
 @Component({
   selector: 'app-instituicao-crud',
   templateUrl: './instituicao-crud.component.html',
-  styleUrls: ['./instituicao-crud.component.scss'],
   animations: [routerTransition()]
 })
-export class InstituicaoCrudComponent extends BaseCrudComponent {
+export class InstituicaoCrudComponent extends BaseCrudComponent<Instituicao> {
   rota = "instituicao";
   estadosLista: any[];
-  municipioLista: any[];
+  municipioLista: Municipio[];
   value: boolean = false;
   validacaoCustomizada: boolean = true;
   iniciando: boolean = false;
-  municipioDefault = {
-    id: 0,
-    nome: 'Selecione...'
-  }
+
   formulario = this.construtorFormulario.group({
     instituicao: this.construtorFormulario.group({
       id: [null],
@@ -41,14 +38,13 @@ export class InstituicaoCrudComponent extends BaseCrudComponent {
 
   iniciar() {
     this.multiValidacao.formulario = this.formulario;
-    this.service.Get('estado/BuscarTodos').subscribe(object => {
-      this.estadosLista = object.data;
+    this.service.Get<any[]>('estado/BuscarTodos').subscribe(object => {
+      this.estadosLista = object;
     });
     this.formulario.get('endereco.estado').valueChanges.subscribe(id => {
       if (!isNullOrUndefined(id))
-        this.service.Get('municipio/BuscarPorIdEstado', id).subscribe(object => {
-          this.municipioLista = object.data;
-          this.municipioLista.push(this.municipioDefault);
+        this.service.Get<Municipio[]>('municipio/BuscarPorIdEstado', id).subscribe(object => {
+          this.municipioLista = object;
           if (!this.iniciando) this.formulario.get('endereco.municipio').setValue(0);
           else this.iniciando = false;
         });

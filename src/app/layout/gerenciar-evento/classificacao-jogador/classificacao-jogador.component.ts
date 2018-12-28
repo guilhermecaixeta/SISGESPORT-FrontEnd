@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../../router.animations';
 import { BaseComponent } from '../../../base';
 import { DadosTabela } from '../../../model/tabela';
+import { Evento } from '../../../model/evento.model';
 
 @Component({
   selector: 'app-classificacao-jogador',
   templateUrl: './classificacao-jogador.component.html',
-  styleUrls: ['./classificacao-jogador.component.scss'],
   animations: [routerTransition()]
 })
 export class ClassificacaoJogadorComponent extends BaseComponent {
 
   abrirGrid: boolean = false;
-  listaEvento: any[] = [];
+  listaEvento: Evento[] = [];
   listaModalidade: any[] = [];
 
   idEvento: number;
@@ -21,8 +21,8 @@ export class ClassificacaoJogadorComponent extends BaseComponent {
   listaNomeCampo: DadosTabela[];
 
   iniciar() {
-    this.service.Get('evento/BuscarTodos').subscribe(object => {
-      this.listaEvento = object.data;
+    this.service.Get<Evento[]>('evento/BuscarTodos').subscribe(object => {
+      this.listaEvento = object;
     });
   }
 

@@ -1,17 +1,18 @@
+import { Evento } from './../../model/evento.model';
 import { Component } from '@angular/core';
 import { BaseCrudComponent } from '../../base';
 import { routerTransition } from '../../router.animations';
 import { DadosTabela } from '../../model/tabela';
 import { TipoAlerta } from '../../enum/sisgesport.enum';
 import { Alerta } from '../../model/alerta.model';
+import { Equipe } from '../../model/equipe.model';
 
 @Component({
   selector: 'app-evento-aluno',
   templateUrl: './evento-aluno.component.html',
-  styleUrls: ['./evento-aluno.component.scss'],
   animations: [routerTransition()]
 })
-export class EventoAlunoComponent extends BaseCrudComponent {
+export class EventoAlunoComponent extends BaseCrudComponent<Evento> {
   abrirTime: boolean = false;
   bloquear: boolean = true;
   listaEquipe: any[] = [];
@@ -34,19 +35,19 @@ export class EventoAlunoComponent extends BaseCrudComponent {
 
   public iniciar() {
     this.observablePadrao.getValue.subscribe(x => {
-      if (x.data){
+      if (x.data) {
         this.idAluno = x.data.id;
         this.ObterEquipeCadastrada();
       }
     });
     this.formulario.get('codigo').valueChanges.subscribe(code => {
       if (String(code).length > 19)
-        this.service.Get('equipe/BuscarPorCodigoEquipe', code)
+        this.service.Get<Equipe>('equipe/BuscarPorCodigoEquipe', code)
           .subscribe(result => {
-            this.idEquipe = result.data.id;
-            this.evento = result.data.evento;
+            this.idEquipe = result.id;
+            this.evento = result.evento;
             let dataAtual = new Date();
-            let t = this.DateConvert(result.data.evento);
+            let t = this.DateConvert(result.evento);
             let dataInicioInscricao = this.ConvertObjectToDate(t.dataInicioInscricao, true);
             let dataFinalIncricao = this.ConvertObjectToDate(t.dataFimInscricao, true);
             if (dataInicioInscricao > dataAtual) {
@@ -59,7 +60,7 @@ export class EventoAlunoComponent extends BaseCrudComponent {
               this.bloquear = false;
             }
           },
-          error => this.alertas.push(new Alerta(0, TipoAlerta[4], error)));
+            error => this.alertas.push(new Alerta(0, TipoAlerta[4], error)));
     });
   }
 
@@ -81,8 +82,8 @@ export class EventoAlunoComponent extends BaseCrudComponent {
   }
 
   ObterEquipeCadastrada() {
-    this.service.Get('equipe/BuscarEquipePorIdAluno', this.idAluno).subscribe(lista => {
-      this.listaEquipe = lista.data;
+    this.service.Get<Equipe[]>('equipe/BuscarEquipePorIdAluno', this.idAluno).subscribe(lista => {
+      this.listaEquipe = lista;
     });
   }
 }

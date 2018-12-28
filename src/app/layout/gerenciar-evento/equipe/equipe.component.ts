@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../../router.animations';
 import { BaseComponent } from '../../../base';
 import { DadosTabela } from '../../../model/tabela';
+import { Evento } from '../../../model/evento.model';
 
 @Component({
   selector: 'app-equipe',
   templateUrl: './equipe.component.html',
-  styleUrls: ['./equipe.component.scss'],
   animations: [routerTransition()]
 })
 export class EquipeComponent extends BaseComponent {
   
   abrirEquipe: boolean = false;
-  listaEvento: any[] = [];
+  listaEvento: Evento[] = [];
   idEvento: number;
   listaNomeCampo: DadosTabela[] = [
     { nomeColuna: 'Código Equipe', nomeValorColuna: 'codigoEquipe' },
@@ -20,8 +20,8 @@ export class EquipeComponent extends BaseComponent {
   ];
 
   iniciar() {
-    this.service.Get('evento/BuscarTodos').subscribe(object => {
-      this.listaEvento = object.data;
+    this.service.Get<Evento[]>('evento/BuscarTodos').subscribe(object => {
+      this.listaEvento = object;
     });
   }
 

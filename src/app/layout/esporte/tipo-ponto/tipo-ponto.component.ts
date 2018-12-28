@@ -6,7 +6,6 @@ import { DadosTabela } from '../../../model/tabela';
 @Component({
   selector: 'app-tipo-ponto',
   templateUrl: './tipo-ponto.component.html',
-  styleUrls: ['./tipo-ponto.component.scss'],
   animations: [routerTransition()]
 })
 export class TipoPontoComponent extends BaseComponent {

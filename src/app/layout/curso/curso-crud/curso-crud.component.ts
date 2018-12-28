@@ -3,15 +3,15 @@ import { Component } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { Curso } from '../../../model/curso.model';
 import { routerTransition } from '../../../router.animations';
+import { Instituicao } from '../../../model/instituicao.model';
 
 @Component({
   selector: 'app-curso-crud',
   templateUrl: './curso-crud.component.html',
-  styleUrls: ['./curso-crud.component.scss'],
   animations: [routerTransition()]
 })
-export class CursoCrudComponent extends BaseCrudComponent {
-  listaInstituicao: any[] = [];
+export class CursoCrudComponent extends BaseCrudComponent<Curso> {
+  listaInstituicao: Instituicao[] = [];
   value: boolean = false;
   rota = "curso";
 
@@ -23,8 +23,8 @@ export class CursoCrudComponent extends BaseCrudComponent {
   });
 
   iniciar() {
-    this.service.Get('instituicao/BuscarTodos').subscribe(object => {
-      this.listaInstituicao = object.data;
+    this.service.Get<Instituicao[]>('instituicao/BuscarTodos').subscribe(object => {
+      this.listaInstituicao = object;
     });
   }
   aposIniciar() {

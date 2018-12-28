@@ -8,7 +8,7 @@ import { routerTransition } from '../../router.animations';
   styleUrls: ['./cadastro-crud.component.scss'],
   animations: [routerTransition()]
 })
-export class CadastroCrudComponent extends BaseCrudComponent {
+export class CadastroCrudComponent<T> extends BaseCrudComponent<T> {
   possuiMatricula: boolean = false;
   senhasIguais: boolean = true;
   validacaoCustomizada: any;
@@ -25,7 +25,7 @@ export class CadastroCrudComponent extends BaseCrudComponent {
 
     this.formulario.get('cadastro.matricula').valueChanges.subscribe(data => {
       if (String(data).length > 5)
-        this.service.Get(`${this.rota}/BuscarPorMatricula`, data).subscribe(
+        this.service.Get<T>(`${this.rota}/BuscarPorMatricula`, data).subscribe(
           () => this.possuiMatricula = true,
           error => this.possuiMatricula = false)
     });

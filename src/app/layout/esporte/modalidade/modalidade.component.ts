@@ -6,7 +6,6 @@ import { routerTransition } from '../../../router.animations';
 @Component({
   selector: 'app-modalidade',
   templateUrl: './modalidade.component.html',
-  styleUrls: ['./modalidade.component.scss'],
   animations: [routerTransition()]
 })
 export class ModalidadeComponent extends BaseComponent {

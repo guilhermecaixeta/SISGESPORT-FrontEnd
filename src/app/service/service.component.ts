@@ -8,7 +8,9 @@ import { usuario } from '../model/iusuario.model';
 import { ObservablePadrao } from '../utils/observable.util.component';
 import { Router, ActivatedRoute } from '@angular/router';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class Service {
 
     constructor(
@@ -22,11 +24,11 @@ export class Service {
     * @param value valor do parametro de busca
      * @param param valor a ser adicionado no parametro do cabecalho
      */
-    Get(route: string, value?: any, param?: any, reponseType: string = 'json'): Observable<any> {
-        return this.http.get(`${environment.apiEndPoint}${route}${value !== undefined ? '/' + value : ''}`, getHeader(param, reponseType))
+    Get<T>(route: string, value?: any, param?: any, reponseType: string = 'json'): Observable<T> {
+        return this.http.get<T>(`${environment.apiEndPoint}${route}${value !== undefined ? '/' + value : ''}`, getHeader(param, reponseType))
             .pipe(
                 retry(3),
-                map(response => response),
+                map(response => response['data']),
                 catchError(err => this.handleError(err)));
     }
     /**
@@ -105,7 +107,6 @@ export class Service {
 
 
     private handleError(error: HttpErrorResponse) {
-        console.log('erro:', error);
         if (error.status == 401) {
             localStorage.removeItem('token');
             this.router.navigate(['/login'], { relativeTo: this.activatedRoute });

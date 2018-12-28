@@ -14,7 +14,7 @@ import { NgbDatepickerI18n, NgbDateParserFormatter } from '@ng-bootstrap/ng-boot
     { provide: NgbDateParserFormatter, useClass: CustomLocalePtBR }
   ]
 })
-export class CadastroCrudEtapa1Component extends BaseEtapaComponent {
+export class CadastroCrudEtapa1Component<T> extends BaseEtapaComponent<T> {
   @Input() possuiMatricula: boolean;
   @Input() senhasIguais: boolean;
 
@@ -24,18 +24,18 @@ export class CadastroCrudEtapa1Component extends BaseEtapaComponent {
   instituicaoLista: any;
 
   iniciar() {
-    this.service.Get('instituicao/BuscarTodos').subscribe(object => this.instituicaoLista = object.data);
+    this.service.Get('instituicao/BuscarTodos').subscribe(object => this.instituicaoLista = object);
     if (this.rota == 'aluno') {
       this.formulario.get('instituicao').valueChanges.subscribe(id => {
-        this.service.Get('curso/BuscarCursoPorIdInstituicao', id).subscribe(object => this.cursoLista = object.data);
+        this.service.Get('curso/BuscarCursoPorIdInstituicao', id).subscribe(object => this.cursoLista = object);
       });
 
       this.formulario.get('curso').valueChanges.subscribe(id => {
-        this.service.Get('turma/BuscarPorCursoId', id).subscribe(object => this.turmaLista = object.data);
+        this.service.Get('turma/BuscarPorCursoId', id).subscribe(object => this.turmaLista = object);
       });
     } else {
       this.formulario.get('instituicao').valueChanges.subscribe(id => {
-        this.service.Get('cargo/BuscarPorInstituicaoId', id).subscribe(object => this.cargoLista = object.data);
+        this.service.Get('cargo/BuscarPorInstituicaoId', id).subscribe(object => this.cargoLista = object);
       });
     }
   }

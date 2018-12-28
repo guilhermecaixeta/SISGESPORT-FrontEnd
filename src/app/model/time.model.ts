@@ -1,5 +1,6 @@
 import { Jogador } from './jogador.model';
 export class Time {
+
     public id: number;
     public numVitoria: number;
     public numDerrota: number;

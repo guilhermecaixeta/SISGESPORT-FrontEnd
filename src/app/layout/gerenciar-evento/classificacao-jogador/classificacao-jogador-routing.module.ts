@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: '',
     canActivateChild: [AuthGuard],
-    // data: { perfil: PerfilSistema.NO_ROLE },
+    data: { perfil: PerfilSistema.NO_ROLE },
     children: [
       { path: '', component: ClassificacaoJogadorComponent }
     ]

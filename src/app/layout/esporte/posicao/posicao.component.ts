@@ -6,7 +6,6 @@ import { routerTransition } from '../../../router.animations';
 @Component({
   selector: 'app-posicao',
   templateUrl: './posicao.component.html',
-  styleUrls: ['./posicao.component.scss'],
   animations: [routerTransition()]
 })
 export class PosicaoComponent extends BaseComponent {

@@ -106,12 +106,12 @@ export class TabelaBasicaComponent extends BaseComponent {
    * Obtem uma lista atualizada do back-end.
    * @param pageConfig Configuracao da paginacao
    */
-  ObterLista(pageConfig: any) {
+  ObterLista<T>(pageConfig: any) {
     let listaDados;
     if (this.useRoute) {
-      this.service.Get(this.route, this.dataRoute, pageConfig).subscribe(data => {
-        this.pageConfig.totalElements = data.data.totalElements;
-        listaDados = data.data.content;
+      this.service.Get<T>(this.route, this.dataRoute, pageConfig).subscribe(data => {
+        this.pageConfig.totalElements = data['totalElements'];
+        listaDados = data['content'];
         if (this.funcaoEspecifica != null)
           this.listaValorCampo = this.funcaoEspecifica.executar(listaDados);
         else

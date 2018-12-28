@@ -8,7 +8,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
-import { Service } from './service/service.component';
 import { FormBuilder } from '@angular/forms';
 import { MaskField } from './utils/mask.util.component';
 import { ObservablePadrao } from './utils/observable.util.component';
@@ -44,7 +43,7 @@ export const createTranslateLoader = (http: HttpClient) => {
     declarations: [
         AppComponent
     ],
-    providers: [AuthGuard, Service, FormBuilder, MaskField, ObservablePadrao,
+    providers: [AuthGuard, FormBuilder, MaskField, ObservablePadrao,
         { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
     bootstrap: [AppComponent]
 })
