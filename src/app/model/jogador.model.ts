@@ -10,8 +10,8 @@ export class Jogador {
     public jogador: Aluno;
     public time: any;
     public posicao: Posicao;
-    public partidaPenalidade: PartidaPenalidade[];
-    public partidaPonto: PartidaPonto[];
+    public partidaPenalidade: any[];
+    public partidaPonto: any[];
 
     /**
      *

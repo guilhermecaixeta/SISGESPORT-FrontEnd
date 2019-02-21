@@ -5,7 +5,7 @@ export class Time {
     public numDerrota: number;
     public numEmpate: number;
     public pontuacao: number;
-    public jogador: Jogador[];
+    public jogador: any[];
     /**
      *
      */

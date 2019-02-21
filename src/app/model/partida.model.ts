@@ -10,8 +10,8 @@ export class Partida extends DateTimeConversor {
     public duracaoPartida: number;
     public acrescimo: number;
     public juiz: Pessoa;
-    public timeCasa: Time;
-    public timeVisita: Time;
+    public timeCasa: any;
+    public timeVisita: any;
     public evento: Evento;
     public eventoModalidade: EventoModalidade;
     

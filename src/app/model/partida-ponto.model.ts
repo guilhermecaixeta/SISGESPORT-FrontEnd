@@ -3,14 +3,14 @@ import { Partida } from './partida.model';
 
 export class PartidaPonto{
     public id: number;
-    public partida: Partida;
-    public tipoPonto: TipoPonto;
+    public partida: any;
+    public tipoPonto: any;
 
     /**
      *
      */
     constructor(obj: any, idAluno?: number) {
-       this.partida = new Partida({id: obj.idPartida});
+       this.partida = {id: obj.idPartida};
        this.tipoPonto = new TipoPonto({id: obj.idPonto});
     }
 }

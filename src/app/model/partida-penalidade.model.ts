@@ -4,14 +4,14 @@ import { Penalidade } from './penalidade.model';
 
 export class PartidaPenalidade{
     public id: number;
-    public partida: Partida;
+    public partida: any;
     public penalidade: Penalidade;
 
     /**
      *
      */
     constructor(obj: any, idAluno?: number) {
-       this.partida = new Partida({id: obj.idPartida});
+       this.partida = {id: obj.idPartida};
        this.penalidade = new Penalidade({id: obj.idPenalidade});
     }
 }
