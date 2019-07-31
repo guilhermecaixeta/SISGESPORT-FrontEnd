@@ -37,7 +37,7 @@
         "ngx-mask": "^2.9.3",
         "path": "^0.12.7",
         "rxjs": "^6.1.0",
-        "yarn": "^1.6.0",
+        "yarn": "^1.17.3",
         "zone.js": "^0.8.26"
     },
     "devDependencies": {
